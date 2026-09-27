@@ -1,0 +1,91 @@
+// A single home dish.
+
+import { state, update, byId } from '../store.js';
+import { html, ago, fmtDate, cap, safeUrl, STATUS, ratingBadge } from '../ui.js';
+import { availability, mealStats } from '../logic.js';
+
+const MARK = {
+  have: ['✓', 'good'],
+  out: ['✕', 'bad'],
+  unknown: ['?', 'warn'],
+};
+
+export function render(id) {
+  const d = byId(state.dishes, id);
+  if (!d) return html`<a class="back" href="#/cook">‹ Home cooking</a><div class="empty">That dish doesn’t exist any more.</div>`;
+  const stat = mealStats().dish.get(d.id);
+  const av = availability(d);
+  const from = d.from?.restaurantId && byId(state.restaurants, d.from.restaurantId);
+  const cook = state.settings.cookName || 'your cook';
+  const q = encodeURIComponent(`${d.name} recipe`);
+
+  return html`
+  <a class="back" href="#/cook">‹ Home cooking</a>
+  <header class="detail-head">
+    <div>
+      <h1>${d.name}${d.favorite ? html` <span class="fav" title="Favourite">♥</span>` : ''}</h1>
+      <p class="muted">${[d.cuisine, d.cookTime ? `${d.cookTime} min` : '', d.meals?.map(cap).join(' / ')].filter(Boolean).join(' · ')}</p>
+    </div>
+    ${ratingBadge(d.rating)}
+  </header>
+  <div class="chips">
+    <span class="chip ${d.status === 'can_make' ? 'good' : d.status === 'learning' ? 'warn' : 'accent'}">${STATUS[d.status]}</span>
+    ${(d.tags || []).map((t) => html`<span class="chip">${t}</span>`)}
+  </div>
+  <div class="facts">
+    <span>Last had <strong>${stat ? ago(stat.last) : 'never'}</strong></span>
+    <span>Logged <strong>${stat?.count || 0}×</strong></span>
+    ${from ? html`<span>From <a href="#/restaurant/${from.id}">${from.name}</a></span>` : ''}
+  </div>
+
+  ${d.status === 'learning' ? html`<div class="notice">${cap(cook)} is learning this one. Share the recipe below, and once it turns out well, add it to the regular rotation.
+    <div><button type="button" class="btn sm" data-action="setStatus" data-id="${d.id}" data-status="can_make">Learned it ✓</button></div></div>` : ''}
+  ${d.status === 'want_to_try' ? html`<div class="notice">On your want-to-try list.
+    <div><button type="button" class="btn sm" data-action="setStatus" data-id="${d.id}" data-status="learning">Ask ${cook} to learn it</button></div></div>` : ''}
+
+  <div class="card-actions">
+    <button type="button" class="btn primary" data-action="make" data-id="${d.id}">Make this</button>
+    <button type="button" class="btn" data-action="ate" data-id="${d.id}">Had it</button>
+    <button type="button" class="btn ghost" data-action="editDish" data-id="${d.id}">Edit</button>
+  </div>
+
+  <h2 class="section-title">Ingredients ${av.rows.length ? html`<span class="muted">${av.have.length} of ${av.rows.length} at home</span>` : ''}</h2>
+  ${av.rows.length ? html`<ul class="list ings">${av.rows.map((r) => html`
+    <li class="ing">
+      <span class="ing-mark ${MARK[r.avail][1]}">${MARK[r.avail][0]}</span>
+      <span class="ing-name">${r.name} ${r.qty ? html`<span class="ing-qty">· ${r.qty}</span>` : ''}</span>
+      ${r.avail === 'have'
+        ? html`<span class="ing-note">${r.item?.status === 'low' ? 'running low' : ''}</span>`
+        : html`<button type="button" class="btn xs" data-action="haveIt" data-name="${r.name}" data-item="${r.item?.id || ''}">Have it</button>`}
+    </li>`)}</ul>`
+    : html`<div class="empty">No ingredients yet. <div><button type="button" class="btn sm" data-action="editDish" data-id="${d.id}">Add ingredients</button></div></div>`}
+
+  <h2 class="section-title">Recipe</h2>
+  <div class="card">
+    ${d.links?.length ? html`<ul class="links">${d.links.map((l) => html`<li><a href="${safeUrl(l)}" target="_blank" rel="noopener">${prettyUrl(l)}</a></li>`)}</ul>` : ''}
+    ${d.instructions ? html`<p class="prose"><strong>For ${cook}:</strong> ${d.instructions}</p>` : ''}
+    ${!d.links?.length && !d.instructions ? html`<p class="hint" style="margin-top:0">No recipe saved yet. Find one, then paste the link with Edit.</p>` : ''}
+    <div class="card-actions">
+      <a class="btn sm" href="https://www.youtube.com/results?search_query=${q}" target="_blank" rel="noopener">Search YouTube</a>
+      <a class="btn sm" href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">Search the web</a>
+    </div>
+  </div>
+
+  ${d.notes ? html`<h2 class="section-title">Notes</h2><div class="card"><p class="prose">${d.notes}</p></div>` : ''}
+
+  ${stat ? html`<h2 class="section-title">History</h2>
+    <div class="chips">${stat.dates.slice().sort().reverse().slice(0, 12).map((x) => html`<span class="chip">${fmtDate(x)}</span>`)}</div>` : ''}`;
+}
+
+function prettyUrl(u) {
+  try {
+    const url = new URL(u);
+    return url.hostname.replace(/^www\./, '') + (url.pathname.length > 1 ? url.pathname.slice(0, 28) + (url.pathname.length > 28 ? '…' : '') : '');
+  } catch {
+    return u;
+  }
+}
+
+export const actions = {
+  setStatus: ({ id, status }) => update((s) => { byId(s.dishes, id).status = status; }),
+};

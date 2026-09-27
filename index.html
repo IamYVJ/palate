@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Palate</title>
+  <meta name="description" content="Your food memory. Your kitchen. Your taste.">
+  <meta name="theme-color" content="#faf6f0" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#16120f" media="(prefers-color-scheme: dark)">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="Palate">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&display=swap">
+  <link rel="stylesheet" href="css/styles.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a href="#/today" class="brand">Palate</a>
+      <div class="topbar-actions">
+        <button type="button" class="icon-btn" data-action="capture" aria-label="Save something for later" title="Save something for later">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+        </button>
+        <a class="icon-btn" href="#/settings" aria-label="Settings" title="Settings">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h9M17 7h3M4 12h3M11 12h9M4 17h11M19 17h1"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="12" r="2"/><circle cx="17" cy="17" r="2"/></svg>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="view" tabindex="-1"></main>
+
+  <nav class="tabbar" aria-label="Sections">
+    <div class="tabbar-inner">
+      <a href="#/today" data-tab="today">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 18h18M5 18a7 7 0 0 1 14 0M12 11V9M10 9h4"/></svg>Today
+      </a>
+      <a href="#/cook" data-tab="cook">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 11h14v5a4 4 0 0 1-4 4H9a4 4 0 0 1-4-4v-5zM3 11h2M19 11h2M9.5 7.5c0-1 1-1.2 1-2.5M13.5 7.5c0-1 1-1.2 1-2.5"/></svg>Cook
+      </a>
+      <a href="#/kitchen" data-tab="kitchen">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 10h17l-1.8 8.4A2 2 0 0 1 16.7 20H7.3a2 2 0 0 1-2-1.6L3.5 10zM8 10l3-6M16 10l-3-6M9.5 13.5v3M14.5 13.5v3"/></svg>Kitchen
+      </a>
+      <a href="#/out" data-tab="out">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-5.8-6.5-11a6.5 6.5 0 0 1 13 0c0 5.2-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>Out
+      </a>
+      <a href="#/memory" data-tab="memory">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>Memory
+      </a>
+    </div>
+  </nav>
+
+  <dialog id="modal"></dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+  <noscript><p style="padding:24px">Palate needs JavaScript to run.</p></noscript>
+</body>
+</html>
