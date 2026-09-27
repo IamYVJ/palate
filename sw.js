@@ -24,6 +24,7 @@ const SHELL = [
   'js/diet.js',
   'js/catalog.js',
   'js/recipes.js',
+  'js/shop-links.js',
   'js/creators.js',
   'js/views/ideas.js',
   'js/views/today.js',

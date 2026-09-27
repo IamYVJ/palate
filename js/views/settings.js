@@ -49,7 +49,8 @@ export function render() {
     <p><a class="btn sm" href="${bookmarklet}" data-action="bookmarkletHelp">＋ Save to Palate</a></p>
   </section>
 
-  <p class="hint" style="text-align:center;margin-top:24px">Palate · your food memory</p>`;
+  <p class="hint" style="text-align:center;margin-top:24px">Palate · your food memory<br>
+    <span class="disclosure">Ingredient links go to Amazon.in. As an Amazon Associate, Palate earns from qualifying purchases.</span></p>`;
 }
 
 function installCard() {

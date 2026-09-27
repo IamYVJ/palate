@@ -33,3 +33,5 @@ npm-debug.log*
 *.log
 tmp/
 TODO.md
+/links
+scripts/build-shop-links.py

@@ -4,7 +4,7 @@ import { state, update, byId } from '../store.js';
 import { html, ago, fmtDate, cap, safeUrl, youtubeId, STATUS, ratingBadge, dietMark, todayISO, toast } from '../ui.js';
 import { CREATORS, creatorsFor, creatorSearchUrl } from '../creators.js';
 import { DIET } from '../diet.js';
-import { availability, mealStats } from '../logic.js';
+import { availability, mealStats, buyLink, dishBundle } from '../logic.js';
 
 const MARK = {
   have: ['✓', 'good'],
@@ -22,6 +22,8 @@ export function render(id) {
   const links = d.links || [];
   const videos = links.filter(youtubeId);
   const pages = links.filter((l) => !youtubeId(l));
+  const bundle = av.rows.length ? dishBundle(d.name) : null;
+  const anyBuy = !!bundle || av.rows.some((r) => buyLink(r.name));
 
   return html`
   <a class="back" href="#/cook">‹ Home cooking</a>
@@ -74,6 +76,7 @@ export function render(id) {
   </div>
 
   <h2 class="section-title">Ingredients ${av.rows.length ? html`<span class="muted">${d.recipeFrom ? 'as in the video · ' : ''}${av.have.length} of ${av.rows.length} at home</span>` : ''}</h2>
+  ${bundle ? buyAll(bundle) : ''}
   ${av.rows.length ? html`<ul class="list ings">${av.rows.map((r) => html`
     <li class="ing">
       <span class="ing-mark ${MARK[r.avail][1]}">${MARK[r.avail][0]}</span>
@@ -81,7 +84,9 @@ export function render(id) {
       ${r.avail === 'have'
         ? html`<span class="ing-note">${r.item?.status === 'low' ? 'running low' : ''}</span>`
         : html`<button type="button" class="btn xs" data-action="haveIt" data-name="${r.name}" data-item="${r.item?.id || ''}">Have it</button>`}
-    </li>`)}</ul>`
+      ${buyButton(r.name)}
+    </li>`)}</ul>
+    ${anyBuy ? html`<p class="hint disclosure">Amazon links: as an Amazon Associate, Palate earns from qualifying purchases.</p>` : ''}`
     : html`<div class="empty">No ingredients yet. <div><button type="button" class="btn sm" data-action="editDish" data-id="${d.id}">Add ingredients</button></div></div>`}
 
   ${d.method?.length ? html`<h2 class="section-title">Method <span class="muted">${methodCredit(d)}</span></h2>
@@ -91,6 +96,24 @@ export function render(id) {
 
   ${stat ? html`<h2 class="section-title">History</h2>
     <div class="chips">${stat.dates.slice().sort().reverse().slice(0, 12).map((x) => html`<span class="chip">${fmtDate(x)}</span>`)}</div>` : ''}`;
+}
+
+/** One link that puts the whole dish's shopping in an Amazon cart, plus anything it couldn't include. */
+function buyAll(bundle) {
+  return html`<div class="buy-all">
+    <a class="btn sm" href="${safeUrl(bundle.url)}" target="_blank" rel="noopener sponsored">Buy all ingredients on Amazon <span class="count">${bundle.count} items</span></a>
+    ${bundle.leftOut.length ? html`<p class="hint">Not in that list: ${bundle.leftOut.map((x, i) => html`${i ? ', ' : ''}${x.url
+      ? html`<a href="${safeUrl(x.url)}" target="_blank" rel="noopener sponsored">${x.name.toLowerCase()}</a>`
+      : x.name.toLowerCase()}`)}</p>` : ''}
+  </div>`;
+}
+
+/** Small "Buy" link beside an ingredient ("Find" when it's a search rather than one product). */
+function buyButton(name) {
+  const link = buyLink(name);
+  if (!link) return '';
+  const title = [link.product, link.note].filter(Boolean).join(' · ');
+  return html`<a class="buy" href="${safeUrl(link.url)}" target="_blank" rel="noopener sponsored" title="${title}" aria-label="${link.search ? 'Find' : 'Buy'} ${name} on Amazon">${link.search ? 'Find' : 'Buy'}</a>`;
 }
 
 /** "summarised from Ranveer Brar's video", when the method came from the dish's video. */

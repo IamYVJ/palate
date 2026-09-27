@@ -3,6 +3,7 @@
 
 import { state, byId } from './store.js';
 import { todayISO, daysSince, ago, STATUS, SLOTS, youtubeId } from './ui.js';
+import { INGREDIENT_LINKS, DISH_BUNDLES } from './shop-links.js';
 
 // ---------- ingredients vs. the kitchen ----------
 
@@ -11,8 +12,9 @@ const ASSUMED = new Set(['salt', 'water']);
 /** Loose key so "Tomatoes" ~ "tomato" and "green chillies" ~ "green chilli". */
 export function ingKey(s) {
   return String(s || '').toLowerCase()
+    .normalize('NFD').replace(/[\u0300-\u036f]/g, '') // drop accents: jalapeño ~ jalapeno
     .replace(/\(.*?\)/g, ' ')
-    .replace(/[^a-z0-9ऀ-ॿ]+/g, ' ')
+    .replace(/[^a-z0-9\u0900-\u097f]+/g, ' ')
     .trim().split(/\s+/).filter(Boolean)
     .map((w) => (w.length > 3 ? w.replace(/ies$/, 'i').replace(/y$/, 'i').replace(/oes$/, 'o').replace(/([^s])s$/, '$1') : w))
     .join(' ');
@@ -31,6 +33,16 @@ export function findPantry(name) {
     .sort((a, b) => b[1].length - a[1].length)[0];
   return partial ? partial[0] : null;
 }
+
+// ---------- where to buy ----------
+
+const LINKS_BY_KEY = new Map(Object.entries(INGREDIENT_LINKS).map(([name, link]) => [ingKey(name), { name, ...link }]));
+
+/** Amazon link for an ingredient ({ url, product, search, note }), or null. */
+export const buyLink = (name) => LINKS_BY_KEY.get(ingKey(name)) || null;
+
+/** One link that fills an Amazon cart with a dish's ingredients ({ url, count, leftOut }), or null. */
+export const dishBundle = (dishName) => DISH_BUNDLES[dishName] || null;
 
 /** 'have' (in stock or running low), 'out', or 'unknown' (not tracked in the kitchen). */
 export function checkIngredient(name) {
