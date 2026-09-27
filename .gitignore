@@ -32,3 +32,4 @@ npm-debug.log*
 # Logs and scratch
 *.log
 tmp/
+TODO.md

@@ -4,11 +4,7 @@
 import { uid, blank } from './store.js';
 import { todayISO } from './ui.js';
 import { CATALOG, videoFields } from './catalog.js';
-
-const ing = (s) => s.split(';').map((x) => {
-  const [name, qty = ''] = x.split('|').map((t) => t.trim());
-  return { name, qty };
-});
+import { recipeFor } from './recipes.js';
 
 export function sampleData() {
   const d = (n) => todayISO(-n);
@@ -18,7 +14,7 @@ export function sampleData() {
   const dish = (o) => {
     const x = {
       id: uid(), status: 'can_make', diet: 'veg', archived: false, rating: null, favorite: false, cuisine: 'North Indian',
-      meals: ['lunch', 'dinner'], ingredients: [], links: [], linkInfo: {}, cookTime: null, tags: [], instructions: '', notes: '', from: null,
+      meals: ['lunch', 'dinner'], ingredients: [], links: [], linkInfo: {}, method: [], recipeFrom: '', cookTime: null, tags: [], instructions: '', notes: '', from: null,
       addedOn: d(120), ...o,
     };
     data.dishes.push(x);
@@ -31,7 +27,7 @@ export function sampleData() {
     const { region, ...fields } = c;
     return dish({
       ...fields, ingredients: fields.ingredients.map((i) => ({ ...i })), tags: [...fields.tags],
-      links: [...fields.links], linkInfo: { ...fields.linkInfo }, ...o,
+      links: [...fields.links], linkInfo: { ...fields.linkInfo }, method: [...fields.method], ...o,
     });
   };
 
@@ -84,9 +80,9 @@ export function sampleData() {
 
   // ---- Egg dishes: archived for now (history kept) ----
   const omelette = dish({ name: 'Masala Omelette', diet: 'egg', archived: true, rating: 7, cookTime: 10, meals: ['breakfast'], tags: ['quick', 'high protein'],
-    ingredients: ing('Eggs|3; Onion|1 small; Tomato|1; Green chilli|1; Coriander leaves|handful; Bread|4 slices'), ...videoFields('Masala Omelette') });
+    ...videoFields('Masala Omelette'), ...recipeFor('Masala Omelette') });
   dish({ name: 'Shakshuka', diet: 'egg', archived: true, status: 'want_to_try', cuisine: 'Middle Eastern', meals: ['breakfast'], addedOn: d(8),
-    ingredients: ing('Eggs|4; Tomato|4; Onion|1; Capsicum|1; Paprika|1 tsp'), ...videoFields('Shakshuka') });
+    ...videoFields('Shakshuka'), ...recipeFor('Shakshuka') });
 
   // ---- Restaurants ----
   const place = (o) => {
@@ -131,7 +127,11 @@ export function sampleData() {
   };
   pantry('staple', 'Rice, Atta, Maida, Besan, Rava, Poha, Toor dal, Moong dal, Whole urad dal, Rajma, Onion, Potato, Garlic, Ginger garlic paste, Peas, '
     + 'Garam masala, Cumin seeds, Turmeric, Red chilli powder, Mustard seeds, Kasuri methi, Kadai masala, Pav bhaji masala, Biryani masala, '
-    + 'Ghee, Oil, Butter, Peanuts, Cashews, Cornflour, Pasta, Noodles, Olive oil, Chilli flakes, Soy sauce, Vinegar');
+    + 'Ghee, Oil, Butter, Peanuts, Cashews, Cornflour, Pasta, Noodles, Olive oil, Chilli flakes, Soy sauce, Vinegar, '
+    + 'Hing, Coriander powder, Cumin powder, Coriander seeds, Bay leaf, Cloves, Green cardamom, Black cardamom, Cinnamon, '
+    + 'Black peppercorns, Black pepper, Dry red chilli, Ajwain, Amchur, Fenugreek seeds, Sugar, Baking soda, Oregano, '
+    + 'Chana dal, Urad dal, Mustard oil, Red chilli sauce, Tomato ketchup');
+  pantry('fresh', 'Ginger', 'have', 3);
   pantry('staple', 'Kabuli chana, Chole masala', 'low');
   pantry('fresh', 'Spinach', 'have', 4);
   pantry('fresh', 'Tomato, Coriander leaves, Curd, Cabbage, Spring onion', 'have', 2);

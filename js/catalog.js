@@ -2,6 +2,8 @@
 // Ingredient names use everyday Indian-kitchen names (capsicum, maida, besan…) so they
 // line up with what people track in the Kitchen tab.
 
+import { recipeFor } from './recipes.js';
+
 const MEALS = { B: 'breakfast', L: 'lunch', D: 'dinner' };
 
 // A recipe video for each dish: [YouTube id, channel, title]. Picked from the recommended creators
@@ -85,7 +87,11 @@ const dish = (region, name, cuisine, meals, cookTime, ingredients, tags = []) =>
   }),
   tags,
   diet: 'veg',
+  method: [],
+  recipeFrom: '',
   ...videoFields(name),
+  // Where we've checked the video, its ingredients and method replace the generic list above.
+  ...recipeFor(name),
 });
 const indian = (...a) => dish('indian', ...a);
 const world = (...a) => dish('international', ...a);

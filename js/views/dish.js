@@ -73,7 +73,7 @@ export function render(id) {
     ${links.length ? '' : html`<p class="hint">Found a good one? Paste its link with <strong>Edit</strong> and it goes into the WhatsApp message for ${cook}.</p>`}
   </div>
 
-  <h2 class="section-title">Ingredients ${av.rows.length ? html`<span class="muted">${av.have.length} of ${av.rows.length} at home</span>` : ''}</h2>
+  <h2 class="section-title">Ingredients ${av.rows.length ? html`<span class="muted">${d.recipeFrom ? 'as in the video · ' : ''}${av.have.length} of ${av.rows.length} at home</span>` : ''}</h2>
   ${av.rows.length ? html`<ul class="list ings">${av.rows.map((r) => html`
     <li class="ing">
       <span class="ing-mark ${MARK[r.avail][1]}">${MARK[r.avail][0]}</span>
@@ -84,10 +84,21 @@ export function render(id) {
     </li>`)}</ul>`
     : html`<div class="empty">No ingredients yet. <div><button type="button" class="btn sm" data-action="editDish" data-id="${d.id}">Add ingredients</button></div></div>`}
 
+  ${d.method?.length ? html`<h2 class="section-title">Method <span class="muted">${methodCredit(d)}</span></h2>
+    <ol class="list method">${d.method.map((step) => html`<li>${step}</li>`)}</ol>` : ''}
+
   ${d.notes ? html`<h2 class="section-title">Notes</h2><div class="card"><p class="prose">${d.notes}</p></div>` : ''}
 
   ${stat ? html`<h2 class="section-title">History</h2>
     <div class="chips">${stat.dates.slice().sort().reverse().slice(0, 12).map((x) => html`<span class="chip">${fmtDate(x)}</span>`)}</div>` : ''}`;
+}
+
+/** "summarised from Ranveer Brar's video", when the method came from the dish's video. */
+function methodCredit(d) {
+  if (!d.recipeFrom) return '';
+  const video = (d.links || []).find(youtubeId);
+  const channel = video && d.linkInfo?.[video]?.channel;
+  return channel ? `summarised from ${channel}’s video` : 'summarised from the video';
 }
 
 function videoCard(url, info) {

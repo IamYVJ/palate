@@ -2,14 +2,15 @@
 
 import { guessDiet } from './diet.js';
 import { videoFields } from './catalog.js';
+import { recipeFor, LEGACY_INGREDIENTS } from './recipes.js';
 
 const KEY = 'palate.v1';
 const LISTS = ['dishes', 'restaurants', 'pantry', 'meals', 'plan', 'shopExtra'];
 
 export const blank = () => ({
-  version: 2,
+  version: 3,
   settings: { cookName: '', cookPhone: '', lang: 'en' },
-  dishes: [],      // home dishes: { id, name, status, diet, archived, rating, favorite, cuisine, meals[], ingredients[{name, qty}], links[], linkInfo{url: {title, channel}}, cookTime, tags[], instructions, notes, from, addedOn }
+  dishes: [],      // home dishes: { id, name, status, diet, archived, rating, favorite, cuisine, meals[], ingredients[{name, qty}], links[], linkInfo{url: {title, channel}}, method[], recipeFrom, cookTime, tags[], instructions, notes, from, addedOn }
   restaurants: [], // { id, name, status: 'been'|'want', area, cuisine, mapUrl, recommendedBy, notes, addedOn, dishes[{ id, name, tried, rating, verdict, notes, addedOn }] }
   pantry: [],      // { id, name, kind: 'staple'|'fresh'|'special', status: 'have'|'low'|'out', since }
   meals: [],       // the food log: { id, date, slot, kind: 'home'|'out'|'order', dishId?, restaurantId?, label }
@@ -27,6 +28,8 @@ function normalize(data) {
     if (typeof d.archived !== 'boolean') d.archived = false;
     if (!Array.isArray(d.links)) d.links = [];
     if (!d.linkInfo || typeof d.linkInfo !== 'object') d.linkInfo = {};
+    if (!Array.isArray(d.method)) d.method = [];
+    if (typeof d.recipeFrom !== 'string') d.recipeFrom = '';
   }
   // v1 → v2: give dishes a recipe video from the catalogue, unless they already have a real link.
   if ((s.version || 1) < 2) {
@@ -37,6 +40,20 @@ function normalize(data) {
       }
     }
     s.version = 2;
+  }
+  // v2 → v3: ingredients and method from the recipe video, for dishes whose list you haven't edited.
+  if (s.version < 3) {
+    for (const d of s.dishes) {
+      const r = recipeFor(d.name);
+      if (!r) continue;
+      const names = (d.ingredients || []).map((i) => String(i.name).toLowerCase()).join(',');
+      if (names === LEGACY_INGREDIENTS[d.name] || !d.ingredients?.length) {
+        d.ingredients = r.ingredients;
+        d.recipeFrom = r.recipeFrom;
+      }
+      if (!d.method.length) d.method = r.method;
+    }
+    s.version = 3;
   }
   return s;
 }

@@ -5,6 +5,7 @@ import { html, openModal, closeModal, toast, todayISO, STATUS, SLOTS, KINDS, cap
 import { availability, cookMessage, whatsappUrl, findPantry, ingKey, nameList, slotFor } from './logic.js';
 import { DIET, guessDiet } from './diet.js';
 import { videoFields } from './catalog.js';
+import { recipeFor } from './recipes.js';
 
 // ---------- form helpers ----------
 
@@ -63,6 +64,7 @@ export function dishForm(dish = null, preset = {}) {
     <div class="field"><span>Good for</span><div class="pills">${SLOTS.map((s) => html`
       <label class="pill"><input type="checkbox" name="meals" value="${s}" ${d.meals?.includes(s) ? 'checked' : ''}><span>${cap(s)}</span></label>`)}</div></div>
     <label class="field"><span>Ingredients <em>one per line, e.g. “Paneer - 200 g”</em></span><textarea name="ingredients" rows="6">${ingText(d.ingredients)}</textarea></label>
+    <label class="field"><span>Method <em>one step per line</em></span><textarea name="method" rows="5" placeholder="Soak the rajma overnight">${(d.method || []).join('\n')}</textarea></label>
     <label class="field"><span>Recipe / video links <em>one per line</em></span><textarea name="links" rows="2" placeholder="https://youtube.com/…">${(d.links || []).join('\n')}</textarea></label>
     <label class="field"><span>Instructions for ${cookName()} <em>added to the WhatsApp message</em></span><textarea name="instructions" rows="2" placeholder="Less oil, medium spicy">${d.instructions || ''}</textarea></label>
     <label class="field"><span>Tags <em>comma separated</em></span><input name="tags" value="${(d.tags || []).join(', ')}" placeholder="high protein, quick, comfort"></label>
@@ -83,6 +85,7 @@ function saveDish(fd) {
     cookTime: num(fd, 'cookTime'),
     meals: fd.getAll('meals'),
     ingredients: parseIngredients(fd.get('ingredients')),
+    method: lines(fd.get('method')).map((l) => l.replace(/^\d+[.)]\s*/, '')),
     links: lines(fd.get('links')),
     instructions: str(fd, 'instructions'),
     tags: str(fd, 'tags').split(',').map((t) => t.trim()).filter(Boolean),
@@ -95,12 +98,20 @@ function saveDish(fd) {
     // Keep titles/channels only for links that are still there.
     const known = existing?.linkInfo || {};
     data.linkInfo = Object.fromEntries(data.links.filter((l) => known[l]).map((l) => [l, known[l]]));
-    if (existing) Object.assign(existing, data);
-    else {
+    if (existing) {
+      // Once you change the ingredients they're yours, not the video's.
+      if (ingText(existing.ingredients) !== ingText(data.ingredients)) data.recipeFrom = '';
+      Object.assign(existing, data);
+    } else {
       newId = uid();
-      // A dish we know from the catalogue gets its recipe video if you didn't paste a link.
+      // A dish we know from the catalogue gets its video, ingredients and method for whatever you left blank.
       const video = data.links.length ? {} : videoFields(data.name);
-      s.dishes.push({ id: newId, archived: false, from: null, addedOn: todayISO(), ...data, ...video });
+      const recipe = recipeFor(data.name);
+      const fill = recipe ? {
+        ...(data.ingredients.length ? {} : { ingredients: recipe.ingredients, recipeFrom: recipe.recipeFrom }),
+        ...(data.method.length ? {} : { method: recipe.method }),
+      } : {};
+      s.dishes.push({ id: newId, archived: false, from: null, addedOn: todayISO(), recipeFrom: '', ...data, ...video, ...fill });
     }
   });
   closeModal();
@@ -332,7 +343,8 @@ function toHome({ rid, did }) {
   update((s) => {
     s.dishes.push({
       id, name: rd.name, status: 'learning', diet: guessDiet(rd), archived: false, rating: null, favorite: false, cuisine: r.cuisine || '',
-      meals: [], ingredients: [], ...videoFields(rd.name), cookTime: null, tags: [], instructions: '',
+      meals: [], ingredients: [], method: [], recipeFrom: '', ...videoFields(rd.name), ...recipeFor(rd.name),
+      cookTime: null, tags: [], instructions: '',
       notes: `Loved it at ${r.name}${rd.rating ? ` (${rd.rating}/10)` : ''}.${rd.notes ? ` ${rd.notes}` : ''}`,
       from: { restaurantId: r.id, rdishId: rd.id }, addedOn: todayISO(),
     });

@@ -23,6 +23,7 @@ const SHELL = [
   'js/pwa.js',
   'js/diet.js',
   'js/catalog.js',
+  'js/recipes.js',
   'js/creators.js',
   'js/views/ideas.js',
   'js/views/today.js',
