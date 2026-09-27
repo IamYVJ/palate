@@ -87,6 +87,7 @@ export const actions = {
         s.dishes.push({
           id: uid(), status, archived: false, rating: null, favorite: false, links: [], instructions: '', notes: '',
           from: null, addedOn: todayISO(), ...fields, ingredients: fields.ingredients.map((x) => ({ ...x })), tags: [...fields.tags],
+          links: [...fields.links], linkInfo: { ...fields.linkInfo },
         });
       }
     });

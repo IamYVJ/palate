@@ -1,14 +1,15 @@
 // All of Palate's data lives in one object, persisted to localStorage on every change.
 
 import { guessDiet } from './diet.js';
+import { videoFields } from './catalog.js';
 
 const KEY = 'palate.v1';
 const LISTS = ['dishes', 'restaurants', 'pantry', 'meals', 'plan', 'shopExtra'];
 
 export const blank = () => ({
-  version: 1,
+  version: 2,
   settings: { cookName: '', cookPhone: '', lang: 'en' },
-  dishes: [],      // home dishes: { id, name, status, diet, archived, rating, favorite, cuisine, meals[], ingredients[{name, qty}], links[], cookTime, tags[], instructions, notes, from, addedOn }
+  dishes: [],      // home dishes: { id, name, status, diet, archived, rating, favorite, cuisine, meals[], ingredients[{name, qty}], links[], linkInfo{url: {title, channel}}, cookTime, tags[], instructions, notes, from, addedOn }
   restaurants: [], // { id, name, status: 'been'|'want', area, cuisine, mapUrl, recommendedBy, notes, addedOn, dishes[{ id, name, tried, rating, verdict, notes, addedOn }] }
   pantry: [],      // { id, name, kind: 'staple'|'fresh'|'special', status: 'have'|'low'|'out', since }
   meals: [],       // the food log: { id, date, slot, kind: 'home'|'out'|'order', dishId?, restaurantId?, label }
@@ -24,6 +25,18 @@ function normalize(data) {
   for (const d of s.dishes) {
     if (!d.diet) d.diet = guessDiet(d);
     if (typeof d.archived !== 'boolean') d.archived = false;
+    if (!Array.isArray(d.links)) d.links = [];
+    if (!d.linkInfo || typeof d.linkInfo !== 'object') d.linkInfo = {};
+  }
+  // v1 → v2: give dishes a recipe video from the catalogue, unless they already have a real link.
+  if ((s.version || 1) < 2) {
+    for (const d of s.dishes) {
+      if (d.links.every((l) => /youtube\.com\/results\?/.test(l))) {
+        const v = videoFields(d.name);
+        if (v.links.length) Object.assign(d, v);
+      }
+    }
+    s.version = 2;
   }
   return s;
 }

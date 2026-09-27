@@ -2,7 +2,7 @@
 // Strategy: network first (so updates show up straight away), falling back to the cache
 // when offline or when the network is slow. Your data lives in localStorage, not here.
 
-const CACHE = 'palate-shell-v1';
+const CACHE = 'palate-shell-v2';
 const FONT_CACHE = 'palate-fonts-v1';
 const NETWORK_TIMEOUT_MS = 3000;
 
@@ -23,6 +23,7 @@ const SHELL = [
   'js/pwa.js',
   'js/diet.js',
   'js/catalog.js',
+  'js/creators.js',
   'js/views/ideas.js',
   'js/views/today.js',
   'js/views/cook.js',
@@ -35,7 +36,8 @@ const SHELL = [
 ];
 
 self.addEventListener('install', (event) => {
-  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL)).then(() => self.skipWaiting()));
+  // cache: 'reload' skips the browser's HTTP cache so a new version never installs old files.
+  event.waitUntil(caches.open(CACHE).then((c) => c.addAll(SHELL.map((u) => new Request(u, { cache: 'reload' })))).then(() => self.skipWaiting()));
 });
 
 self.addEventListener('activate', (event) => {
@@ -63,7 +65,8 @@ self.addEventListener('fetch', (event) => {
 async function networkFirst(request) {
   const cache = await caches.open(CACHE);
   const isPage = request.mode === 'navigate';
-  const network = fetch(request).then((res) => {
+  // no-cache: always check with the server (a cheap 304 when nothing changed), so updates show up on the next load.
+  const network = fetch(request, { cache: 'no-cache' }).then((res) => {
     // Shared links arrive as ./?url=…; store the page once, not once per link.
     if (res.ok) cache.put(isPage ? './' : request, res.clone());
     return res;

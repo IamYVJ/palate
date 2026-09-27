@@ -2,7 +2,7 @@
 // Everything here is derived from state on demand; nothing is cached.
 
 import { state, byId } from './store.js';
-import { todayISO, daysSince, ago, STATUS, SLOTS } from './ui.js';
+import { todayISO, daysSince, ago, STATUS, SLOTS, youtubeId } from './ui.js';
 
 // ---------- ingredients vs. the kitchen ----------
 
@@ -180,6 +180,7 @@ export function cookMessage(dish, when, slot) {
   const name = (cookName || '').trim();
   const ings = (dish.ingredients || []).map((i) => `• ${i.name}${i.qty ? ` – ${i.qty}` : ''}`).join('\n');
   const link = (dish.links || [])[0];
+  const isVideo = !!youtubeId(link);
   const lines = [];
   if (lang === 'hinglish') {
     const day = when === 'tomorrow' ? 'kal' : 'aaj';
@@ -187,12 +188,12 @@ export function cookMessage(dish, when, slot) {
     lines.push(`${name ? `${name}, ` : ''}${day} ${meal} mein *${dish.name}* bana dijiye 🙏`);
     if (ings) lines.push('', '*Saamaan:*', ings);
     if (dish.instructions) lines.push('', dish.instructions);
-    if (link) lines.push('', `Recipe: ${link}`);
+    if (link) lines.push('', `${isVideo ? 'Video' : 'Recipe'}: ${link}`);
   } else {
     lines.push(`Hi${name ? ` ${name}` : ''}, please make *${dish.name}* for ${slot} ${when}.`);
     if (ings) lines.push('', '*Ingredients:*', ings);
     if (dish.instructions) lines.push('', dish.instructions);
-    if (link) lines.push('', `Recipe: ${link}`);
+    if (link) lines.push('', `${isVideo ? 'Recipe video' : 'Recipe'}: ${link}`);
   }
   return lines.join('\n');
 }

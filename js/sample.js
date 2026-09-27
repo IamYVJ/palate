@@ -3,13 +3,12 @@
 
 import { uid, blank } from './store.js';
 import { todayISO } from './ui.js';
-import { CATALOG } from './catalog.js';
+import { CATALOG, videoFields } from './catalog.js';
 
 const ing = (s) => s.split(';').map((x) => {
   const [name, qty = ''] = x.split('|').map((t) => t.trim());
   return { name, qty };
 });
-const yt = (q) => `https://www.youtube.com/results?search_query=${encodeURIComponent(`${q} recipe`)}`;
 
 export function sampleData() {
   const d = (n) => todayISO(-n);
@@ -19,7 +18,7 @@ export function sampleData() {
   const dish = (o) => {
     const x = {
       id: uid(), status: 'can_make', diet: 'veg', archived: false, rating: null, favorite: false, cuisine: 'North Indian',
-      meals: ['lunch', 'dinner'], ingredients: [], links: [], cookTime: null, tags: [], instructions: '', notes: '', from: null,
+      meals: ['lunch', 'dinner'], ingredients: [], links: [], linkInfo: {}, cookTime: null, tags: [], instructions: '', notes: '', from: null,
       addedOn: d(120), ...o,
     };
     data.dishes.push(x);
@@ -30,11 +29,14 @@ export function sampleData() {
     const c = CATALOG.find((x) => x.name === name);
     if (!c) throw new Error(`sample: "${name}" is not in the catalogue`);
     const { region, ...fields } = c;
-    return dish({ ...fields, ingredients: fields.ingredients.map((i) => ({ ...i })), tags: [...fields.tags], ...o });
+    return dish({
+      ...fields, ingredients: fields.ingredients.map((i) => ({ ...i })), tags: [...fields.tags],
+      links: [...fields.links], linkInfo: { ...fields.linkInfo }, ...o,
+    });
   };
 
   // ---- Indian: what Didi makes ----
-  const palak = pick('Palak Paneer', { rating: 9, favorite: true, links: [yt('palak paneer')],
+  const palak = pick('Palak Paneer', { rating: 9, favorite: true,
     instructions: 'Blanch the spinach so it stays bright green. Less oil please.' });
   const pbm = pick('Paneer Butter Masala', { rating: 8 });
   const matar = pick('Matar Paneer', { rating: 7 });
@@ -60,7 +62,7 @@ export function sampleData() {
   const poha = pick('Poha', { rating: 7 });
   const thepla = pick('Methi Thepla', { rating: 7 });
   const upma = pick('Upma', { rating: 6 });
-  pick('Malai Kofta', { status: 'learning', links: [yt('malai kofta')] });
+  pick('Malai Kofta', { status: 'learning' });
   pick('Masala Dosa', { status: 'learning', notes: 'Buy ready dosa batter to start with.' });
   pick('Idli Sambar', { status: 'want_to_try' });
 
@@ -73,7 +75,7 @@ export function sampleData() {
   const mac = pick('Mac and Cheese', { rating: 7 });
   const soup = pick('Tomato Basil Soup', { rating: 7 });
   const quesadilla = pick('Cheese Quesadilla', { rating: 7 });
-  pick('Pesto Pasta', { status: 'learning', links: [yt('pesto pasta')] });
+  pick('Pesto Pasta', { status: 'learning' });
   pick('Margherita Pizza', { status: 'learning', notes: 'Start with ready pizza bases.' });
   pick('Mushroom Risotto', { status: 'want_to_try' });
   pick('Falafel & Hummus', { status: 'want_to_try', notes: 'Saw a reel, looked easy.' });
@@ -82,9 +84,9 @@ export function sampleData() {
 
   // ---- Egg dishes: archived for now (history kept) ----
   const omelette = dish({ name: 'Masala Omelette', diet: 'egg', archived: true, rating: 7, cookTime: 10, meals: ['breakfast'], tags: ['quick', 'high protein'],
-    ingredients: ing('Eggs|3; Onion|1 small; Tomato|1; Green chilli|1; Coriander leaves|handful; Bread|4 slices') });
+    ingredients: ing('Eggs|3; Onion|1 small; Tomato|1; Green chilli|1; Coriander leaves|handful; Bread|4 slices'), ...videoFields('Masala Omelette') });
   dish({ name: 'Shakshuka', diet: 'egg', archived: true, status: 'want_to_try', cuisine: 'Middle Eastern', meals: ['breakfast'], addedOn: d(8),
-    ingredients: ing('Eggs|4; Tomato|4; Onion|1; Capsicum|1; Paprika|1 tsp'), links: [yt('shakshuka')] });
+    ingredients: ing('Eggs|4; Tomato|4; Onion|1; Capsicum|1; Paprika|1 tsp'), ...videoFields('Shakshuka') });
 
   // ---- Restaurants ----
   const place = (o) => {
@@ -119,7 +121,7 @@ export function sampleData() {
   place({ name: 'Olive Tree Café', status: 'want', area: 'GK 1', cuisine: 'Café', addedOn: d(20) });
 
   // The restaurant → home loop, in progress.
-  pick('Thai Green Curry', { status: 'learning', addedOn: d(30), links: [yt('thai green curry vegetarian')],
+  pick('Thai Green Curry', { status: 'learning', addedOn: d(30),
     notes: 'Loved it at Bangkok Street (9/10). Proper heat, lots of basil.',
     from: { restaurantId: bangkok.id, rdishId: bangkok.dishes[0].id } });
 

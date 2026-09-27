@@ -4,6 +4,7 @@ import { state, ui, update, uid, byId } from './store.js';
 import { html, openModal, closeModal, toast, todayISO, STATUS, SLOTS, KINDS, cap } from './ui.js';
 import { availability, cookMessage, whatsappUrl, findPantry, ingKey, nameList, slotFor } from './logic.js';
 import { DIET, guessDiet } from './diet.js';
+import { videoFields } from './catalog.js';
 
 // ---------- form helpers ----------
 
@@ -91,10 +92,15 @@ function saveDish(fd) {
   let newId = id;
   update((s) => {
     const existing = id && byId(s.dishes, id);
+    // Keep titles/channels only for links that are still there.
+    const known = existing?.linkInfo || {};
+    data.linkInfo = Object.fromEntries(data.links.filter((l) => known[l]).map((l) => [l, known[l]]));
     if (existing) Object.assign(existing, data);
     else {
       newId = uid();
-      s.dishes.push({ id: newId, archived: false, from: null, addedOn: todayISO(), ...data });
+      // A dish we know from the catalogue gets its recipe video if you didn't paste a link.
+      const video = data.links.length ? {} : videoFields(data.name);
+      s.dishes.push({ id: newId, archived: false, from: null, addedOn: todayISO(), ...data, ...video });
     }
   });
   closeModal();
@@ -326,7 +332,7 @@ function toHome({ rid, did }) {
   update((s) => {
     s.dishes.push({
       id, name: rd.name, status: 'learning', diet: guessDiet(rd), archived: false, rating: null, favorite: false, cuisine: r.cuisine || '',
-      meals: [], ingredients: [], links: [], cookTime: null, tags: [], instructions: '',
+      meals: [], ingredients: [], ...videoFields(rd.name), cookTime: null, tags: [], instructions: '',
       notes: `Loved it at ${r.name}${rd.rating ? ` (${rd.rating}/10)` : ''}.${rd.notes ? ` ${rd.notes}` : ''}`,
       from: { restaurantId: r.id, rdishId: rd.id }, addedOn: todayISO(),
     });

@@ -1,7 +1,8 @@
 // A single home dish.
 
 import { state, update, byId } from '../store.js';
-import { html, ago, fmtDate, cap, safeUrl, STATUS, ratingBadge, dietMark, todayISO, toast } from '../ui.js';
+import { html, ago, fmtDate, cap, safeUrl, youtubeId, STATUS, ratingBadge, dietMark, todayISO, toast } from '../ui.js';
+import { CREATORS, creatorsFor, creatorSearchUrl } from '../creators.js';
 import { DIET } from '../diet.js';
 import { availability, mealStats } from '../logic.js';
 
@@ -18,7 +19,9 @@ export function render(id) {
   const av = availability(d);
   const from = d.from?.restaurantId && byId(state.restaurants, d.from.restaurantId);
   const cook = state.settings.cookName || 'your cook';
-  const q = encodeURIComponent(`${d.name} recipe`);
+  const links = d.links || [];
+  const videos = links.filter(youtubeId);
+  const pages = links.filter((l) => !youtubeId(l));
 
   return html`
   <a class="back" href="#/cook">‹ Home cooking</a>
@@ -55,6 +58,21 @@ export function render(id) {
     ${d.archived ? '' : html`<button type="button" class="btn ghost" data-action="archiveDish" data-id="${d.id}" data-on="1">Archive</button>`}
   </div>
 
+  <h2 class="section-title">Recipe</h2>
+  ${videos.map((url) => videoCard(url, d.linkInfo?.[url]))}
+  ${pages.length || d.instructions ? html`<div class="card" style="margin-top:10px">
+    ${pages.length ? html`<ul class="links">${pages.map((l) => html`<li><a href="${safeUrl(l)}" target="_blank" rel="noopener">${prettyUrl(l)}</a></li>`)}</ul>` : ''}
+    ${d.instructions ? html`<p class="prose"><strong>For ${cook}:</strong> ${d.instructions}</p>` : ''}
+  </div>` : ''}
+  <div class="find">
+    <span class="find-label">${videos.length ? 'Other videos from' : 'Find a video from'}</span>
+    <div class="chips">${creatorsFor(d).map((k) => html`
+      <a class="chip" href="${creatorSearchUrl(k, `${d.name} recipe`)}" target="_blank" rel="noopener" title="${CREATORS[k].bestFor}">${CREATORS[k].name}</a>`)}
+      <a class="chip" href="https://www.youtube.com/results?search_query=${encodeURIComponent(`${d.name} recipe`)}" target="_blank" rel="noopener">All of YouTube</a>
+    </div>
+    ${links.length ? '' : html`<p class="hint">Found a good one? Paste its link with <strong>Edit</strong> and it goes into the WhatsApp message for ${cook}.</p>`}
+  </div>
+
   <h2 class="section-title">Ingredients ${av.rows.length ? html`<span class="muted">${av.have.length} of ${av.rows.length} at home</span>` : ''}</h2>
   ${av.rows.length ? html`<ul class="list ings">${av.rows.map((r) => html`
     <li class="ing">
@@ -66,21 +84,18 @@ export function render(id) {
     </li>`)}</ul>`
     : html`<div class="empty">No ingredients yet. <div><button type="button" class="btn sm" data-action="editDish" data-id="${d.id}">Add ingredients</button></div></div>`}
 
-  <h2 class="section-title">Recipe</h2>
-  <div class="card">
-    ${d.links?.length ? html`<ul class="links">${d.links.map((l) => html`<li><a href="${safeUrl(l)}" target="_blank" rel="noopener">${prettyUrl(l)}</a></li>`)}</ul>` : ''}
-    ${d.instructions ? html`<p class="prose"><strong>For ${cook}:</strong> ${d.instructions}</p>` : ''}
-    ${!d.links?.length && !d.instructions ? html`<p class="hint" style="margin-top:0">No recipe saved yet. Find one, then paste the link with Edit.</p>` : ''}
-    <div class="card-actions">
-      <a class="btn sm" href="https://www.youtube.com/results?search_query=${q}" target="_blank" rel="noopener">Search YouTube</a>
-      <a class="btn sm" href="https://www.google.com/search?q=${q}" target="_blank" rel="noopener">Search the web</a>
-    </div>
-  </div>
-
   ${d.notes ? html`<h2 class="section-title">Notes</h2><div class="card"><p class="prose">${d.notes}</p></div>` : ''}
 
   ${stat ? html`<h2 class="section-title">History</h2>
     <div class="chips">${stat.dates.slice().sort().reverse().slice(0, 12).map((x) => html`<span class="chip">${fmtDate(x)}</span>`)}</div>` : ''}`;
+}
+
+function videoCard(url, info) {
+  const id = youtubeId(url);
+  return html`<a class="video" href="${safeUrl(url)}" target="_blank" rel="noopener">
+    <span class="video-thumb"><img src="https://i.ytimg.com/vi/${id}/mqdefault.jpg" alt="" loading="lazy" width="320" height="180"><span class="video-play" aria-hidden="true"></span></span>
+    <span class="video-meta"><strong>${info?.title || 'Recipe video'}</strong><span>${info?.channel ? `${info.channel} · ` : ''}YouTube</span></span>
+  </a>`;
 }
 
 function prettyUrl(u) {

@@ -31,6 +31,12 @@ export const KINDS = { fresh: 'Fresh', staple: 'Staples', special: 'Special' };
 export const VERDICT = { reorder: 'Reorder', skip: 'Skip' };
 export const cap = (s) => (s ? s.charAt(0).toUpperCase() + s.slice(1) : '');
 
+/** The video id from any YouTube link (watch, youtu.be, shorts, embed), or ''. */
+export function youtubeId(url) {
+  const m = String(url || '').match(/(?:youtube\.com\/(?:watch\?(?:.*&)?v=|shorts\/|embed\/|live\/)|youtu\.be\/)([\w-]{11})/);
+  return m ? m[1] : '';
+}
+
 /** Only let http(s) links through to href attributes (data can come from imported backups). */
 export const safeUrl = (u) => (/^https?:\/\//i.test(String(u || '').trim()) ? String(u).trim() : '#');
 

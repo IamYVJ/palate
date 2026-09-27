@@ -4,6 +4,74 @@
 
 const MEALS = { B: 'breakfast', L: 'lunch', D: 'dinner' };
 
+// A recipe video for each dish: [YouTube id, channel, title]. Picked from the recommended creators
+// (see creators.js) where one had a full-length video of this dish, otherwise a well-viewed vegetarian one.
+const VIDEOS = {
+  'Palak Paneer': ['5lVLxEr_qgM', 'Ranveer Brar', 'Palak Paneer recipe'],
+  'Paneer Butter Masala': ['a30BLUQiFoc', 'Ranveer Brar', 'Paneer Butter Masala, restaurant style'],
+  'Matar Paneer': ['y05q2kYkBDA', 'Nisha Madhulika', 'Matar Paneer: easy and quick'],
+  'Kadai Paneer': ['nRPmoioNisI', 'Ranveer Brar', 'Kadhai Paneer recipe'],
+  'Paneer Bhurji': ['clQ1oKSTjqo', 'Kabita’s Kitchen', 'Street-style Paneer Bhurji'],
+  'Malai Kofta': ['JKNXj6Hp8gA', 'Ranveer Brar', 'Malai Kofta curry'],
+  'Dal Tadka': ['3XTSCbZfEgM', 'Ranveer Brar', 'Dhaba-style Dal Fry / Dal Tadka'],
+  'Dal Makhani': ['mA5XjhdwJHc', 'Ranveer Brar', 'Dal Makhani, dhaba style'],
+  'Rajma Chawal': ['M_ncAJhIaIU', 'Kunal Kapur', 'Rajma Chawal, Punjabi style'],
+  'Chole': ['j-ucNH4rGC0', 'Kunal Kapur', 'Shaadi-wale Pindi Chole'],
+  'Kadhi Pakora': ['Zk3pddws0Lg', 'Nisha Madhulika', 'Pakoda Kadhi with tips'],
+  'Aloo Gobi': ['Iv-qfNzO6qQ', 'Nisha Madhulika', 'Aloo Gobhi, party style, less oil'],
+  'Aloo Matar': ['oVfWo91JoSM', 'Nisha Madhulika', 'Aloo Matar curry'],
+  'Bhindi Masala': ['l8Hjg3jKOU0', 'Nisha Madhulika', 'Bhindi Masala, restaurant style'],
+  'Baingan Bharta': ['yRZKfDI28Ro', 'Ranveer Brar', 'Baingan Bharta, dhaba style'],
+  'Mix Veg': ['ilJtXpdzj7s', 'Nisha Madhulika', 'Mixed Vegetable, restaurant style'],
+  'Aloo Paratha': ['Azw4jxvj5Jo', 'bharatzkitchen', 'Punjabi stuffed Aloo Paratha'],
+  'Besan Chilla': ['h9cJLV-EMbA', 'Nisha Madhulika', 'Mixed veg Besan Cheela'],
+  'Moong Dal Khichdi': ['9C0MvVKCXAE', 'Nisha Madhulika', 'Moong Dal Khichdi'],
+  'Jeera Rice': ['Y8yEn08h-q0', 'Kabita’s Kitchen', 'Restaurant-style Jeera Rice in a cooker'],
+  'Veg Pulao': ['qFE9madv0RY', 'Kabita’s Kitchen', 'Veg Pulao in a pressure cooker'],
+  'Veg Biryani': ['GridojtCXDE', 'Vahchef', 'Vegetable Biryani, traditional'],
+  'Pav Bhaji': ['Gbuse4WX01I', 'Your Food Lab', 'Street-style Pav Bhaji'],
+  'Poha': ['VKvwWeVy8Nw', 'Kabita’s Kitchen', 'Kanda Poha'],
+  'Methi Thepla': ['mFTfjVOQEkI', 'Nisha Madhulika', 'Gujarati Methi Thepla'],
+  'Dhokla': ['6R40KFQmOAo', 'Nisha Madhulika', 'Soft, spongy instant Dhokla: tips & tricks'],
+  'Masala Dosa': ['0JF8RfBSFRk', 'Hebbars Kitchen', 'Hotel-style Masala Dosa'],
+  'Idli Sambar': ['nIoIzarlQ1k', 'Hebbars Kitchen', 'Idli Sambar (tiffin sambar)'],
+  'Sambar Rice': ['NQpnf7M5K7Y', 'Hebbars Kitchen', 'Hotel-style Sambar Rice'],
+  'Upma': ['W4mnN7Fcaz0', 'Kabita’s Kitchen', 'Rava Upma'],
+  'Margherita Pizza': ['xdshDFwu9x4', 'Yum Curry', 'Pizza Margherita, with the dough'],
+  'Penne Arrabbiata': ['blIm1ezy_UA', 'Your Food Lab', 'Pasta in arrabbiata (red) sauce'],
+  'Pesto Pasta': ['-WXdkJEJ4kE', 'Your Food Lab', 'Pesto Pasta'],
+  'Aglio e Olio': ['sKmDN_dU5Cw', 'Your Food Lab', 'Aglio e Olio in 10 minutes'],
+  'Mushroom Risotto': ['u93NfkAmOyo', 'Rainbow Plant Life', 'Vegan Mushroom Risotto'],
+  'Veg Lasagne': ['LLWqK4cgki8', 'Your Food Lab', 'Veg Lasagna, no oven'],
+  'Minestrone Soup': ['4sWBtdXLEMM', 'Rajshri Food', 'Minestrone Soup, vegetarian'],
+  'Tomato Basil Soup': ['W88m7LKFR9s', 'Your Food Lab', 'Tomato Basil Soup'],
+  'Mac and Cheese': ['GGsf51oW7V8', 'Ethan Chlebowski', 'Stovetop Mac and Cheese'],
+  'Greek Salad': ['kwq4vl610iY', 'Preppy Kitchen', 'Easy Greek Salad'],
+  'Falafel & Hummus': ['AIczG0gl1-I', 'Your Food Lab', 'Falafel and Hummus'],
+  'Veg Burrito Bowl': ['v3FGarkITTQ', 'Your Food Lab', 'Veg Mexican Burrito Bowl'],
+  'Cheese Quesadilla': ['AhoZ2TbLxzU', 'HomeCookingShow', 'Veg Cheese Quesadilla'],
+  'Thai Green Curry': ['-zeV6vSS0mk', 'Your Food Lab', 'Veg Thai Green Curry, with homemade paste'],
+  'Veg Pad Thai': ['zy_P70hXhdM', 'Yeung Man Cooking', 'Vegetarian Pad Thai'],
+  'Veg Katsu Curry': ['Gen_w-ByWCs', 'Gaz Oakley', 'Katsu Curry (vegan)'],
+  'Tofu Stir-fry': ['ioCJLUSeTiM', 'Meghna’s Food Magic', 'Stir-fry Vegetables with Tofu'],
+  'Veg Hakka Noodles': ['4Q12_scB6AY', 'Your Food Lab', 'Hakka Noodles, hotel style'],
+  'Veg Fried Rice': ['1WQVzQBNk_Q', 'Your Food Lab', 'Veg Fried Rice, restaurant style'],
+  'Chilli Paneer': ['fPyHXiHbLg4', 'Your Food Lab', 'Chilli Paneer, restaurant style'],
+  'Veg Manchurian': ['6K8ZJG6cQ2U', 'Your Food Lab', 'Veg Manchurian (dry)'],
+  // Not in the veg catalogue, but in the sample data (archived).
+  'Masala Omelette': ['sAa-CEl5Z-k', 'Ranveer Brar', 'Masala Omelette'],
+  'Shakshuka': ['4_NjuSgOV6Y', 'Your Food Lab', 'Indian-style Shakshuka'],
+};
+const VIDEO_BY_KEY = new Map(Object.entries(VIDEOS).map(([name, v]) => [name.toLowerCase().trim(), v]));
+
+/** A dish's `links` and `linkInfo` fields for its catalogue video (empty if there isn't one). */
+export function videoFields(dishName) {
+  const v = VIDEO_BY_KEY.get(String(dishName || '').toLowerCase().trim());
+  if (!v) return { links: [], linkInfo: {} };
+  const url = `https://www.youtube.com/watch?v=${v[0]}`;
+  return { links: [url], linkInfo: { [url]: { title: v[2], channel: v[1] } } };
+}
+
 /** dish(name, cuisine, meals as "BLD" letters, minutes, "Ingredient|qty; …", tags) */
 const dish = (region, name, cuisine, meals, cookTime, ingredients, tags = []) => ({
   region,
@@ -17,6 +85,7 @@ const dish = (region, name, cuisine, meals, cookTime, ingredients, tags = []) =>
   }),
   tags,
   diet: 'veg',
+  ...videoFields(name),
 });
 const indian = (...a) => dish('indian', ...a);
 const world = (...a) => dish('international', ...a);
