@@ -19,7 +19,7 @@ export function render() {
     <button type="button" class="${ui.outFilter === 'want' ? 'on' : ''}" data-action="outFilter" data-f="want">Want to go <span class="count">${want.length}</span></button>
   </div>
   <div class="toolbar">
-    <input id="out-q" type="search" placeholder="Search places, dishes, people" value="${ui.outQ}" data-input="outQ" autocomplete="off">
+    <input id="out-q" type="search" placeholder="Search places, dishes, people" value="${ui.outQ}" data-input="outQ" autocomplete="off" enterkeyhint="search">
   </div>
   ${areas.length > 1 ? html`<div class="chips scroll">${['', ...areas].map((a) => html`
     <button type="button" class="chip ${ui.outArea === a ? 'on' : ''}" data-action="outArea" data-a="${a}">${a || 'All areas'}</button>`)}</div>` : ''}

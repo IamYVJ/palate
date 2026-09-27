@@ -1,6 +1,6 @@
 """Generate Palate's app icons (PNG) with no dependencies beyond the standard library.
 
-The design matches icon.svg: a cream plate on a paprika tile, drawn in a 64-unit space.
+The design matches icon.svg: a plate seen from above on a paprika tile, drawn in a 64-unit space.
 Shapes are rendered with signed-distance antialiasing.
 
     python scripts/make-icons.py
@@ -13,6 +13,7 @@ from pathlib import Path
 
 PAPRIKA = (0xB4, 0x44, 0x2A)
 CREAM = (0xFA, 0xF6, 0xF0)
+RIM = (0xD9, 0xA1, 0x91)  # the plate's inner rim: cream and paprika mixed
 OUT = Path(__file__).resolve().parent.parent / "icons"
 
 
@@ -38,14 +39,14 @@ def render(size, full_bleed, plate_scale=1.0):
             x = (px + 0.5) / scale
             y = (py + 0.5) / scale
             bg = 1.0 if full_bleed else coverage(rounded_rect_sd(x, y, 32, 15), scale)
-            d = math.hypot(x - 32, y - 32) / plate_scale
-            ring = coverage((abs(d - 19) - 1.75) * plate_scale, scale)
-            disc = coverage((d - 11) * plate_scale, scale)
-            fg = max(ring, disc)
             if bg == 0:
                 row += b"\0\0\0\0"
                 continue
-            rgb = [round(p * (1 - fg) + c * fg) for p, c in zip(PAPRIKA, CREAM)]
+            d = math.hypot(x - 32, y - 32) / plate_scale
+            plate = coverage((d - 20) * plate_scale, scale)
+            rim = coverage((abs(d - 12.5) - 1) * plate_scale, scale)
+            rgb = [p + (c - p) * plate for p, c in zip(PAPRIKA, CREAM)]
+            rgb = [round(v + (r - v) * rim) for v, r in zip(rgb, RIM)]
             row += bytes(rgb) + bytes([round(bg * 255)])
         rows.append(bytes(row))
     return png(size, b"".join(rows))

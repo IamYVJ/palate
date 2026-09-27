@@ -56,7 +56,7 @@
 
 *, *::before, *::after { box-sizing: border-box; }
 
-html { -webkit-text-size-adjust: 100%; }
+html { -webkit-text-size-adjust: 100%; background: var(--bg); }
 
 body {
   margin: 0;
@@ -68,7 +68,6 @@ body {
 }
 
 a { color: var(--accent); text-decoration: none; }
-a:hover { text-decoration: underline; }
 
 h1, h2, h3 { font-family: var(--serif); font-weight: 650; letter-spacing: -.01em; margin: 0; }
 h1 { font-size: 28px; line-height: 1.15; }
@@ -97,14 +96,12 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
   display: flex; align-items: center; justify-content: space-between;
 }
 .brand { font-family: var(--serif); font-size: 25px; font-weight: 650; color: var(--accent); letter-spacing: -.02em; }
-.brand:hover { text-decoration: none; }
 .topbar-actions { display: flex; gap: 4px; }
 
 .icon-btn {
   display: inline-grid; place-items: center; width: 40px; height: 40px; border-radius: 12px;
   border: 0; background: none; color: var(--ink-2); cursor: pointer; font: inherit;
 }
-.icon-btn:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
 
 main {
   max-width: 680px; margin: 0 auto;
@@ -124,13 +121,12 @@ main {
   display: flex; flex-direction: column; align-items: center; gap: 2px;
   padding: 8px 0 7px; font-size: 11.5px; font-weight: 600; color: var(--ink-3);
 }
-.tabbar a:hover { text-decoration: none; color: var(--ink-2); }
 .tabbar a.active { color: var(--accent); }
 .tabbar a.active svg { stroke-width: 2.1; }
 
 /* ---------- layout bits ---------- */
 
-.page-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin: 6px 0 14px; }
+.page-head { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 12px; margin: 6px 0 14px; }
 .section-title {
   display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
   font-family: var(--sans); font-size: 12.5px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase;
@@ -168,11 +164,8 @@ main {
   border: 1px solid var(--line); background: var(--surface); color: var(--ink); cursor: pointer;
   white-space: nowrap;
 }
-.btn:hover { border-color: var(--ink-3); text-decoration: none; }
 .btn.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
-.btn.primary:hover { filter: brightness(1.06); }
 .btn.ghost { background: transparent; border-color: transparent; color: var(--ink-2); }
-.btn.ghost:hover { background: var(--surface-2); }
 .btn.danger { color: var(--bad); }
 .btn.sm { padding: 7px 12px; font-size: 13.5px; border-radius: 10px; }
 .btn.xs { padding: 4px 9px; font-size: 12.5px; border-radius: 8px; }
@@ -223,10 +216,8 @@ button.chip { cursor: pointer; font-size: 13px; padding: 6px 12px; }
   border-top: 1px solid var(--line); color: inherit;
 }
 .row:first-child { border-top: 0; }
-a.row:hover { background: color-mix(in srgb, var(--surface-2) 50%, transparent); text-decoration: none; }
 .row-main { flex: 1; min-width: 0; }
 .row-title { font-weight: 600; color: var(--ink); }
-a.row-title:hover { color: var(--accent); }
 .row-sub { font-size: 13.5px; color: var(--ink-2); overflow: hidden; text-overflow: ellipsis; }
 .row-sub.clip { white-space: nowrap; }
 .row-side { display: flex; align-items: center; gap: 8px; flex: none; }
@@ -289,7 +280,6 @@ a.row-title:hover { color: var(--accent); }
   flex: none; width: 24px; height: 24px; border-radius: 7px; border: 2px solid var(--ink-3);
   background: none; cursor: pointer; padding: 0;
 }
-.check:hover { border-color: var(--good); background: var(--good-soft); }
 
 .st {
   flex: none; border: 0; cursor: pointer; min-width: 58px;
@@ -299,7 +289,6 @@ a.row-title:hover { color: var(--accent); }
 .st.low { background: var(--warn-soft); color: var(--warn); }
 .st.out { background: var(--bad-soft); color: var(--bad); }
 .linkish { border: 0; background: none; padding: 0; font: inherit; color: inherit; cursor: pointer; text-align: left; }
-.linkish:hover { color: var(--accent); }
 
 /* ---------- memory ---------- */
 
@@ -380,7 +369,6 @@ dialog::backdrop { background: rgba(25, 15, 8, .45); }
   display: block; text-align: left; width: 100%; cursor: pointer; font: inherit; color: inherit;
   padding: 14px 16px; border-radius: 14px; border: 1px solid var(--line); background: var(--surface);
 }
-.choice:hover { border-color: var(--accent); }
 .choice strong { display: block; font-size: 16px; }
 .choice span { font-size: 13.5px; color: var(--ink-2); }
 .shared { background: var(--surface-2); border-radius: 10px; padding: 10px 12px; font-size: 14px; word-break: break-word; }
@@ -399,3 +387,116 @@ dialog::backdrop { background: rgba(25, 15, 8, .45); }
 }
 #toast.show { opacity: 1; transform: translate(-50%, 0); pointer-events: auto; }
 #toast button { border: 0; background: none; color: inherit; font: 700 14px var(--sans); text-decoration: underline; cursor: pointer; padding: 0; }
+
+/* ---------- hover only where there's a mouse (on touch screens hover "sticks" after a tap) ---------- */
+
+@media (hover: hover) {
+  a:hover { text-decoration: underline; }
+  .brand:hover { text-decoration: none; }
+  .icon-btn:hover { background: var(--surface-2); color: var(--ink); text-decoration: none; }
+  .tabbar a:hover { text-decoration: none; color: var(--ink-2); }
+  .btn:hover { border-color: var(--ink-3); text-decoration: none; }
+  .btn.primary:hover { filter: brightness(1.06); }
+  .btn.ghost:hover { background: var(--surface-2); }
+  a.row:hover { background: color-mix(in srgb, var(--surface-2) 50%, transparent); text-decoration: none; }
+  a.row-title:hover { color: var(--accent); }
+  .check:hover { border-color: var(--good); background: var(--good-soft); }
+  .linkish:hover { color: var(--accent); }
+  .choice:hover { border-color: var(--accent); }
+}
+
+/* ---------- touch ---------- */
+
+a, button, input, select, textarea, label { touch-action: manipulation; }
+.tabbar, .seg, .btn, .chip, .st, .pill, .check, .choice { -webkit-user-select: none; user-select: none; }
+.btn, .seg button, button.chip, .st, .check, .choice, .icon-btn, .tabbar a { transition: transform .08s ease, background-color .15s ease; }
+.btn:active, .seg button:active, button.chip:active, .st:active, .choice:active, .icon-btn:active, .tabbar a:active { transform: scale(.96); }
+a.row:active, label.row:active { background: var(--surface-2); }
+
+@media (pointer: coarse) {
+  .icon-btn { width: 44px; height: 44px; }
+  .btn.sm { min-height: 40px; }
+  .btn.xs { min-height: 34px; padding: 7px 12px; font-size: 13px; }
+  .st { min-height: 34px; min-width: 64px; }
+  .check { position: relative; }
+  .check::after { content: ""; position: absolute; inset: -10px; } /* bigger hit area than it looks */
+  button.chip { padding: 8px 14px; }
+  /* The keyboard is up: get the tab bar out of the way. */
+  body:has(:is(input:not([type="checkbox"], [type="radio"], [type="file"]), textarea):focus) .tabbar { display: none; }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  main, .topbar-inner { padding-left: max(16px, env(safe-area-inset-left)); padding-right: max(16px, env(safe-area-inset-right)); }
+}
+
+/* bottom sheet on phones: grab handle, slide up, doesn't scroll the page behind it */
+dialog { overscroll-behavior: contain; }
+@media (max-width: 600px) {
+  dialog { transition: transform .18s ease; }
+  dialog[open] { animation: sheet-up .22s ease-out; }
+  .modal-body::before {
+    content: ""; display: block; width: 38px; height: 5px; border-radius: 3px;
+    background: var(--line); margin: -6px auto 12px;
+  }
+  /* Primary action full width at the bottom, where the thumb is. */
+  .modal-actions .btn.primary { order: 10; flex: 1 0 100%; padding: 13px; font-size: 15.5px; }
+}
+@keyframes sheet-up { from { transform: translateY(40px); opacity: .5; } }
+@media (prefers-reduced-motion: reduce) {
+  dialog[open] { animation: none; }
+  .btn, .seg button, button.chip, .st, .check, .choice, .icon-btn, .tabbar a, dialog { transition: none; }
+}
+
+/* ---------- install tip ---------- */
+
+.install-tip {
+  display: flex; align-items: center; gap: 12px; margin: 4px 0 18px; padding: 12px 8px 12px 12px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow);
+}
+.install-tip img { border-radius: 10px; flex: none; }
+.install-tip strong { display: block; font-size: 14.5px; }
+.install-tip span { display: block; font-size: 13px; color: var(--ink-2); }
+.install-tip .icon-btn { width: 36px; height: 36px; flex: none; }
+.steps { padding-left: 22px; margin: 12px 0; }
+.steps li { margin: 8px 0; }
+.share-glyph { display: inline-grid; vertical-align: -5px; color: var(--accent); }
+.share-glyph svg { width: 20px; height: 20px; }
+
+/* ---------- veg / egg / non-veg mark ---------- */
+
+.diet {
+  display: inline-grid; place-items: center; flex: none; width: 14px; height: 14px; margin-left: 7px; vertical-align: -1px;
+  border: 1.5px solid currentColor; border-radius: 3px; color: #1f8a4c;
+}
+.diet::after { content: ""; width: 6px; height: 6px; border-radius: 50%; background: currentColor; }
+.diet.egg { color: #c7860a; }
+.diet.nonveg { color: #9b3b1b; }
+.diet.nonveg::after { width: 0; height: 0; border-radius: 0; background: none; border: 4px solid transparent; border-bottom: 6px solid currentColor; border-top: 0; }
+.chip .diet { margin-left: 0; }
+@media (prefers-color-scheme: dark) {
+  .diet { color: #4cc27a; }
+  .diet.egg { color: #e9b44c; }
+  .diet.nonveg { color: #e0795a; }
+}
+
+/* ---------- dish ideas ---------- */
+
+label.row.pick { cursor: pointer; }
+.pick input { position: absolute; opacity: 0; width: 1px; height: 1px; pointer-events: none; }
+.pick-box {
+  flex: none; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 7px;
+  border: 2px solid var(--ink-3); background: var(--surface);
+}
+.pick input:checked + .pick-box { background: var(--accent); border-color: var(--accent); }
+.pick input:checked + .pick-box::after { content: ""; width: 10px; height: 6px; margin-top: -3px; border: 2.5px solid var(--accent-ink); border-top: 0; border-right: 0; transform: rotate(-45deg); }
+.pick input:focus-visible + .pick-box { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.pick-bar-wrap { position: sticky; bottom: calc(66px + env(safe-area-inset-bottom)); z-index: 5; }
+.pick-bar {
+  margin-top: 16px;
+  background: var(--surface); border: 1px solid var(--line); border-radius: 16px; padding: 12px 14px;
+  box-shadow: 0 10px 30px rgba(40, 20, 5, .18);
+}
+.pick-bar-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; font-size: 14.5px; }
+.pick-bar-actions { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.pick-bar-actions .btn { padding-left: 6px; padding-right: 6px; }

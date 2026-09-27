@@ -7,7 +7,7 @@ import { search, insights } from '../logic.js';
 export function render() {
   return html`
   <div class="page-head"><h1>Food memory</h1></div>
-  <input id="memory-q" class="big-search" type="search" value="${ui.memoryQ}" data-input="memoryQ" autocomplete="off"
+  <input id="memory-q" class="big-search" type="search" value="${ui.memoryQ}" data-input="memoryQ" autocomplete="off" enterkeyhint="search"
     placeholder="That pizza I loved? Places around GK?" aria-label="Search your food memory">
   ${examples()}
   <div id="memory-results">${ui.memoryQ.trim() ? results() : overview()}</div>`;

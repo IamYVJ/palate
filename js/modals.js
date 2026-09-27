@@ -2,7 +2,8 @@
 
 import { state, ui, update, uid, byId } from './store.js';
 import { html, openModal, closeModal, toast, todayISO, STATUS, SLOTS, KINDS, cap } from './ui.js';
-import { availability, cookMessage, whatsappUrl, findPantry, ingKey, nameList } from './logic.js';
+import { availability, cookMessage, whatsappUrl, findPantry, ingKey, nameList, slotFor } from './logic.js';
+import { DIET, guessDiet } from './diet.js';
 
 // ---------- form helpers ----------
 
@@ -50,6 +51,7 @@ export function dishForm(dish = null, preset = {}) {
     <input type="hidden" name="id" value="${dish?.id || ''}">
     <label class="field"><span>Dish</span><input name="name" required value="${d.name || ''}" placeholder="e.g. Palak Paneer" autocomplete="off" ${dish ? '' : 'autofocus'}></label>
     <div class="field"><span>Status</span>${radios('status', STATUS, d.status)}</div>
+    <div class="field"><span>Diet</span>${radios('diet', DIET, d.diet || 'veg')}</div>
     <div class="field"><span>Your rating</span>${ratingPicker(d.rating ?? null)}</div>
     <div class="field"><div class="pills"><label class="pill"><input type="checkbox" name="favorite" ${d.favorite ? 'checked' : ''}><span>♥ Favourite</span></label></div></div>
     <div class="grid2">
@@ -73,6 +75,7 @@ function saveDish(fd) {
   const data = {
     name: str(fd, 'name'),
     status: str(fd, 'status') || 'can_make',
+    diet: str(fd, 'diet') || 'veg',
     rating: num(fd, 'rating'),
     favorite: fd.has('favorite'),
     cuisine: str(fd, 'cuisine'),
@@ -91,7 +94,7 @@ function saveDish(fd) {
     if (existing) Object.assign(existing, data);
     else {
       newId = uid();
-      s.dishes.push({ id: newId, from: null, addedOn: todayISO(), ...data });
+      s.dishes.push({ id: newId, archived: false, from: null, addedOn: todayISO(), ...data });
     }
   });
   closeModal();
@@ -112,10 +115,10 @@ function deleteDish({ id }) {
 }
 
 /** Log that a home dish was eaten; clears it from the menu. */
-export function logHomeMeal(dishId, date = todayISO(), slot = ui.slot, planId = '') {
+export function logHomeMeal(dishId, date = todayISO(), slot = '', planId = '') {
   const d = byId(state.dishes, dishId);
   if (!d) return;
-  const meal = { id: uid(), date, slot, kind: 'home', dishId, label: d.name };
+  const meal = { id: uid(), date, slot: slot || slotFor(d, ui.slot), kind: 'home', dishId, label: d.name };
   let cleared = [];
   update((s) => {
     s.meals.push(meal);
@@ -135,7 +138,7 @@ export function openMake(dishId, planId = '') {
   if (!dish) return;
   const plan = planId ? byId(state.plan, planId) : null;
   const when = plan && plan.date > todayISO() ? 'tomorrow' : 'today';
-  const slot = plan?.slot || ui.slot;
+  const slot = plan?.slot || slotFor(dish, ui.slot);
   const av = availability(dish);
   const phone = state.settings.cookPhone;
   openModal(html`<form data-form="make" class="modal-body">
@@ -322,7 +325,7 @@ function toHome({ rid, did }) {
   const id = uid();
   update((s) => {
     s.dishes.push({
-      id, name: rd.name, status: 'learning', rating: null, favorite: false, cuisine: r.cuisine || '',
+      id, name: rd.name, status: 'learning', diet: guessDiet(rd), archived: false, rating: null, favorite: false, cuisine: r.cuisine || '',
       meals: [], ingredients: [], links: [], cookTime: null, tags: [], instructions: '',
       notes: `Loved it at ${r.name}${rd.rating ? ` (${rd.rating}/10)` : ''}.${rd.notes ? ` ${rd.notes}` : ''}`,
       from: { restaurantId: r.id, rdishId: rd.id }, addedOn: todayISO(),
@@ -395,20 +398,22 @@ export function openCapture(shared = {}) {
   const url = shared.url || (String(shared.text || '').match(/https?:\/\/\S+/) || [])[0] || '';
   const text = String(shared.text || '').replace(url, '').trim();
   const title = String(shared.title || '').trim();
-  const preview = [title, text, url].filter(Boolean).join(' — ');
-  captureDraft = { url, text, title };
+  captureDraft = { text, title };
   openModal(html`<div class="modal-body">
     ${head('Save for later')}
-    ${preview ? html`<p class="shared">${preview}</p>` : html`<p class="hint">Found something good? Save it now, sort it out later.</p>`}
+    ${title || text ? html`<p class="shared">${[title, text].filter(Boolean).join(' — ')}</p>` : html`<p class="hint">Found something good? Save it now, sort it out later.</p>`}
+    <label class="field"><span>Link <em>optional: recipe, reel, video or map</em></span>
+      <input id="capture-url" type="url" inputmode="url" value="${url}" placeholder="Paste a link" autocomplete="off"></label>
     <div class="choice-list">
       <button type="button" class="choice" data-action="captureDish">
-        <strong>A dish to cook at home</strong><span>Recipe, reel or video — goes on your “want to try” list</span></button>
+        <strong>A dish to cook at home</strong><span>Goes on your “want to try” list</span></button>
       <button type="button" class="choice" data-action="captureRestaurant">
         <strong>A restaurant to try</strong><span>With who recommended it and what to order</span></button>
     </div>
   </div>`);
 }
 let captureDraft = {};
+const capturedUrl = () => document.getElementById('capture-url')?.value.trim() || '';
 
 // ---------- wiring ----------
 
@@ -444,12 +449,13 @@ export const actions = {
   },
   capture: () => openCapture(),
   captureDish: () => {
-    const { url, text, title } = captureDraft;
+    const { text, title } = captureDraft;
+    const url = capturedUrl();
     dishForm(null, { status: 'want_to_try', name: title, links: url ? [url] : [], notes: text });
   },
   captureRestaurant: () => {
-    const { url, text, title } = captureDraft;
-    restaurantForm(null, { status: 'want', name: title, mapUrl: url, notes: text });
+    const { text, title } = captureDraft;
+    restaurantForm(null, { status: 'want', name: title, mapUrl: capturedUrl(), notes: text });
   },
   copyMake: async (_, el) => {
     const text = planFromForm(el.closest('form'), false);

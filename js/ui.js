@@ -37,6 +37,12 @@ export const safeUrl = (u) => (/^https?:\/\//i.test(String(u || '').trim()) ? St
 export const ratingBadge = (r, size = '') =>
   r == null ? '' : html`<span class="rating ${size} ${r >= 8 ? 'hi' : r >= 6 ? 'mid' : ''}" title="${r}/10">${r}</span>`;
 
+/** The Indian food mark: green dot for veg, amber for egg, brown triangle for non-veg. */
+export const dietMark = (diet) => {
+  const label = { veg: 'Vegetarian', egg: 'Contains egg', nonveg: 'Non-vegetarian' }[diet];
+  return label ? html`<span class="diet ${diet}" role="img" aria-label="${label}" title="${label}"></span>` : '';
+};
+
 export const verdictChip = (v) =>
   v === 'reorder' ? html`<span class="chip good">Reorder</span>` : v === 'skip' ? html`<span class="chip bad">Skip</span>` : '';
 
@@ -93,6 +99,9 @@ const $ = (id) => document.getElementById(id);
 export function openModal(content) {
   const d = $('modal');
   d.innerHTML = out(content);
+  // On phones, don't throw the keyboard up over a sheet the moment it opens.
+  if (matchMedia('(pointer: coarse)').matches) d.querySelectorAll('[autofocus]').forEach((el) => el.removeAttribute('autofocus'));
+  d.style.transform = '';
   if (!d.open) d.showModal();
   d.scrollTop = 0;
   d.querySelector('[autofocus]')?.focus();
@@ -101,6 +110,7 @@ export function openModal(content) {
 export function closeModal() {
   const d = $('modal');
   if (d.open) d.close();
+  d.style.transform = '';
 }
 
 let toastTimer;

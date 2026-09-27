@@ -1,12 +1,14 @@
 // All of Palate's data lives in one object, persisted to localStorage on every change.
 
+import { guessDiet } from './diet.js';
+
 const KEY = 'palate.v1';
 const LISTS = ['dishes', 'restaurants', 'pantry', 'meals', 'plan', 'shopExtra'];
 
 export const blank = () => ({
   version: 1,
   settings: { cookName: '', cookPhone: '', lang: 'en' },
-  dishes: [],      // home dishes: { id, name, status, rating, favorite, cuisine, meals[], ingredients[{name, qty}], links[], cookTime, tags[], instructions, notes, from, addedOn }
+  dishes: [],      // home dishes: { id, name, status, diet, archived, rating, favorite, cuisine, meals[], ingredients[{name, qty}], links[], cookTime, tags[], instructions, notes, from, addedOn }
   restaurants: [], // { id, name, status: 'been'|'want', area, cuisine, mapUrl, recommendedBy, notes, addedOn, dishes[{ id, name, tried, rating, verdict, notes, addedOn }] }
   pantry: [],      // { id, name, kind: 'staple'|'fresh'|'special', status: 'have'|'low'|'out', since }
   meals: [],       // the food log: { id, date, slot, kind: 'home'|'out'|'order', dishId?, restaurantId?, label }
@@ -18,6 +20,11 @@ function normalize(data) {
   const b = blank();
   const s = { ...b, ...data, settings: { ...b.settings, ...(data?.settings || {}) } };
   for (const k of LISTS) if (!Array.isArray(s[k])) s[k] = [];
+  // Fields added after v0: fill them in for older saved data and backups.
+  for (const d of s.dishes) {
+    if (!d.diet) d.diet = guessDiet(d);
+    if (typeof d.archived !== 'boolean') d.archived = false;
+  }
   return s;
 }
 
@@ -45,6 +52,9 @@ export const ui = {
   outQ: '',
   outArea: '',
   memoryQ: '',
+  ideasRegion: 'indian',
+  ideasQ: '',
+  ideaPicks: new Set(),
 };
 
 const listeners = new Set();

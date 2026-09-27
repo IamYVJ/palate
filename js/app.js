@@ -8,6 +8,7 @@ import { closeModal, runToastUndo } from './ui.js';
 import { currentSlot } from './logic.js';
 import * as modals from './modals.js';
 import { openCapture } from './modals.js';
+import * as pwa from './pwa.js';
 import * as today from './views/today.js';
 import * as cook from './views/cook.js';
 import * as dish from './views/dish.js';
@@ -16,12 +17,13 @@ import * as out from './views/out.js';
 import * as restaurant from './views/restaurant.js';
 import * as memory from './views/memory.js';
 import * as settings from './views/settings.js';
+import * as ideas from './views/ideas.js';
 
-const views = { today, cook, dish, kitchen, out, restaurant, memory, settings };
-const TITLES = { today: 'Today', cook: 'Home cooking', dish: 'Dish', kitchen: 'Kitchen', out: 'Eating out', restaurant: 'Place', memory: 'Food memory', settings: 'Settings' };
-const TAB_FOR = { dish: 'cook', restaurant: 'out' };
+const views = { today, cook, dish, ideas, kitchen, out, restaurant, memory, settings };
+const TITLES = { today: 'Today', cook: 'Home cooking', dish: 'Dish', ideas: 'Dish ideas', kitchen: 'Kitchen', out: 'Eating out', restaurant: 'Place', memory: 'Food memory', settings: 'Settings' };
+const TAB_FOR = { dish: 'cook', ideas: 'cook', restaurant: 'out' };
 
-const modules = [modals, ...Object.values(views)];
+const modules = [modals, pwa, ...Object.values(views)];
 const collect = (key) => Object.assign({}, ...modules.map((m) => m[key] || {}));
 const actions = { ...collect('actions'), closeModal, toastUndo: runToastUndo };
 const forms = collect('forms');
@@ -86,26 +88,59 @@ document.addEventListener('change', (e) => {
   if (el) changes[el.dataset.change]?.(el, e);
 });
 
+// Enter in a search box just closes the phone keyboard.
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && e.target.matches?.('input[type="search"]')) e.target.blur();
+});
+
 const dialog = document.getElementById('modal');
 dialog.addEventListener('click', (e) => {
   if (e.target === dialog) closeModal(); // backdrop
 });
 
-window.addEventListener('hashchange', () => {
+// Bottom sheets: drag down from the top to dismiss.
+let drag = null;
+dialog.addEventListener('touchstart', (e) => {
+  const sheet = matchMedia('(max-width: 600px)').matches;
+  if (!sheet || dialog.scrollTop > 0 || e.target.closest('textarea, select, input')) return;
+  drag = { y: e.touches[0].clientY, dy: 0 };
+  dialog.style.transition = 'none'; // follow the finger exactly
+}, { passive: true });
+dialog.addEventListener('touchmove', (e) => {
+  if (!drag) return;
+  drag.dy = Math.max(0, e.touches[0].clientY - drag.y);
+  if (dialog.scrollTop > 0) drag.dy = 0;
+  dialog.style.transform = drag.dy ? `translateY(${drag.dy}px)` : '';
+}, { passive: true });
+dialog.addEventListener('touchend', () => {
+  if (!drag) return;
+  const { dy } = drag;
+  drag = null;
+  dialog.style.transition = '';
+  if (dy > 110) closeModal();
+  else dialog.style.transform = '';
+});
+
+// Come back to a list where you left it.
+const scrollPos = {};
+history.scrollRestoration = 'manual';
+window.addEventListener('hashchange', (e) => {
+  scrollPos[new URL(e.oldURL).hash] = window.scrollY;
   closeModal();
   render();
-  window.scrollTo(0, 0);
+  window.scrollTo(0, scrollPos[location.hash] || 0);
 });
 
 // ---------- start ----------
 
 ui.slot = currentSlot();
 subscribe(render);
+pwa.initPwa();
 render();
 
-// Shared into Palate (bookmarklet, share sheet, or a link like ?url=…): open the save dialog.
+// Shared into Palate (share sheet, bookmarklet, ?url=… link) or the "Save" home-screen shortcut.
 const params = new URLSearchParams(location.search);
-if (params.has('url') || params.has('text')) {
+if (params.has('url') || params.has('text') || params.has('save')) {
   history.replaceState(null, '', location.pathname + location.hash);
   openCapture({ url: params.get('url') || '', text: params.get('text') || '', title: params.get('title') || '' });
 }

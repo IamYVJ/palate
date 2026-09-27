@@ -1,7 +1,8 @@
 // A single home dish.
 
 import { state, update, byId } from '../store.js';
-import { html, ago, fmtDate, cap, safeUrl, STATUS, ratingBadge } from '../ui.js';
+import { html, ago, fmtDate, cap, safeUrl, STATUS, ratingBadge, dietMark, todayISO, toast } from '../ui.js';
+import { DIET } from '../diet.js';
 import { availability, mealStats } from '../logic.js';
 
 const MARK = {
@@ -29,7 +30,9 @@ export function render(id) {
     ${ratingBadge(d.rating)}
   </header>
   <div class="chips">
+    ${d.archived ? html`<span class="chip">Archived</span>` : ''}
     <span class="chip ${d.status === 'can_make' ? 'good' : d.status === 'learning' ? 'warn' : 'accent'}">${STATUS[d.status]}</span>
+    <span class="chip">${dietMark(d.diet)} ${DIET[d.diet]}</span>
     ${(d.tags || []).map((t) => html`<span class="chip">${t}</span>`)}
   </div>
   <div class="facts">
@@ -38,15 +41,18 @@ export function render(id) {
     ${from ? html`<span>From <a href="#/restaurant/${from.id}">${from.name}</a></span>` : ''}
   </div>
 
-  ${d.status === 'learning' ? html`<div class="notice">${cap(cook)} is learning this one. Share the recipe below, and once it turns out well, add it to the regular rotation.
+  ${d.archived ? html`<div class="notice">Archived: hidden from suggestions and your lists, but its history is kept.
+    <div><button type="button" class="btn sm" data-action="archiveDish" data-id="${d.id}" data-on="">Restore</button></div></div>` : ''}
+  ${!d.archived && d.status === 'learning' ? html`<div class="notice">${cap(cook)} is learning this one. Share the recipe below, and once it turns out well, add it to the regular rotation.
     <div><button type="button" class="btn sm" data-action="setStatus" data-id="${d.id}" data-status="can_make">Learned it ✓</button></div></div>` : ''}
-  ${d.status === 'want_to_try' ? html`<div class="notice">On your want-to-try list.
+  ${!d.archived && d.status === 'want_to_try' ? html`<div class="notice">On your want-to-try list.
     <div><button type="button" class="btn sm" data-action="setStatus" data-id="${d.id}" data-status="learning">Ask ${cook} to learn it</button></div></div>` : ''}
 
   <div class="card-actions">
     <button type="button" class="btn primary" data-action="make" data-id="${d.id}">Make this</button>
     <button type="button" class="btn" data-action="ate" data-id="${d.id}">Had it</button>
     <button type="button" class="btn ghost" data-action="editDish" data-id="${d.id}">Edit</button>
+    ${d.archived ? '' : html`<button type="button" class="btn ghost" data-action="archiveDish" data-id="${d.id}" data-on="1">Archive</button>`}
   </div>
 
   <h2 class="section-title">Ingredients ${av.rows.length ? html`<span class="muted">${av.have.length} of ${av.rows.length} at home</span>` : ''}</h2>
@@ -88,4 +94,13 @@ function prettyUrl(u) {
 
 export const actions = {
   setStatus: ({ id, status }) => update((s) => { byId(s.dishes, id).status = status; }),
+  archiveDish: ({ id, on }) => {
+    const archived = !!on;
+    update((s) => {
+      byId(s.dishes, id).archived = archived;
+      // An archived dish shouldn't keep sitting on the menu or the shopping list.
+      if (archived) s.plan = s.plan.filter((p) => p.dishId !== id || p.date < todayISO());
+    });
+    toast(archived ? 'Archived. Find it under Cook → Archived.' : 'Restored');
+  },
 };

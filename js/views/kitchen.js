@@ -23,7 +23,7 @@ export function render() {
 function shopView(shop) {
   return html`
   <form class="inline-add" data-form="shopAdd">
-    <input name="name" placeholder="Add something to buy" autocomplete="off" aria-label="Item to buy">
+    <input name="name" placeholder="Add something to buy" autocomplete="off" enterkeyhint="done" aria-label="Item to buy">
     <button class="btn primary sm" type="submit">Add</button>
   </form>
 
@@ -68,7 +68,7 @@ function pantryView() {
   const groups = Object.keys(KINDS).map((k) => [k, state.pantry.filter((p) => p.kind === k)]);
   return html`
   <form class="inline-add" data-form="pantryAdd">
-    <input name="names" placeholder="Add items, comma separated" autocomplete="off" aria-label="Items to add">
+    <input name="names" placeholder="Add items, comma separated" autocomplete="off" enterkeyhint="done" aria-label="Items to add">
     <select name="kind" aria-label="Kind" data-change="pantryKind">${Object.entries({ staple: 'Staple', fresh: 'Fresh', special: 'Special' }).map(([k, label]) => html`
       <option value="${k}" ${ui.pantryKind === k ? 'selected' : ''}>${label}</option>`)}</select>
     <button class="btn primary sm" type="submit">Add</button>

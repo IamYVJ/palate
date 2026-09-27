@@ -4,6 +4,7 @@ import { state, ui, update, refresh, byId, isEmpty } from '../store.js';
 import { html, todayISO, daysSince, dayLabel, cap, SLOTS, ratingBadge } from '../ui.js';
 import { recommend, availability, useSoon, nameList } from '../logic.js';
 import { logHomeMeal } from '../modals.js';
+import { showInstallTip, installMode } from '../pwa.js';
 
 export function render() {
   if (isEmpty()) return welcome();
@@ -18,6 +19,7 @@ export function render() {
   const date = new Date().toLocaleDateString(undefined, { weekday: 'long', day: 'numeric', month: 'long' });
 
   return html`
+  ${showInstallTip() ? installTip() : ''}
   <section class="hero">
     <p class="eyebrow">${date}</p>
     <h1>What’s for ${ui.slot}?</h1>
@@ -88,10 +90,19 @@ function pastRow(p) {
 }
 
 function emptyRecs() {
-  const any = state.dishes.some((d) => d.status === 'can_make');
+  const any = state.dishes.some((d) => !d.archived && d.status === 'can_make');
   return html`<div class="empty">
     ${any ? `Nothing tagged for ${ui.slot} yet.` : 'Add the dishes your cook already makes and suggestions will show up here.'}
     <div><button type="button" class="btn primary sm" data-action="addDish">Add a dish</button></div>
+  </div>`;
+}
+
+function installTip() {
+  return html`<div class="install-tip">
+    <img src="icons/icon-192.png" alt="" width="40" height="40">
+    <div class="row-main"><strong>Put Palate on your home screen</strong><span>Opens full screen like an app, and works offline.</span></div>
+    <button type="button" class="btn sm primary" data-action="install">${installMode() === 'ios' ? 'How' : 'Install'}</button>
+    <button type="button" class="icon-btn" data-action="dismissInstallTip" aria-label="Not now">✕</button>
   </div>`;
 }
 
@@ -101,8 +112,9 @@ function welcome() {
     <p class="tagline">Your food memory. Your kitchen. Your taste.</p>
     <p>Palate remembers what you like, what your cook can make, what’s in the kitchen and where you loved eating, then helps you decide what’s next.</p>
     <div class="stack">
-      <button type="button" class="btn primary block" data-action="addDish">Add the first dish your cook makes</button>
-      <button type="button" class="btn block" data-action="loadSample">Explore with sample data</button>
+      <a class="btn primary block" href="#/ideas">Pick the dishes your cook makes</a>
+      <button type="button" class="btn block" data-action="addDish">Add a dish of your own</button>
+      <button type="button" class="btn ghost block" data-action="loadSample">Explore with sample data</button>
     </div>
     <p class="hint">Everything is stored privately in this browser. You can export a backup from Settings.</p>
   </section>`;

@@ -3,6 +3,7 @@
 import { state, update, replaceAll, looksLikeBackup, isEmpty } from '../store.js';
 import { html, todayISO, toast } from '../ui.js';
 import { sampleData } from '../sample.js';
+import { installMode } from '../pwa.js';
 
 export function render() {
   const s = state.settings;
@@ -26,6 +27,8 @@ export function render() {
     <div class="card-actions"><button type="submit" class="btn primary">Save</button></div>
   </form>
 
+  ${installCard()}
+
   <section class="card">
     <h2 class="card-title">Your data</h2>
     <p class="hint">Everything lives in this browser on this device; nothing is uploaded anywhere. Export a backup now and then, and use it to move to another phone or computer.</p>
@@ -42,11 +45,24 @@ export function render() {
 
   <section class="card">
     <h2 class="card-title">Save from anywhere</h2>
-    <p class="hint">On a computer, drag this to your bookmarks bar. Click it on any recipe, reel or restaurant page to save it to Palate.</p>
+    <p class="hint">On Android, once installed, use your phone’s <strong>Share</strong> menu and pick Palate. On iPhone, copy the link and tap <strong>＋</strong> at the top of Palate. On a computer, drag the button below to your bookmarks bar, then click it on any recipe, reel or restaurant page.</p>
     <p><a class="btn sm" href="${bookmarklet}" data-action="bookmarkletHelp">＋ Save to Palate</a></p>
   </section>
 
   <p class="hint" style="text-align:center;margin-top:24px">Palate · your food memory</p>`;
+}
+
+function installCard() {
+  const mode = installMode();
+  const body = {
+    installed: html`<p class="hint">Installed ✓ You’re using Palate as an app. It works offline, and on Android you can share recipes and places into it from other apps.</p>`,
+    prompt: html`<p class="hint">Install Palate to open it from your home screen, full screen and offline. On Android you can then share reels, recipes and map links straight into it.</p>
+      <div class="card-actions"><button type="button" class="btn primary" data-action="install">Install app</button></div>`,
+    ios: html`<p class="hint">Add Palate to your home screen to open it like an app, full screen and offline.</p>
+      <div class="card-actions"><button type="button" class="btn primary" data-action="install">Show me how</button></div>`,
+    manual: html`<p class="hint">Open this page on your phone, then use the browser menu’s <strong>Add to Home Screen</strong> or <strong>Install app</strong>. It then opens full screen and works offline.</p>`,
+  }[mode];
+  return html`<section class="card"><h2 class="card-title">Palate on your phone</h2>${body}</section>`;
 }
 
 export const forms = {

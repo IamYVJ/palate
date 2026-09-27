@@ -2,7 +2,7 @@
 // Everything here is derived from state on demand; nothing is cached.
 
 import { state, byId } from './store.js';
-import { todayISO, daysSince, ago, STATUS } from './ui.js';
+import { todayISO, daysSince, ago, STATUS, SLOTS } from './ui.js';
 
 // ---------- ingredients vs. the kitchen ----------
 
@@ -89,6 +89,13 @@ export function currentSlot() {
   return h < 11 ? 'breakfast' : h < 16 ? 'lunch' : 'dinner';
 }
 
+/** The meal to default to for a dish: this one if it suits, otherwise the next one it's made for. */
+export function slotFor(dish, slot = currentSlot()) {
+  const ok = dish.meals?.length ? dish.meals : SLOTS;
+  if (ok.includes(slot)) return slot;
+  return SLOTS.slice(SLOTS.indexOf(slot)).find((x) => ok.includes(x)) || ok[0];
+}
+
 // ---------- what should I eat? ----------
 
 export function recommend(slot, limit = 6) {
@@ -96,7 +103,7 @@ export function recommend(slot, limit = 6) {
   const today = todayISO();
   const planned = new Set(state.plan.filter((p) => p.date === today).map((p) => p.dishId));
   return state.dishes
-    .filter((d) => d.status === 'can_make' && !planned.has(d.id) && (!d.meals?.length || d.meals.includes(slot)))
+    .filter((d) => !d.archived && d.status === 'can_make' && !planned.has(d.id) && (!d.meals?.length || d.meals.includes(slot)))
     .map((d) => scoreDish(d, stats.dish.get(d.id)))
     .sort((a, b) => b.score - a.score)
     .slice(0, limit);
@@ -240,12 +247,13 @@ export function insights() {
   const stats = mealStats();
   const year = String(new Date().getFullYear());
 
-  const topHome = state.dishes.filter((d) => d.rating != null).sort((a, b) => b.rating - a.rating).slice(0, 5);
+  const active = state.dishes.filter((d) => !d.archived);
+  const topHome = active.filter((d) => d.rating != null).sort((a, b) => b.rating - a.rating).slice(0, 5);
   const topOut = state.restaurants
     .flatMap((r) => r.dishes.filter((d) => d.tried && d.rating != null).map((d) => ({ r, d })))
     .sort((a, b) => b.d.rating - a.d.rating)
     .slice(0, 5);
-  const longTime = state.dishes
+  const longTime = active
     .filter((d) => d.status === 'can_make' && stats.dish.has(d.id))
     .map((d) => ({ d, last: stats.dish.get(d.id).last }))
     .filter((x) => daysSince(x.last) >= 10)
@@ -278,8 +286,8 @@ export function insights() {
     cuisines: [...cuisines].sort((a, b) => b[1] - a[1]).slice(0, 5),
     regulars,
     toTry: {
-      dishes: state.dishes.filter((d) => d.status === 'want_to_try').length,
-      learning: state.dishes.filter((d) => d.status === 'learning').length,
+      dishes: active.filter((d) => d.status === 'want_to_try').length,
+      learning: active.filter((d) => d.status === 'learning').length,
       places: state.restaurants.filter((r) => r.status === 'want').length,
       rdishes: state.restaurants.flatMap((r) => r.dishes.filter((d) => !d.tried)).length,
     },
