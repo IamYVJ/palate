@@ -20,7 +20,7 @@ const BY_CUISINE = [
   [/hyderabad|andhra|telangana/i, ['vahchef', 'hebbars', 'ranveer']],
   [/bengali|bong/i, ['bongeats', 'ranveer', 'sanjeev']],
   [/gujarati|maharashtrian|rajasthani/i, ['nisha', 'hebbars', 'kabita']],
-  [/street|indo-chinese|chinese|italian|mexican|thai|continental|american|greek|middle eastern|japanese|fusion|café|cafe/i, ['yourfoodlab', 'ranveer', 'kunal']],
+  [/street|indo-chinese|chinese|italian|mexican|thai|burmese|continental|american|greek|middle eastern|japanese|fusion|café|cafe/i, ['yourfoodlab', 'ranveer', 'kunal']],
   [/north indian|punjabi|mughlai|awadhi|lucknowi|dhaba/i, ['ranveer', 'kunal', 'nisha']],
 ];
 

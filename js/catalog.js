@@ -60,6 +60,37 @@ const VIDEOS = {
   'Veg Fried Rice': ['1WQVzQBNk_Q', 'Your Food Lab', 'Veg Fried Rice, restaurant style'],
   'Chilli Paneer': ['fPyHXiHbLg4', 'Your Food Lab', 'Chilli Paneer, restaurant style'],
   'Veg Manchurian': ['6K8ZJG6cQ2U', 'Your Food Lab', 'Veg Manchurian (dry)'],
+  // Added later (30 more).
+  'Shahi Paneer': ['inVClSNYBQ4', 'Ranveer Brar', 'Dhaba-style Shahi Paneer'],
+  'Dum Aloo': ['RFvfvR_Julk', 'Ranveer Brar', 'Hyderabadi Dum Aloo'],
+  'Methi Malai Matar': ['maxiwdeTu68', 'Ranveer Brar', 'Methi Matar Malai'],
+  'Sarson ka Saag': ['-yhf5fx6LQM', 'Ranveer Brar', 'Punjabi Sarson ka Saag'],
+  'Chana Dal Fry': ['VoV7b7XtS2E', 'Kunal Kapur', 'Dhaba-style Chana Dal Fry'],
+  'Kala Chana Masala': ['YAsHnMjd0PE', 'Kabita’s Kitchen', 'Dhaba-style Kala Chana Masala'],
+  'Lauki Chana Dal': ['hq0ed55i1_Y', 'Kabita’s Kitchen', 'Bihari-style Lauki Chana Dal'],
+  'Gobi Paratha': ['1kGQIs7fycA', 'Kabita’s Kitchen', 'Gobi Paratha'],
+  'Paneer Paratha': ['w1B2PuRKJJU', 'Kunal Kapur', 'Paneer Paratha'],
+  'Gatte ki Sabzi': ['Z_SZ44sqI4E', 'Nisha Madhulika', 'Besan Gatte ki Sabzi'],
+  'Aloo Posto': ['BI1v4Y8Td_M', 'Bong Eats', 'Aloo Posto: tips and tricks'],
+  'Cholar Dal': ['MtcAg-5SeT8', 'Bong Eats', 'Cholar Dal with coconut and raisins'],
+  'Mirchi ka Salan': ['MuB2diQ_Bq4', 'Vahchef', 'Mirchi ka Salan'],
+  'Medu Vada': ['DwiDbLfHnjI', 'Vahchef', 'Medu Vada'],
+  'Lemon Rice': ['bNq4OPjUiic', 'Vahchef', 'Lemon Rice'],
+  'Bisi Bele Bath': ['QFIXE88KCrk', 'Vahchef', 'Bisi Bele Bath'],
+  'Avial': ['0L0xUfagiHQ', 'Vahchef', 'Avial'],
+  'Vada Pav': ['r4saZD0J_gU', 'Your Food Lab', 'Vada Pav with dry garlic chutney'],
+  'Misal Pav': ['gJXeu2Eih60', 'Your Food Lab', 'Misal Pav'],
+  'Paneer Kathi Roll': ['Wb95nUQZLXM', 'Your Food Lab', 'Paneer Kathi Roll'],
+  'White Sauce Pasta': ['CHUYtrCtre4', 'Your Food Lab', 'White Sauce Pasta (also red and pink)'],
+  'Veg Khao Suey': ['5g3dMgCyil4', 'Your Food Lab', 'Veg Burmese Khao Suey'],
+  'Thai Red Curry': ['GWBxYDLRpD8', 'Your Food Lab', 'Veg Thai Red Curry, with homemade paste'],
+  'Veg Spring Rolls': ['-gOhyN8WJMY', 'Your Food Lab', 'Veg Spring Rolls, with homemade sheets'],
+  'Schezwan Fried Rice': ['suXQ2mPfhSg', 'Your Food Lab', 'Veg Schezwan Fried Rice'],
+  'Hot and Sour Soup': ['1ltR8xVvg_w', 'Your Food Lab', 'Veg Hot & Sour Soup'],
+  'Sweet Corn Soup': ['BVDxruxmQy4', 'Your Food Lab', 'Veg Sweet Corn Soup with fresh corn'],
+  'Paneer Tikka Tacos': ['QSZR1DUgnfs', 'Your Food Lab', 'Paneer Tikka Masala Tacos'],
+  'Potato Au Gratin': ['KGWgJMa2_jQ', 'Sanjeev Kapoor Khazana', 'Potato Au Gratin'],
+  'Bruschetta': ['c-Q5PpPQJWM', 'Sanjeev Kapoor Khazana', 'Bruschetta'],
   // Not in the veg catalogue, but in the sample data (archived).
   'Masala Omelette': ['sAa-CEl5Z-k', 'Ranveer Brar', 'Masala Omelette'],
   'Shakshuka': ['4_NjuSgOV6Y', 'Your Food Lab', 'Indian-style Shakshuka'],
@@ -74,14 +105,14 @@ export function videoFields(dishName) {
   return { links: [url], linkInfo: { [url]: { title: v[2], channel: v[1] } } };
 }
 
-/** dish(name, cuisine, meals as "BLD" letters, minutes, "Ingredient|qty; …", tags) */
+/** dish(name, cuisine, meals as "BLD" letters, minutes, "Ingredient|qty; …" (or null when recipes.js has it), tags) */
 const dish = (region, name, cuisine, meals, cookTime, ingredients, tags = []) => ({
   region,
   name,
   cuisine,
   meals: [...meals].map((m) => MEALS[m]),
   cookTime,
-  ingredients: ingredients.split(';').map((x) => {
+  ingredients: (ingredients || '').split(';').filter((x) => x.trim()).map((x) => {
     const [n, qty = ''] = x.split('|').map((t) => t.trim());
     return { name: n, qty };
   }),
@@ -129,6 +160,29 @@ export const CATALOG = [
   indian('Sambar Rice', 'South Indian', 'LD', 45, 'Toor dal|¾ cup; Rice|1 cup; Sambar masala|2 tbsp; Tamarind|small ball; Drumstick|1; Mixed vegetables|1 cup; Curry leaves|1 sprig'),
   indian('Upma', 'South Indian', 'B', 20, 'Rava|1 cup; Onion|1; Curry leaves|1 sprig; Mustard seeds|1 tsp; Green chilli|2; Peas|¼ cup', ['quick']),
 
+  // Ingredients for these come from recipes.js (their videos). The two Bong Eats dishes keep a
+  // generic list until their videos are checked (see TODO.md).
+  indian('Shahi Paneer', 'North Indian', 'LD', 35, null, ['rich']),
+  indian('Dum Aloo', 'Hyderabadi', 'LD', 50, null, ['rich']),
+  indian('Methi Malai Matar', 'North Indian', 'LD', 40, null, ['rich']),
+  indian('Sarson ka Saag', 'North Indian', 'LD', 150, null, ['winter', 'slow-cooked']),
+  indian('Chana Dal Fry', 'North Indian', 'LD', 30, null, ['comfort']),
+  indian('Kala Chana Masala', 'North Indian', 'LD', 50, null, ['soak overnight', 'high protein']),
+  indian('Lauki Chana Dal', 'North Indian', 'LD', 35, null, ['everyday', 'light']),
+  indian('Gobi Paratha', 'North Indian', 'BL', 45, null, ['winter']),
+  indian('Paneer Paratha', 'North Indian', 'BL', 40, null, ['high protein']),
+  indian('Gatte ki Sabzi', 'Rajasthani', 'LD', 40, null),
+  indian('Aloo Posto', 'Bengali', 'L', 30, 'Potato|4; Poppy seeds|4 tbsp, ground; Mustard oil|3 tbsp; Kalonji|½ tsp; Green chilli|3; Turmeric|¼ tsp; Salt|to taste'),
+  indian('Cholar Dal', 'Bengali', 'LD', 45, 'Chana dal|1 cup; Coconut|¼ cup, small pieces; Raisins|2 tbsp; Ghee|2 tbsp; Bay leaf|2; Cumin seeds|1 tsp; Dry red chilli|2; Cinnamon|1 inch; Cloves|3; Green cardamom|3; Ginger paste|1 tsp; Turmeric|½ tsp; Sugar|1 tsp; Salt|to taste'),
+  indian('Mirchi ka Salan', 'Hyderabadi', 'LD', 45, null, ['tangy']),
+  indian('Medu Vada', 'South Indian', 'B', 30, null, ['soak ahead']),
+  indian('Lemon Rice', 'South Indian', 'L', 25, null, ['quick', 'tiffin']),
+  indian('Bisi Bele Bath', 'South Indian', 'LD', 45, null, ['one-pot']),
+  indian('Avial', 'Kerala', 'L', 30, null),
+  indian('Vada Pav', 'Mumbai street food', 'LD', 60, null, ['weekend']),
+  indian('Misal Pav', 'Maharashtrian', 'BL', 45, null, ['spicy']),
+  indian('Paneer Kathi Roll', 'Street food', 'LD', 90, null, ['weekend']),
+
   // ---- International ----
   world('Margherita Pizza', 'Italian', 'D', 30, 'Pizza base|2; Pizza sauce|½ cup; Mozzarella|200 g; Basil|handful; Olive oil|1 tbsp'),
   world('Penne Arrabbiata', 'Italian', 'LD', 25, 'Pasta|250 g; Tomato|4; Garlic|4 cloves; Chilli flakes|1 tsp; Olive oil|2 tbsp; Parmesan|to serve', ['quick']),
@@ -151,4 +205,14 @@ export const CATALOG = [
   world('Veg Fried Rice', 'Indo-Chinese', 'LD', 20, 'Rice|2 cups cooked; Carrot|1; Beans|6; Spring onion|3; Soy sauce|2 tbsp; Garlic|4 cloves', ['quick', 'leftovers']),
   world('Chilli Paneer', 'Indo-Chinese', 'D', 30, 'Paneer|250 g; Capsicum|2; Onion|1; Soy sauce|2 tbsp; Cornflour|3 tbsp; Green chilli|3; Spring onion|2'),
   world('Veg Manchurian', 'Indo-Chinese', 'D', 40, 'Cabbage|2 cups; Carrot|1; Cornflour|4 tbsp; Maida|2 tbsp; Soy sauce|2 tbsp; Garlic|6 cloves; Spring onion|2'),
+  world('White Sauce Pasta', 'Italian', 'LD', 25, null, ['quick']),
+  world('Bruschetta', 'Italian', 'B', 20, null, ['quick']),
+  world('Potato Au Gratin', 'Continental', 'D', 45, null, ['oven']),
+  world('Paneer Tikka Tacos', 'Mexican', 'D', 60, null, ['fusion', 'party']),
+  world('Thai Red Curry', 'Thai', 'D', 45, null),
+  world('Veg Khao Suey', 'Burmese', 'D', 50, null),
+  world('Veg Spring Rolls', 'Indo-Chinese', 'D', 60, null, ['party']),
+  world('Schezwan Fried Rice', 'Indo-Chinese', 'LD', 40, null, ['spicy']),
+  world('Hot and Sour Soup', 'Indo-Chinese', 'D', 30, null, ['light']),
+  world('Sweet Corn Soup', 'Indo-Chinese', 'D', 25, null, ['light', 'quick']),
 ];
