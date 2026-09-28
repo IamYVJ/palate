@@ -2,6 +2,11 @@
 // Amazon.in links. They carry an Amazon Associates tag, so the site shows a disclosure next to them.
 
 export const INGREDIENT_LINKS = {
+ "Active dry yeast": {
+  "url": "https://www.amazon.in/dp/B08C6WCXSV?tag=tpr07-21",
+  "product": "GreenFinity Baker's Active Dry Yeast, 75 g",
+  "search": false
+ },
  "Ajwain": {
   "url": "https://www.amazon.in/dp/B0H1H6XH8Y?tag=tpr07-21",
   "product": "Tata Sampann Ajwain (Ajowan), 100g",
@@ -12,9 +17,25 @@ export const INGREDIENT_LINKS = {
   "product": "Tata Sampann Pure California Almonds/Badam Whole, 500g",
   "search": false
  },
+ "Amaranth leaves": {
+  "url": "https://www.amazon.in/dp/B07BG68KXT?tag=tpr07-21",
+  "product": "Fresh Spinach, 250g",
+  "search": false,
+  "note": "fresh amaranth leaves not listed; spinach is the usual swap in saag"
+ },
  "Amchur": {
   "url": "https://www.amazon.in/dp/B0752S3195?tag=tpr07-21",
   "product": "Catch Amchur Powder, 100 g",
+  "search": false
+ },
+ "Amchur chutney": {
+  "url": "https://www.amazon.in/dp/B0F1MVFTD2?tag=tpr07-21",
+  "product": "Tata Sampann Teekhi Imli Saunth Chutney",
+  "search": false
+ },
+ "Anardana": {
+  "url": "https://www.amazon.in/dp/B0G6XJMTT5?tag=tpr07-21",
+  "product": "Snapin Anardana Powder, 25 g",
   "search": false
  },
  "Arborio rice": {
@@ -27,6 +48,12 @@ export const INGREDIENT_LINKS = {
   "product": "Knorr Aromat Seasoning Powder, 1kg",
   "search": false,
   "note": "niche item, only a 1 kg pack found; unlikely on Amazon Now"
+ },
+ "Arugula": {
+  "url": "https://www.amazon.in/s?k=fresh+arugula+rocket+leaves&tag=tpr07-21",
+  "product": "Amazon search: fresh arugula",
+  "search": true,
+  "note": "no fresh arugula listing found; tagged search link"
  },
  "Atta": {
   "url": "https://www.amazon.in/dp/B007GGTLEC?tag=tpr07-21",
@@ -43,9 +70,19 @@ export const INGREDIENT_LINKS = {
   "product": "Fresh Baby Corn, 200g",
   "search": false
  },
+ "Baking powder": {
+  "url": "https://www.amazon.in/dp/B004KFHIBK?tag=tpr07-21",
+  "product": "Weikfield Baking Powder, Double Action",
+  "search": false
+ },
  "Baking soda": {
   "url": "https://www.amazon.in/dp/B09G96K43Z?tag=tpr07-21",
   "product": "Weikfield Baking Soda",
+  "search": false
+ },
+ "Banana": {
+  "url": "https://www.amazon.in/dp/B0DSBW9M6W?tag=tpr07-21",
+  "product": "Fresh Banana Robusta, Ripened, 500 g",
   "search": false
  },
  "Basil": {
@@ -162,10 +199,15 @@ export const INGREDIENT_LINKS = {
   "search": false
  },
  "Carrot": {
-  "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21",
-  "product": "Amazon search: fresh carrot",
-  "search": true,
-  "note": "no Amazon fresh carrot listing found; tagged search link"
+  "url": "https://www.amazon.in/dp/B0DPCDL29M?tag=tpr07-21",
+  "product": "Fresh Ooty Carrot (Gajar), 250 g",
+  "search": false
+ },
+ "Cashew paste": {
+  "url": "https://www.amazon.in/dp/B09GNSDZVW?tag=tpr07-21",
+  "product": "Tata Sampann Pure Cashews Whole/Kaju, 500g",
+  "search": false,
+  "note": "grind soaked cashews into a paste"
  },
  "Cashews": {
   "url": "https://www.amazon.in/dp/B09GNSDZVW?tag=tpr07-21",
@@ -173,10 +215,9 @@ export const INGREDIENT_LINKS = {
   "search": false
  },
  "Cauliflower": {
-  "url": "https://www.amazon.in/s?k=fresh+cauliflower&tag=tpr07-21",
-  "product": "Amazon search: fresh cauliflower",
-  "search": true,
-  "note": "no Amazon fresh cauliflower listing found; tagged search link"
+  "url": "https://www.amazon.in/dp/B09H3CZ5KL?tag=tpr07-21",
+  "product": "Fresh Cauliflower Small, 1 Piece (approx. 300-400g)",
+  "search": false
  },
  "Celery": {
   "url": "https://www.amazon.in/dp/B07BG4XKJ5?tag=tpr07-21",
@@ -193,16 +234,38 @@ export const INGREDIENT_LINKS = {
   "product": "Amul Cheese Block, 200 g",
   "search": false
  },
+ "Cherry tomatoes": {
+  "url": "https://www.amazon.in/dp/B0DPCG3154?tag=tpr07-21",
+  "product": "Fresh Cherry Tomatoes, 200 g",
+  "search": false
+ },
+ "Chickpea leaves": {
+  "url": "https://www.amazon.in/dp/B07BG68KXT?tag=tpr07-21",
+  "product": "Fresh Spinach, 250g",
+  "search": false,
+  "note": "chickpea leaves not listed; spinach is the usual swap in saag"
+ },
  "Chilli flakes": {
   "url": "https://www.amazon.in/dp/B00LN86ZIY?tag=tpr07-21",
   "product": "Keya Red Chilli Flakes",
+  "search": false
+ },
+ "Chilli oil": {
+  "url": "https://www.amazon.in/dp/B0FGY3KWGN?tag=tpr07-21",
+  "product": "MasterChow Sichuan Chilli Oil, 90 g",
   "search": false
  },
  "Chinese chives": {
   "url": "https://www.amazon.in/dp/B07NXZWD25?tag=tpr07-21",
   "product": "Fresh Spring Onion, 250 g",
   "search": false,
-  "note": "fresh Chinese chives not listed; spring onion greens are the usual swap; not shown in Amazon search, so left out of dish bundles"
+  "note": "fresh Chinese chives not listed; spring onion greens are the usual swap"
+ },
+ "Chives": {
+  "url": "https://www.amazon.in/dp/B09RT3BF6N?tag=tpr07-21",
+  "product": "VY VedaYug Chives, Dried",
+  "search": false,
+  "note": "dried; fresh chives not listed"
  },
  "Chole masala": {
   "url": "https://www.amazon.in/dp/B008ZEFY72?tag=tpr07-21",
@@ -234,6 +297,16 @@ export const INGREDIENT_LINKS = {
   "product": "Dabur Hommade Coconut Milk",
   "search": false
  },
+ "Coconut oil": {
+  "url": "https://www.amazon.in/dp/B0FJY9X3K6?tag=tpr07-21",
+  "product": "KLF Coconad 100% Pure Coconut Oil, 950 ml pouch",
+  "search": false
+ },
+ "Coconut powder": {
+  "url": "https://www.amazon.in/dp/B07NCVZF3X?tag=tpr07-21",
+  "product": "KLF Coconad Desiccated Coconut Powder, 500 g",
+  "search": false
+ },
  "Coriander leaves": {
   "url": "https://www.amazon.in/dp/B07BG5GJJW?tag=tpr07-21",
   "product": "Fresh Coriander Leaves, 100 g",
@@ -253,6 +326,12 @@ export const INGREDIENT_LINKS = {
   "url": "https://www.amazon.in/dp/B0CB7YYH42?tag=tpr07-21",
   "product": "Pluckk Sweet Corn, 2 Pc",
   "search": false
+ },
+ "Corn meal": {
+  "url": "https://www.amazon.in/dp/B00M57U9R0?tag=tpr07-21",
+  "product": "Organic Tattva Organic Maize Flour (Makka Atta), 500 g",
+  "search": false,
+  "note": "fine maize flour; masa harina not listed"
  },
  "Cornflour": {
   "url": "https://www.amazon.in/dp/B075335G7V?tag=tpr07-21",
@@ -325,6 +404,16 @@ export const INGREDIENT_LINKS = {
   "product": "Fresh White Eggs, 6 Piece",
   "search": false
  },
+ "Farsan": {
+  "url": "https://www.amazon.in/dp/B0B6G2D368?tag=tpr07-21",
+  "product": "Bhadait Special Misal Farsan, 450 g",
+  "search": false
+ },
+ "Fennel seeds": {
+  "url": "https://www.amazon.in/dp/B0DJ979VKF?tag=tpr07-21",
+  "product": "Tata Sampann Fennel Seed (Saunf), Whole",
+  "search": false
+ },
  "Fenugreek seeds": {
   "url": "https://www.amazon.in/dp/B0D56VRX5C?tag=tpr07-21",
   "product": "Khetika Whole Methi Dana, 200g",
@@ -352,10 +441,14 @@ export const INGREDIENT_LINKS = {
   "search": false
  },
  "Garlic": {
-  "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21",
-  "product": "Amazon search: fresh garlic",
-  "search": true,
-  "note": "no Amazon fresh garlic listing found; tagged search link"
+  "url": "https://www.amazon.in/dp/B07BG51Q2F?tag=tpr07-21",
+  "product": "Fresh Garlic (lehsun), 100g Pack",
+  "search": false
+ },
+ "Garlic granules": {
+  "url": "https://www.amazon.in/dp/B07LCBQNCD?tag=tpr07-21",
+  "product": "Keya Garlic Granules, 55 g",
+  "search": false
  },
  "Garlic paste": {
   "url": "https://www.amazon.in/dp/B00TZS18QS?tag=tpr07-21",
@@ -387,6 +480,11 @@ export const INGREDIENT_LINKS = {
   "product": "Dabur Hommade Ginger Paste, 200 g",
   "search": false
  },
+ "Goda masala": {
+  "url": "https://www.amazon.in/dp/B08GCVC2X5?tag=tpr07-21",
+  "product": "Suhana Ambari Goda Masala, 500 g",
+  "search": false
+ },
  "Green cardamom": {
   "url": "https://www.amazon.in/dp/B0CJK23XJQ?tag=tpr07-21",
   "product": "Zoff Green Cardamom Whole (Choti Elaichi)",
@@ -403,6 +501,11 @@ export const INGREDIENT_LINKS = {
   "search": false,
   "note": "no mainstream green chilli paste found; grind fresh green chillies"
  },
+ "Green chutney": {
+  "url": "https://www.amazon.in/dp/B0F1MT9MNK?tag=tpr07-21",
+  "product": "Tata Sampann Chatpati Dhaniya Pudina Chutney",
+  "search": false
+ },
  "Hing": {
   "url": "https://www.amazon.in/dp/B0BBGB4RMH?tag=tpr07-21",
   "product": "Tata Sampann Hing, Compounded Asafoetida (Bandhani Hing), 50g",
@@ -413,9 +516,19 @@ export const INGREDIENT_LINKS = {
   "product": "Dabur Honey, 450g (225g x 2)",
   "search": false
  },
+ "Honey mustard": {
+  "url": "https://www.amazon.in/dp/B07CPZ8KTV?tag=tpr07-21",
+  "product": "Wingreens Farms Honey Mustard Dressing, 180 g",
+  "search": false
+ },
  "Idli batter": {
   "url": "https://www.amazon.in/dp/B01468O5AW?tag=tpr07-21",
   "product": "iD Fresh Idly and Dosa Batter, 1 Kg Pouch",
+  "search": false
+ },
+ "Jaggery": {
+  "url": "https://www.amazon.in/dp/B084M3KZPS?tag=tpr07-21",
+  "product": "Organic India Jaggery Powder, 500 g",
   "search": false
  },
  "Jalapeño": {
@@ -445,6 +558,22 @@ export const INGREDIENT_LINKS = {
   "search": false,
   "note": "dried; fresh leaves not found"
  },
+ "Kala chana": {
+  "url": "https://www.amazon.in/dp/B077X8K4RG?tag=tpr07-21",
+  "product": "Tata Sampann Unpolished Kala Chana, 1 kg",
+  "search": false
+ },
+ "Kalonji": {
+  "url": "https://www.amazon.in/dp/B0BLZ8VFLL?tag=tpr07-21",
+  "product": "True Elements Kalonji Seeds, 100 g",
+  "search": false
+ },
+ "Kashmiri chilli paste": {
+  "url": "https://www.amazon.in/dp/B0D5VHYDHN?tag=tpr07-21",
+  "product": "Khetika Naturale Kashmiri Chilli Whole, 100 g",
+  "search": false,
+  "note": "no mainstream paste found; soak and grind the dried Kashmiri chillies"
+ },
  "Kashmiri red chilli powder": {
   "url": "https://www.amazon.in/dp/B01B7DZ79M?tag=tpr07-21",
   "product": "Catch Kashmiri Chilli Powder, 100 g",
@@ -465,6 +594,16 @@ export const INGREDIENT_LINKS = {
   "product": "Gustora Lasagne Sheets",
   "search": false
  },
+ "Lauki": {
+  "url": "https://www.amazon.in/dp/B07BG79ZFZ?tag=tpr07-21",
+  "product": "Fresh Bottle Gourd (Doodhi), 1 Piece (approx. 500-800g)",
+  "search": false
+ },
+ "Leek": {
+  "url": "https://www.amazon.in/dp/B08RBC4FJW?tag=tpr07-21",
+  "product": "Fresh Leek, 250 g",
+  "search": false
+ },
  "Lemon": {
   "url": "https://www.amazon.in/dp/B0DFLR6C1V?tag=tpr07-21",
   "product": "Fresh Lemon Seedless Premium, 2 Pc",
@@ -481,15 +620,31 @@ export const INGREDIENT_LINKS = {
   "search": false,
   "note": "no separate lime listing; Indian lemons (nimbu) work as lime"
  },
+ "Long green chillies": {
+  "url": "https://www.amazon.in/dp/B07BG68J66?tag=tpr07-21",
+  "product": "Fresh Chilli, Bajji, 250g",
+  "search": false
+ },
  "Mace": {
   "url": "https://www.amazon.in/dp/B0CBVMFYL9?tag=tpr07-21",
   "product": "Chukde Mace (Javitri), 25 g",
+  "search": false
+ },
+ "MAGGI Masala-ae-Magic": {
+  "url": "https://www.amazon.in/dp/B07DCSRW8G?tag=tpr07-21",
+  "product": "MAGGI Masala-ae-Magic, 72 g (6 g x 12 sachets)",
   "search": false
  },
  "Maida": {
   "url": "https://www.amazon.in/dp/B08DRSJGCD?tag=tpr07-21",
   "product": "Fortune Maida Pouch, 500 g",
   "search": false
+ },
+ "Makki ki roti": {
+  "url": "https://www.amazon.in/dp/B00M57U9R0?tag=tpr07-21",
+  "product": "Organic Tattva Organic Maize Flour (Makka Atta), 500 g",
+  "search": false,
+  "note": "maize flour to make the rotis"
  },
  "Maple syrup": {
   "url": "https://www.amazon.in/dp/B00B5SLEN8?tag=tpr07-21",
@@ -508,13 +663,23 @@ export const INGREDIENT_LINKS = {
   "search": false
  },
  "Milk": {
-  "url": "https://www.amazon.in/dp/B01IA43GSU?tag=tpr07-21",
-  "product": "Mother Dairy Milk - Full Cream, 500ml Pack",
+  "url": "https://www.amazon.in/dp/B0F4DK9TR7?tag=tpr07-21",
+  "product": "Mother Dairy Cow Milk, 500 ml",
   "search": false
  },
  "Mint leaves": {
   "url": "https://www.amazon.in/dp/B07BG65QL5?tag=tpr07-21",
   "product": "Fresh Mint Leaves, 100 grams",
+  "search": false
+ },
+ "Miso": {
+  "url": "https://www.amazon.in/dp/B073JG1VTN?tag=tpr07-21",
+  "product": "Urban Platter Shiro Miso Paste, 300 g",
+  "search": false
+ },
+ "Mixed herbs": {
+  "url": "https://www.amazon.in/dp/B00LN86BP6?tag=tpr07-21",
+  "product": "Keya Mixed Herbs",
   "search": false
  },
  "Mixed vegetables": {
@@ -528,6 +693,11 @@ export const INGREDIENT_LINKS = {
   "product": "Tata Sampann Unpolished Moong Dal (Split), 500 g",
   "search": false
  },
+ "Moth beans": {
+  "url": "https://www.amazon.in/dp/B0FKB99C6G?tag=tpr07-21",
+  "product": "Tata Sampann Unpolished Matki (Moth Bean), 500 g",
+  "search": false
+ },
  "Mozzarella": {
   "url": "https://www.amazon.in/dp/B0BHLD142Z?tag=tpr07-21",
   "product": "D'lecta 100% Mozzarella Cheese Block, 200g",
@@ -538,9 +708,15 @@ export const INGREDIENT_LINKS = {
   "product": "Fresh Mushroom (Approx. 180-200g)",
   "search": false
  },
+ "Mustard greens": {
+  "url": "https://www.amazon.in/s?k=fresh+sarson+mustard+leaves&tag=tpr07-21",
+  "product": "Amazon search: fresh sarson (mustard greens)",
+  "search": true,
+  "note": "no fresh mustard greens listing found; tagged search link"
+ },
  "Mustard oil": {
-  "url": "https://www.amazon.in/dp/B01ABRU2JA?tag=tpr07-21",
-  "product": "Fortune Kachi Ghani Mustard Oil, 500ml",
+  "url": "https://www.amazon.in/dp/B06XH9QPX2?tag=tpr07-21",
+  "product": "Fortune Premium Kachi Ghani Pure Mustard Oil, 1 L pouch",
   "search": false
  },
  "Mustard seeds": {
@@ -599,6 +775,11 @@ export const INGREDIENT_LINKS = {
   "product": "Amul Fresh Malai Paneer Block Pouch, 200 g",
   "search": false
  },
+ "Paprika": {
+  "url": "https://www.amazon.in/dp/B0G6X4JY51?tag=tpr07-21",
+  "product": "Snapin Paprika Powder, 25 g",
+  "search": false
+ },
  "Parmesan": {
   "url": "https://www.amazon.in/dp/B0G4X199DK?tag=tpr07-21",
   "product": "Old Hill Parmesan Cheese, 100g",
@@ -607,8 +788,7 @@ export const INGREDIENT_LINKS = {
  "Parsley": {
   "url": "https://www.amazon.in/dp/B0DPCCQXNN?tag=tpr07-21",
   "product": "Fresh Parsley, 50 g",
-  "search": false,
-  "note": "not shown in Amazon search, so left out of dish bundles"
+  "search": false
  },
  "Pasta": {
   "url": "https://www.amazon.in/dp/B0GX1YYY8R?tag=tpr07-21",
@@ -633,6 +813,11 @@ export const INGREDIENT_LINKS = {
  "Peas": {
   "url": "https://www.amazon.in/dp/B0FF9Z6D5D?tag=tpr07-21",
   "product": "Pluckk Green Peas Shelled",
+  "search": false
+ },
+ "Pine nuts": {
+  "url": "https://www.amazon.in/dp/B09FSWGGQM?tag=tpr07-21",
+  "product": "Dry Fruit Hub Pine Nuts (Chilgoza) without Shell, 50 g",
   "search": false
  },
  "Pita bread": {
@@ -661,6 +846,16 @@ export const INGREDIENT_LINKS = {
   "product": "Fortune Thick Poha, 500 g",
   "search": false
  },
+ "Pomegranate": {
+  "url": "https://www.amazon.in/dp/B07BG6Q18N?tag=tpr07-21",
+  "product": "Fresh Pomegranate (Anar), 4 Pieces",
+  "search": false
+ },
+ "Poppy seeds": {
+  "url": "https://www.amazon.in/dp/B07H2SZV4R?tag=tpr07-21",
+  "product": "Amazon Brand - Vedaka Poppy Seeds (Khas Khas), 200 g",
+  "search": false
+ },
  "Potato": {
   "url": "https://www.amazon.in/dp/B07BG5GZP2?tag=tpr07-21",
   "product": "Fresh Potato, 1kg",
@@ -669,6 +864,16 @@ export const INGREDIENT_LINKS = {
  "Processed cheese": {
   "url": "https://www.amazon.in/dp/B01FMCJDDA?tag=tpr07-21",
   "product": "Amul Cheese Block (processed), 200 g",
+  "search": false
+ },
+ "Radish": {
+  "url": "https://www.amazon.in/dp/B07BG6QFYJ?tag=tpr07-21",
+  "product": "Fresh Radish - White, 500g",
+  "search": false
+ },
+ "Raisins": {
+  "url": "https://www.amazon.in/dp/B0B8CXKWVB?tag=tpr07-21",
+  "product": "Tata Sampann Pure Raisins Seedless (Kishmish), 500 g",
   "search": false
  },
  "Rajma": {
@@ -708,6 +913,11 @@ export const INGREDIENT_LINKS = {
   "product": "Fortune Rozana Gold Basmati Rice, 1 Kg",
   "search": false
  },
+ "Rice flour": {
+  "url": "https://www.amazon.in/dp/B0FLWDXY9J?tag=tpr07-21",
+  "product": "Daawat Premium Basmati Rice Flour, 500 g",
+  "search": false
+ },
  "Rice noodles": {
   "url": "https://www.amazon.in/dp/B0FZVWJBHR?tag=tpr07-21",
   "product": "MasterChow Rice Noodles",
@@ -718,6 +928,16 @@ export const INGREDIENT_LINKS = {
   "product": "PCM Roasted Jeera Powder, 100g",
   "search": false
  },
+ "Sabudana": {
+  "url": "https://www.amazon.in/dp/B07M91256V?tag=tpr07-21",
+  "product": "Amazon Brand - Vedaka Tapioca Sago (Sabudana) Medium, 1 Kg",
+  "search": false
+ },
+ "Salsa": {
+  "url": "https://www.amazon.in/dp/B00MCJ4968?tag=tpr07-21",
+  "product": "Cornitos Salsa Dip, 200 g",
+  "search": false
+ },
  "Salt": {
   "url": "https://www.amazon.in/dp/B07575FPC3?tag=tpr07-21",
   "product": "Tata Salt, 1 Kg",
@@ -726,6 +946,16 @@ export const INGREDIENT_LINKS = {
  "Sambar masala": {
   "url": "https://www.amazon.in/dp/B009LL92VC?tag=tpr07-21",
   "product": "MTR Sambar Powder",
+  "search": false
+ },
+ "Schezwan chutney": {
+  "url": "https://www.amazon.in/dp/B00Y09JC24?tag=tpr07-21",
+  "product": "Ching's Secret Schezwan Chutney, 250 g",
+  "search": false
+ },
+ "Sesame oil": {
+  "url": "https://www.amazon.in/dp/B0BDZZB3T1?tag=tpr07-21",
+  "product": "Urban Platter Korean-Style Toasted Sesame Oil, 250 ml",
   "search": false
  },
  "Sesame seeds": {
@@ -744,6 +974,22 @@ export const INGREDIENT_LINKS = {
   "search": false,
   "note": "niche item; unlikely on Amazon Now"
  },
+ "Shallots": {
+  "url": "https://www.amazon.in/dp/B07HN2W64R?tag=tpr07-21",
+  "product": "Fresh Onion, 500 gm",
+  "search": false,
+  "note": "sambar onions (shallots) not listed; regular onion works"
+ },
+ "Sichuan peppercorns": {
+  "url": "https://www.amazon.in/dp/B07W13P74D?tag=tpr07-21",
+  "product": "Yuvika Sichuan Peppercorns",
+  "search": false
+ },
+ "Sourdough bread": {
+  "url": "https://www.amazon.in/dp/B07RJWV541?tag=tpr07-21",
+  "product": "The Baker's Dozen Sourdough, Four Grain, 380 g",
+  "search": false
+ },
  "Soy sauce": {
   "url": "https://www.amazon.in/dp/B09H6KX7SW?tag=tpr07-21",
   "product": "Ching's Secret Dark Soy Sauce, 210g",
@@ -757,12 +1003,16 @@ export const INGREDIENT_LINKS = {
  "Spring onion": {
   "url": "https://www.amazon.in/dp/B07NXZWD25?tag=tpr07-21",
   "product": "Fresh Spring Onion, 250 g",
-  "search": false,
-  "note": "not shown in Amazon search, so left out of dish bundles"
+  "search": false
  },
  "Sugar": {
   "url": "https://www.amazon.in/dp/B08WZQ1SN3?tag=tpr07-21",
   "product": "Fortune Sugar, 1 kg",
+  "search": false
+ },
+ "Sweet chutney": {
+  "url": "https://www.amazon.in/dp/B0F1MVTFB4?tag=tpr07-21",
+  "product": "Tata Sampann Meethi Imli Khajur Chutney",
   "search": false
  },
  "Sweet corn": {
@@ -811,6 +1061,16 @@ export const INGREDIENT_LINKS = {
   "product": "Real Thai Green Curry Paste, 227 g",
   "search": false
  },
+ "Thai red curry paste": {
+  "url": "https://www.amazon.in/dp/B081L21NHK?tag=tpr07-21",
+  "product": "Real Thai Red Curry Paste, 227 g",
+  "search": false
+ },
+ "Thyme": {
+  "url": "https://www.amazon.in/dp/B07NDHH8D4?tag=tpr07-21",
+  "product": "Urban Platter Dried Thyme Flakes, 25 g",
+  "search": false
+ },
  "Tofu": {
   "url": "https://www.amazon.in/dp/B09PKCK86L?tag=tpr07-21",
   "product": "Soyarich Tofu Premium, 200 g",
@@ -847,12 +1107,28 @@ export const INGREDIENT_LINKS = {
   "product": "Tata Sampann Turmeric Powder, 200g",
   "search": false
  },
+ "Turnip": {
+  "url": "https://www.amazon.in/s?k=fresh+turnip+shalgam&tag=tpr07-21",
+  "product": "Amazon search: fresh turnip",
+  "search": true,
+  "note": "no fresh turnip listing found; tagged search link"
+ },
  "Urad dal": {
   "url": "https://www.amazon.in/dp/B077X8RBG1?tag=tpr07-21",
   "product": "Tata Sampann Unpolished Urad Dal (Split), 500 g",
   "search": false
  },
+ "Veg mayonnaise": {
+  "url": "https://www.amazon.in/dp/B00Y00Z8IU?tag=tpr07-21",
+  "product": "Dr. Oetker FunFoods Veg Mayonnaise Original, 250 g",
+  "search": false
+ },
  "Veg stock": {
+  "url": "https://www.amazon.in/dp/B005LLZ2GK?tag=tpr07-21",
+  "product": "Knorr Vegetable Stock Cubes, 80 g",
+  "search": false
+ },
+ "Veg stock cube": {
   "url": "https://www.amazon.in/dp/B005LLZ2GK?tag=tpr07-21",
   "product": "Knorr Vegetable Stock Cubes, 80 g",
   "search": false
@@ -867,10 +1143,22 @@ export const INGREDIENT_LINKS = {
   "product": "Tata Sampann Premium Walnut Kernels, 200g",
   "search": false
  },
+ "White butter": {
+  "url": "https://www.amazon.in/dp/B01N2XGCOS?tag=tpr07-21",
+  "product": "Amul Butter Unsalted, 100 g",
+  "search": false,
+  "note": "homemade white butter (makhan) isn't sold; unsalted butter is the closest"
+ },
  "White pepper powder": {
   "url": "https://www.amazon.in/dp/B00O0X7B3M?tag=tpr07-21",
   "product": "Everest White Pepper Powder, 100 g",
   "search": false
+ },
+ "White wine": {
+  "url": "https://www.amazon.in/dp/B005LLZ2GK?tag=tpr07-21",
+  "product": "Knorr Vegetable Stock Cubes, 80 g",
+  "search": false,
+  "note": "Amazon.in doesn't sell alcohol; use extra veg stock instead"
  },
  "Whole garam masala": {
   "url": "https://www.amazon.in/dp/B0DF7F726R?tag=tpr07-21",
@@ -882,6 +1170,11 @@ export const INGREDIENT_LINKS = {
   "product": "Tata Sampann Unpolished Urad Kali (Whole Black Urad), 500g",
   "search": false
  },
+ "Yellow chilli powder": {
+  "url": "https://www.amazon.in/dp/B07MM54Z79?tag=tpr07-21",
+  "product": "Chounk Yellow Mirch Powder, 200 g (100g x 2)",
+  "search": false
+ },
  "Zucchini": {
   "url": "https://www.amazon.in/dp/B0CGHR3KQM?tag=tpr07-21",
   "product": "Fresh Zucchini Green, Pack of 2 (approx. 300-400g)",
@@ -891,24 +1184,14 @@ export const INGREDIENT_LINKS = {
 
 export const DISH_BUNDLES = {
  "Palak Paneer": {
-  "url": "https://www.amazon.in/s?k=B07BG68KXT%7CB07BG7B7RF%7CB07BG7LB5B%7CB09WMPCGVP%7CB0GDQWH88W%7CB0DJ97QP87%7CB0FDL91HVS%7CB08FCZC99Y%7CB0BBGB4RMH%7CB07HN2W64R%7CB08JQTG681%7CB0DJ96LS3S%7CB08H64PTLG%7CB079H8D8M6%7CB01B7DZ8BE%7CB078KT9RB1%7CB077RK8L9N%7CB017BK7MD4%7CB07575FPC3&tag=tpr07-21",
-  "count": 19,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B07BG68KXT%7CB07BG7B7RF%7CB07BG51Q2F%7CB07BG7LB5B%7CB09WMPCGVP%7CB0GDQWH88W%7CB0DJ97QP87%7CB0FDL91HVS%7CB08FCZC99Y%7CB0BBGB4RMH%7CB07HN2W64R%7CB08JQTG681%7CB0DJ96LS3S%7CB08H64PTLG%7CB079H8D8M6%7CB01B7DZ8BE%7CB078KT9RB1%7CB077RK8L9N%7CB017BK7MD4%7CB07575FPC3&tag=tpr07-21",
+  "count": 20,
+  "leftOut": []
  },
  "Paneer Butter Masala": {
-  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB09WMPCGVP%7CB01IBTCZNG%7CB08FCZC99Y%7CB0CJK23XJQ%7CB0FDL91HVS%7CB07BG7B7RF%7CB07BG7LB5B%7CB07HN2W64R%7CB0D5VHYDHN%7CB09GNSDZVW%7CB08JQTG681%7CB003P8N772%7CB00LIO5JYE%7CB079H8D8M6%7CB077RFB9TN%7CB00JEWEUFG%7CB07J57J784%7CB08H64PTLG%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
-  "count": 21,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB09WMPCGVP%7CB01IBTCZNG%7CB08FCZC99Y%7CB0CJK23XJQ%7CB0FDL91HVS%7CB07BG7B7RF%7CB07BG51Q2F%7CB07BG7LB5B%7CB07HN2W64R%7CB0D5VHYDHN%7CB09GNSDZVW%7CB08JQTG681%7CB003P8N772%7CB00LIO5JYE%7CB079H8D8M6%7CB077RFB9TN%7CB00JEWEUFG%7CB07J57J784%7CB08H64PTLG%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 22,
+  "leftOut": []
  },
  "Matar Paneer": {
   "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB0FF9Z6D5D%7CB08JQTG681%7CB07BG7LB5B%7CB07BG7B7RF%7CB0DJ97QP87%7CB0BBGB4RMH%7CB077RK8L9N%7CB079H8D8M6%7CB00LIO5JYE%7CB01B7DZ8BE%7CB017BK7MD4%7CB07BG5GJJW%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
@@ -921,44 +1204,24 @@ export const DISH_BUNDLES = {
   "leftOut": []
  },
  "Paneer Bhurji": {
-  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB07HN2W64R%7CB08JQTG681%7CB07BG7B7RF%7CB07BG7LB5B%7CB079H8D8M6%7CB01B7DZ79M%7CB00LIO5JYE%7CB0154VT0GY%7CB0154VTRB2%7CB017BK7MD4%7CB0752S522F%7CB08H64PTLG%7CB01IBTCZNG%7CB0GDQWH88W%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
-  "count": 17,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB07HN2W64R%7CB08JQTG681%7CB07BG7B7RF%7CB07BG51Q2F%7CB07BG7LB5B%7CB079H8D8M6%7CB01B7DZ79M%7CB00LIO5JYE%7CB0154VT0GY%7CB0154VTRB2%7CB017BK7MD4%7CB0752S522F%7CB08H64PTLG%7CB01IBTCZNG%7CB0GDQWH88W%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 18,
+  "leftOut": []
  },
  "Malai Kofta": {
-  "url": "https://www.amazon.in/s?k=B07BG5GZP2%7CB078KT9RB1%7CB0HJM7PG3H%7CB0D8FBDJ4G%7CB07BG7B7RF%7CB09G96K43Z%7CB075335G7V%7CB0GDQWH88W%7CB09MM96YC4%7CB07BG5GJJW%7CB0G6VL281X%7CB09WMPCGVP%7CB08FCZC99Y%7CB0CJK23XJQ%7CB0FDL8BW9J%7CB0DJ97QP87%7CB07HN2W64R%7CB00LIO5JYE%7CB01B7DZ8BE%7CB079H8D8M6%7CB08JQTG681%7CB09GNSDZVW%7CB08H64PTLG%7CB077RK8L9N%7CB07575FPC3&tag=tpr07-21",
-  "count": 25,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B07BG5GZP2%7CB078KT9RB1%7CB0HJM7PG3H%7CB0D8FBDJ4G%7CB07BG7B7RF%7CB09G96K43Z%7CB075335G7V%7CB0GDQWH88W%7CB09MM96YC4%7CB07BG5GJJW%7CB0G6VL281X%7CB09WMPCGVP%7CB08FCZC99Y%7CB0CJK23XJQ%7CB0FDL8BW9J%7CB0DJ97QP87%7CB07HN2W64R%7CB00LIO5JYE%7CB01B7DZ8BE%7CB079H8D8M6%7CB07BG51Q2F%7CB08JQTG681%7CB09GNSDZVW%7CB08H64PTLG%7CB077RK8L9N%7CB07575FPC3&tag=tpr07-21",
+  "count": 26,
+  "leftOut": []
  },
  "Dal Tadka": {
-  "url": "https://www.amazon.in/s?k=B074N7VHV4%7CB075332XK6%7CB09WMPCGVP%7CB0GDQWH88W%7CB07BG7B7RF%7CB07BG7LB5B%7CB07HN2W64R%7CB0DJ97QP87%7CB079H8D8M6%7CB01B7DZ8BE%7CB0D5VHYDHN%7CB01B7DZ79M%7CB0BBGB4RMH%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
-  "count": 15,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B074N7VHV4%7CB075332XK6%7CB09WMPCGVP%7CB0GDQWH88W%7CB07BG7B7RF%7CB07BG51Q2F%7CB07BG7LB5B%7CB07HN2W64R%7CB0DJ97QP87%7CB079H8D8M6%7CB01B7DZ8BE%7CB0D5VHYDHN%7CB01B7DZ79M%7CB0BBGB4RMH%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 16,
+  "leftOut": []
  },
  "Dal Makhani": {
-  "url": "https://www.amazon.in/s?k=B077X9KLBZ%7CB0CP3KK885%7CB0BSNQFBH4%7CB09WMPCGVP%7CB01IBTCZNG%7CB07BG7B7RF%7CB07BG7LB5B%7CB0GDQWH88W%7CB003P8N772%7CB079H8D8M6%7CB00LIO5JYE%7CB0DJ97QP87%7CB0FDL8BW9J%7CB08H64PTLG%7CB0BBGB4RMH%7CB08JQTG681%7CB077RK8L9N%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
-  "count": 19,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B077X9KLBZ%7CB0CP3KK885%7CB0BSNQFBH4%7CB09WMPCGVP%7CB01IBTCZNG%7CB07BG51Q2F%7CB07BG7B7RF%7CB07BG7LB5B%7CB0GDQWH88W%7CB003P8N772%7CB079H8D8M6%7CB00LIO5JYE%7CB0DJ97QP87%7CB0FDL8BW9J%7CB08H64PTLG%7CB0BBGB4RMH%7CB08JQTG681%7CB077RK8L9N%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 20,
+  "leftOut": []
  },
  "Rajma Chawal": {
   "url": "https://www.amazon.in/s?k=B0CP3KK885%7CB0GDQWH88W%7CB08FCZC99Y%7CB07H2TFK5Q%7CB0DJ97QP87%7CB07HN2W64R%7CB07BG7LB5B%7CB00TZS1CFA%7CB00TZS18QS%7CB01B7DZ79M%7CB079H8D8M6%7CB00LIO5JYE%7CB08JQTG681%7CB08H64PTLG%7CB017BK7MD4%7CB09WMPCGVP%7CB07575FPC3%7CB00YGMLWQO&tag=tpr07-21",
@@ -966,14 +1229,9 @@ export const DISH_BUNDLES = {
   "leftOut": []
  },
  "Chole": {
-  "url": "https://www.amazon.in/s?k=B0BRJ2RBMY%7CB0H94MZQRX%7CB00AP7YFFY%7CB09G96K43Z%7CB008ZEFY72%7CB0GDQWH88W%7CB0BBGB4RMH%7CB07BG7B7RF%7CB07BG7LB5B%7CB07HN2W64R%7CB079H8D8M6%7CB01B7DZ79M%7CB08JQTG681%7CB0D5VCPPNW%7CB00H41JFCW%7CB09WMPCGVP%7CB07575FPC3%7CB07BG5GZP2&tag=tpr07-21",
-  "count": 18,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B0BRJ2RBMY%7CB0H94MZQRX%7CB00AP7YFFY%7CB09G96K43Z%7CB008ZEFY72%7CB0GDQWH88W%7CB0BBGB4RMH%7CB07BG51Q2F%7CB07BG7B7RF%7CB07BG7LB5B%7CB07HN2W64R%7CB079H8D8M6%7CB01B7DZ79M%7CB08JQTG681%7CB0D5VCPPNW%7CB00H41JFCW%7CB09WMPCGVP%7CB07575FPC3%7CB07BG5GZP2&tag=tpr07-21",
+  "count": 19,
+  "leftOut": []
  },
  "Kadhi Pakora": {
   "url": "https://www.amazon.in/s?k=B0752S522F%7CB077RFB9TN%7CB0GDQWH88W%7CB0DJ97QP87%7CB07BG7B7RF%7CB0D56VRX5C%7CB07BG7LB5B%7CB079H8D8M6%7CB08K7C6C8X%7CB0D5VHYDHN%7CB0BBGB4RMH%7CB07BG6WKLS%7CB01B7DZ79M%7CB07575FPC3&tag=tpr07-21",
@@ -981,14 +1239,9 @@ export const DISH_BUNDLES = {
   "leftOut": []
  },
  "Aloo Gobi": {
-  "url": "https://www.amazon.in/s?k=B07BG5GZP2%7CB08JQTG681%7CB07BG7B7RF%7CB07BG7LB5B%7CB0GDQWH88W%7CB07BG5GJJW%7CB0DJ97QP87%7CB0BBGB4RMH%7CB079H8D8M6%7CB00LIO5JYE%7CB01B7DZ8BE%7CB08FCZC99Y%7CB01IENENPC%7CB0FDL91HVS%7CB0FDL8BW9J%7CB017BK7MD4%7CB07575FPC3&tag=tpr07-21",
-  "count": 17,
-  "leftOut": [
-   {
-    "name": "Cauliflower",
-    "url": "https://www.amazon.in/s?k=fresh+cauliflower&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B07BG5GZP2%7CB09H3CZ5KL%7CB08JQTG681%7CB07BG7B7RF%7CB07BG7LB5B%7CB0GDQWH88W%7CB07BG5GJJW%7CB0DJ97QP87%7CB0BBGB4RMH%7CB079H8D8M6%7CB00LIO5JYE%7CB01B7DZ8BE%7CB08FCZC99Y%7CB01IENENPC%7CB0FDL91HVS%7CB0FDL8BW9J%7CB017BK7MD4%7CB07575FPC3&tag=tpr07-21",
+  "count": 18,
+  "leftOut": []
  },
  "Aloo Matar": {
   "url": "https://www.amazon.in/s?k=B07BG5GZP2%7CB0FF9Z6D5D%7CB08JQTG681%7CB07BG7LB5B%7CB07BG7B7RF%7CB0GDQWH88W%7CB0DJ97QP87%7CB0BBGB4RMH%7CB079H8D8M6%7CB00LIO5JYE%7CB01B7DZ8BE%7CB017BK7MD4%7CB07BG5GJJW%7CB09WMPCGVP%7CB07575FPC3&tag=tpr07-21",
@@ -996,19 +1249,14 @@ export const DISH_BUNDLES = {
   "leftOut": []
  },
  "Bhindi Masala": {
-  "url": "https://www.amazon.in/s?k=B09WGXJ8PQ%7CB07HN2W64R%7CB0752S3195%7CB079H8D8M6&tag=tpr07-21",
-  "count": 4,
+  "url": "https://www.amazon.in/s?k=B09WGXJ8PQ%7CB08JQTG681%7CB0752S3195%7CB06XH9QPX2%7CB0DJ97QP87%7CB0BBGB4RMH%7CB00LIO5JYE%7CB01B7DZ8BE%7CB079H8D8M6%7CB07BG7LB5B%7CB07BG7B7RF%7CB077RFB9TN%7CB07BG5GJJW%7CB07DCSRW8G%7CB07575FPC3&tag=tpr07-21",
+  "count": 15,
   "leftOut": []
  },
  "Baingan Bharta": {
-  "url": "https://www.amazon.in/s?k=B07KK83WLB%7CB07HN2W64R%7CB01ABRU2JA%7CB07BG7LB5B%7CB07BG5GJJW%7CB0DJ97QP87%7CB08JQTG681%7CB00LIO5JYE%7CB003P8N772%7CB07575FPC3&tag=tpr07-21",
-  "count": 10,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B07KK83WLB%7CB07HN2W64R%7CB07BG51Q2F%7CB06XH9QPX2%7CB07BG7LB5B%7CB07BG5GJJW%7CB0DJ97QP87%7CB08JQTG681%7CB00LIO5JYE%7CB003P8N772%7CB07575FPC3&tag=tpr07-21",
+  "count": 11,
+  "leftOut": []
  },
  "Mix Veg": {
   "url": "https://www.amazon.in/s?k=B08JQTG681%7CB078KT9RB1%7CB0DJ97QP87%7CB0BBGB4RMH%7CB079H8D8M6%7CB00LIO5JYE%7CB01B7DZ8BE%7CB07BG7B7RF%7CB07BG7LB5B%7CB07BG5GJJW%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
@@ -1036,8 +1284,8 @@ export const DISH_BUNDLES = {
   "leftOut": []
  },
  "Jeera Rice": {
-  "url": "https://www.amazon.in/s?k=B00YGMLWQO%7CB0DJ97QP87%7CB09WMPCGVP%7CB07HN2W64R%7CB07BG7LB5B%7CB07575FPC3&tag=tpr07-21",
-  "count": 6,
+  "url": "https://www.amazon.in/s?k=B00YGMLWQO%7CB0DJ97QP87%7CB09WMPCGVP%7CB07HN2W64R%7CB07BG7LB5B%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 7,
   "leftOut": []
  },
  "Veg Pulao": {
@@ -1051,32 +1299,14 @@ export const DISH_BUNDLES = {
   ]
  },
  "Veg Biryani": {
-  "url": "https://www.amazon.in/s?k=B0BBF1FT93%7CB07BG5GZP2%7CB078KT9RB1%7CB077RFB9TN%7CB07FFCGD8F%7CB07BG65QL5%7CB07BG5GJJW%7CB07BG7LB5B%7CB083QDBBBW%7CB0FBM7XTJH%7CB0DF7F726R%7CB019RL0PPW%7CB09GNV7YZM%7CB09GNSDZVW%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
-  "count": 16,
-  "leftOut": [
-   {
-    "name": "Carrot",
-    "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21"
-   },
-   {
-    "name": "Cauliflower",
-    "url": "https://www.amazon.in/s?k=fresh+cauliflower&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B0BBF1FT93%7CB0DPCDL29M%7CB09H3CZ5KL%7CB07BG5GZP2%7CB078KT9RB1%7CB077RFB9TN%7CB07FFCGD8F%7CB07BG65QL5%7CB07BG5GJJW%7CB07BG7LB5B%7CB083QDBBBW%7CB0FBM7XTJH%7CB0DF7F726R%7CB019RL0PPW%7CB09GNV7YZM%7CB09GNSDZVW%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
+  "count": 18,
+  "leftOut": []
  },
  "Pav Bhaji": {
-  "url": "https://www.amazon.in/s?k=B0154VTRB2%7CB0D5VHYDHN%7CB0FF9Z6D5D%7CB01IBTCZNG%7CB0GDQWH88W%7CB0DJ97QP87%7CB07HN2W64R%7CB07BG51WMX%7CB07BG5GZP2%7CB08JQTG681%7CB07BG7B7QP%7CB07BG5GJJW%7CB01B7DZ79M%7CB00LIO5JYE%7CB079H8D8M6%7CB08H64PTLG%7CB07BG7LB5B%7CB017BK7MD4%7CB0DFLR6C1V%7CB0D2LJQCBP%7CB07575FPC3&tag=tpr07-21",
-  "count": 21,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   },
-   {
-    "name": "Cauliflower",
-    "url": "https://www.amazon.in/s?k=fresh+cauliflower&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B0154VTRB2%7CB0D5VHYDHN%7CB07BG51Q2F%7CB09H3CZ5KL%7CB0FF9Z6D5D%7CB01IBTCZNG%7CB0GDQWH88W%7CB0DJ97QP87%7CB07HN2W64R%7CB07BG51WMX%7CB07BG5GZP2%7CB08JQTG681%7CB07BG7B7QP%7CB07BG5GJJW%7CB01B7DZ79M%7CB00LIO5JYE%7CB079H8D8M6%7CB08H64PTLG%7CB07BG7LB5B%7CB017BK7MD4%7CB0DFLR6C1V%7CB0D2LJQCBP%7CB07575FPC3&tag=tpr07-21",
+  "count": 23,
+  "leftOut": []
  },
  "Poha": {
   "url": "https://www.amazon.in/s?k=B09PDZYN2X%7CB0FF4VVGS4%7CB07HN2W64R%7CB07BG7LB5B%7CB0DFLR6C1V%7CB07BG6WKLS%7CB0DJ97QP87%7CB0FDL9B3B8%7CB08WZQ1SN3%7CB079H8D8M6%7CB0GDQWH88W%7CB07BG5GJJW%7CB00LP2LWPY%7CB07575FPC3&tag=tpr07-21",
@@ -1094,92 +1324,238 @@ export const DISH_BUNDLES = {
   "leftOut": []
  },
  "Masala Dosa": {
-  "url": "https://www.amazon.in/s?k=B01468O5AW%7CB07BG5GZP2%7CB07HN2W64R%7CB07BG6WKLS%7CB0FDL9B3B8%7CB079H8D8M6&tag=tpr07-21",
-  "count": 6,
+  "url": "https://www.amazon.in/s?k=B01468O5AW%7CB07BG5GZP2%7CB07HN2W64R%7CB07BG7LB5B%7CB07BG7B7RF%7CB0FDL9B3B8%7CB077X8RBG1%7CB0BSNQFBH4%7CB0BBGB4RMH%7CB07BG6WKLS%7CB079H8D8M6%7CB0DFLR6C1V%7CB07BG5GJJW%7CB0GDQWH88W%7CB01IBTCZNG%7CB07575FPC3&tag=tpr07-21",
+  "count": 16,
   "leftOut": []
  },
  "Idli Sambar": {
-  "url": "https://www.amazon.in/s?k=B01468O5AW%7CB074N7VHV4%7CB009LL92VC%7CB0D5VCPPNW%7CB07BG7D7WR&tag=tpr07-21",
-  "count": 5,
-  "leftOut": [
-   {
-    "name": "Mixed vegetables",
-    "url": "https://www.amazon.in/s?k=frozen+mixed+vegetables&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B01468O5AW%7CB074N7VHV4%7CB07HN2W64R%7CB08JQTG681%7CB0DPCDL29M%7CB07BG5GZP2%7CB07BG8JPXY%7CB07BG523CL%7CB07BG7LB5B%7CB07BG6WKLS%7CB0D5VCPPNW%7CB084M3KZPS%7CB009LL92VC%7CB079H8D8M6%7CB07BG5GJJW%7CB0GDQWH88W%7CB0FJY9X3K6%7CB0FDL9B3B8%7CB077X8RBG1%7CB0H1H7PWYK%7CB0BBGB4RMH%7CB07575FPC3&tag=tpr07-21",
+  "count": 22,
+  "leftOut": []
  },
  "Sambar Rice": {
-  "url": "https://www.amazon.in/s?k=B074N7VHV4%7CB00YGMLWQO%7CB009LL92VC%7CB0D5VCPPNW%7CB07BG523CL%7CB07BG6WKLS&tag=tpr07-21",
-  "count": 6,
-  "leftOut": [
-   {
-    "name": "Mixed vegetables",
-    "url": "https://www.amazon.in/s?k=frozen+mixed+vegetables&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B00YGMLWQO%7CB074N7VHV4%7CB0BSNQFBH4%7CB0DJ96LS3S%7CB0D56VRX5C%7CB0FDL8BW9J%7CB0H1H7PWYK%7CB07BG7D7WR%7CB07BG6WKLS%7CB07HN2W64R%7CB07BG5GZP2%7CB0DPCDL29M%7CB07BG523CL%7CB07BG8JPXY%7CB08JQTG681%7CB079H8D8M6%7CB0D5VCPPNW%7CB0FDL9B3B8%7CB0BBGB4RMH%7CB0GDQWH88W%7CB09WMPCGVP%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 23,
+  "leftOut": []
  },
  "Upma": {
   "url": "https://www.amazon.in/s?k=B08DRPYQT3%7CB07BG7LB5B%7CB07BG7B7RF%7CB0DFLR6C1V%7CB07HN2W64R%7CB08JQTG681%7CB09GNSDZVW%7CB07BG6WKLS%7CB077X8RBG1%7CB0BSNQFBH4%7CB0DJ97QP87%7CB0FDL9B3B8%7CB01B7DZ8BE%7CB08WZQ1SN3%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
   "count": 16,
   "leftOut": []
  },
+ "Shahi Paneer": {
+  "url": "https://www.amazon.in/s?k=B09WMPCGVP%7CB0GDQWH88W%7CB0DJ97QP87%7CB01IENENPC%7CB0FDL91HVS%7CB0CJK23XJQ%7CB07H2TFK5Q%7CB08FCZC99Y%7CB07BG7LB5B%7CB083QDBBBW%7CB07HN2W64R%7CB09GNSDZVW%7CB08JQTG681%7CB079H8D8M6%7CB01IBTCZNG%7CB01B7DZ79M%7CB00LIO5JYE%7CB078KT9RB1%7CB077RK8L9N%7CB08H64PTLG%7CB0G6VL281X%7CB07575FPC3&tag=tpr07-21",
+  "count": 22,
+  "leftOut": []
+ },
+ "Dum Aloo": {
+  "url": "https://www.amazon.in/s?k=B07BG5GZP2%7CB07HN2W64R%7CB0GDQWH88W%7CB09WMPCGVP%7CB077RFB9TN%7CB015QZI2NK%7CB003P8N772%7CB07BG5GJJW%7CB07BG7B7RF%7CB07BG7LB5B%7CB0C289FV4B%7CB09GNSDZVW%7CB0FDL8BW9J%7CB0DJ96LS3S%7CB0DJ97QP87%7CB0FDL91HVS%7CB07H2TFK5Q%7CB0CJK23XJQ%7CB0CBVMFYL9%7CB0D5VHYDHN%7CB07575FPC3&tag=tpr07-21",
+  "count": 21,
+  "leftOut": []
+ },
+ "Methi Malai Matar": {
+  "url": "https://www.amazon.in/s?k=B0GDQWH88W%7CB07BG7B7RF%7CB07HN2W64R%7CB077RFB9TN%7CB09GNSDZVW%7CB09WMPCGVP%7CB0BBGB4RMH%7CB0CJK23XJQ%7CB07BG7LB5B%7CB01IBTCZNG%7CB0FF9Z6D5D%7CB07BG7LB95%7CB0DJ97QP87%7CB0FDL8BW9J%7CB08H64PTLG%7CB0D5VHYDHN%7CB003P8N772%7CB077RK8L9N%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 20,
+  "leftOut": []
+ },
+ "Sarson ka Saag": {
+  "url": "https://www.amazon.in/s?k=B07BG68KXT%7CB07BG7B7RF%7CB07BG51Q2F%7CB01N2XGCOS%7CB07BG7LB5B%7CB01B7DZ8BE%7CB079H8D8M6%7CB09WMPCGVP%7CB0D5VHYDHN%7CB0DJ97QP87%7CB07HN2W64R%7CB084M3KZPS%7CB00M57U9R0%7CB07575FPC3&tag=tpr07-21",
+  "count": 14,
+  "leftOut": [
+   {
+    "name": "Mustard greens",
+    "url": "https://www.amazon.in/s?k=fresh+sarson+mustard+leaves&tag=tpr07-21"
+   },
+   {
+    "name": "Turnip",
+    "url": "https://www.amazon.in/s?k=fresh+turnip+shalgam&tag=tpr07-21"
+   }
+  ]
+ },
+ "Chana Dal Fry": {
+  "url": "https://www.amazon.in/s?k=B0BSNQFBH4%7CB09WMPCGVP%7CB0BBGB4RMH%7CB0D5VHYDHN%7CB0DJ97QP87%7CB07BG51Q2F%7CB07BG7LB5B%7CB07HN2W64R%7CB07BG7B7RF%7CB079H8D8M6%7CB01B7DZ8BE%7CB08JQTG681%7CB07BG5GJJW%7CB0DFLR6C1V%7CB07575FPC3&tag=tpr07-21",
+  "count": 15,
+  "leftOut": []
+ },
+ "Kala Chana Masala": {
+  "url": "https://www.amazon.in/s?k=B077X8K4RG%7CB01IENENPC%7CB08FCZC99Y%7CB07H2TFK5Q%7CB0CJK23XJQ%7CB0CBVMFYL9%7CB0FDL8BW9J%7CB0DJ97QP87%7CB00TZS1CFA%7CB07BG51Q2F%7CB07BG7LB5B%7CB07HN2W64R%7CB08JQTG681%7CB079H8D8M6%7CB01B7DZ8BE%7CB00LIO5JYE%7CB0154VT0GY%7CB017BK7MD4%7CB07BG5GJJW%7CB0GDQWH88W%7CB09WMPCGVP%7CB07575FPC3&tag=tpr07-21",
+  "count": 22,
+  "leftOut": []
+ },
+ "Lauki Chana Dal": {
+  "url": "https://www.amazon.in/s?k=B07BG79ZFZ%7CB0BSNQFBH4%7CB07HN2W64R%7CB08JQTG681%7CB083QDBBBW%7CB07BG7LB5B%7CB08FCZC99Y%7CB0DJ97QP87%7CB07H2TFK5Q%7CB079H8D8M6%7CB01B7DZ8BE%7CB0154VT0GY%7CB00LIO5JYE%7CB017BK7MD4%7CB07BG5GJJW%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
+  "count": 17,
+  "leftOut": []
+ },
+ "Gobi Paratha": {
+  "url": "https://www.amazon.in/s?k=B09H3CZ5KL%7CB07BG51Q2F%7CB07BG7LB5B%7CB07BG7B7RF%7CB0DJ97QP87%7CB0BBGB4RMH%7CB079H8D8M6%7CB01B7DZ8BE%7CB017BK7MD4%7CB07BG5GJJW%7CB0GDQWH88W%7CB007GGTLEC%7CB07575FPC3&tag=tpr07-21",
+  "count": 13,
+  "leftOut": []
+ },
+ "Paneer Paratha": {
+  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB007GGTLEC%7CB07HN2W64R%7CB07BG7LB5B%7CB0DJ96LS3S%7CB0DJ97QP87%7CB07BG7B7RF%7CB0G6XJMTT5%7CB01B7DZ8BE%7CB017BK7MD4%7CB07575FPC3&tag=tpr07-21",
+  "count": 11,
+  "leftOut": []
+ },
+ "Gatte ki Sabzi": {
+  "url": "https://www.amazon.in/s?k=B0752S522F%7CB01B7DZ8BE%7CB079H8D8M6%7CB00LIO5JYE%7CB09G96K43Z%7CB0GDQWH88W%7CB08JQTG681%7CB0DJ97QP87%7CB07BG7LB5B%7CB07BG7B7RF%7CB0BBGB4RMH%7CB077RFB9TN%7CB017BK7MD4%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 15,
+  "leftOut": []
+ },
+ "Aloo Posto": {
+  "url": "https://www.amazon.in/s?k=B07BG5GZP2%7CB07H2SZV4R%7CB06XH9QPX2%7CB0BLZ8VFLL%7CB0H1H7PWYK%7CB07BG7LB5B%7CB07HN2W64R%7CB08WZQ1SN3%7CB07575FPC3&tag=tpr07-21",
+  "count": 9,
+  "leftOut": []
+ },
+ "Cholar Dal": {
+  "url": "https://www.amazon.in/s?k=B0BSNQFBH4%7CB07BG7D7WR%7CB0B8CXKWVB%7CB06XH9QPX2%7CB01IENENPC%7CB0CJK23XJQ%7CB0FDL91HVS%7CB08FCZC99Y%7CB0H1H7PWYK%7CB0DJ97QP87%7CB0BBGB4RMH%7CB00TZS1CFA%7CB079H8D8M6%7CB00LIO5JYE%7CB0154VT0GY%7CB07BG7LB5B%7CB017BK7MD4%7CB09WMPCGVP%7CB07575FPC3%7CB08WZQ1SN3&tag=tpr07-21",
+  "count": 20,
+  "leftOut": []
+ },
+ "Mirchi ka Salan": {
+  "url": "https://www.amazon.in/s?k=B07BG68J66%7CB0FF4VVGS4%7CB0C289FV4B%7CB07NCVZF3X%7CB0GDQWH88W%7CB0D5VHYDHN%7CB0FDL9B3B8%7CB0DJ97QP87%7CB0D56VRX5C%7CB07HN2W64R%7CB0BBGB4RMH%7CB079H8D8M6%7CB083QDBBBW%7CB07BG6WKLS%7CB01B7DZ8BE%7CB00LIO5JYE%7CB0154VT0GY%7CB077RFB9TN%7CB0D5VCPPNW%7CB084M3KZPS%7CB07575FPC3&tag=tpr07-21",
+  "count": 21,
+  "leftOut": []
+ },
+ "Medu Vada": {
+  "url": "https://www.amazon.in/s?k=B077X8RBG1%7CB07HN2W64R%7CB0DJ97QP87%7CB0D8FBDJ4G%7CB07BG5GJJW%7CB0BBGB4RMH%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
+  "count": 8,
+  "leftOut": []
+ },
+ "Lemon Rice": {
+  "url": "https://www.amazon.in/s?k=B00YGMLWQO%7CB09GNSDZVW%7CB0FF4VVGS4%7CB0BSNQFBH4%7CB077X8RBG1%7CB0FDL9B3B8%7CB0D5VHYDHN%7CB07BG7LB5B%7CB07BG7B7RF%7CB0BBGB4RMH%7CB079H8D8M6%7CB07BG6WKLS%7CB0DFLR6C1V%7CB0GDQWH88W%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 16,
+  "leftOut": []
+ },
+ "Bisi Bele Bath": {
+  "url": "https://www.amazon.in/s?k=B00YGMLWQO%7CB074N7VHV4%7CB07HN2W64R%7CB0D5VCPPNW%7CB0BSNQFBH4%7CB077X8RBG1%7CB0DJ96LS3S%7CB0DJ97QP87%7CB0D5VHYDHN%7CB01IENENPC%7CB0FDL91HVS%7CB0CJK23XJQ%7CB07BG7D7WR%7CB09GNSDZVW%7CB079H8D8M6%7CB0BBGB4RMH%7CB0FDL9B3B8%7CB07BG6WKLS%7CB0GDQWH88W%7CB07BG5GJJW%7CB083QDBBBW%7CB07575FPC3&tag=tpr07-21",
+  "count": 22,
+  "leftOut": [
+   {
+    "name": "Mixed vegetables",
+    "url": "https://www.amazon.in/s?k=frozen+mixed+vegetables&tag=tpr07-21"
+   }
+  ]
+ },
+ "Avial": {
+  "url": "https://www.amazon.in/s?k=B07BG7D7WR%7CB07BG7LB5B%7CB0DJ97QP87%7CB077RFB9TN%7CB0FJY9X3K6%7CB07BG6WKLS%7CB0FLWDXY9J%7CB079H8D8M6%7CB07575FPC3&tag=tpr07-21",
+  "count": 9,
+  "leftOut": [
+   {
+    "name": "Mixed vegetables",
+    "url": "https://www.amazon.in/s?k=frozen+mixed+vegetables&tag=tpr07-21"
+   }
+  ]
+ },
+ "Vada Pav": {
+  "url": "https://www.amazon.in/s?k=B0752S522F%7CB0H1H6XH8Y%7CB09G96K43Z%7CB07BG5GZP2%7CB07BG51Q2F%7CB07BG7B7RF%7CB07BG7LB5B%7CB07BG5GJJW%7CB0GDQWH88W%7CB0FDL9B3B8%7CB0DJ97QP87%7CB0BBGB4RMH%7CB07BG6WKLS%7CB079H8D8M6%7CB017BK7MD4%7CB0DFLR6C1V%7CB01B7DZ8BE%7CB0D2LJQCBP%7CB0F1MVTFB4%7CB07HN2W64R%7CB07575FPC3&tag=tpr07-21",
+  "count": 21,
+  "leftOut": []
+ },
+ "Misal Pav": {
+  "url": "https://www.amazon.in/s?k=B0FKB99C6G%7CB07BG7D7WR%7CB0DJ96LS3S%7CB0D5VHYDHN%7CB0GDQWH88W%7CB07HN2W64R%7CB07BG7B7RF%7CB07BG51Q2F%7CB08JQTG681%7CB079H8D8M6%7CB0FDL9B3B8%7CB0DJ97QP87%7CB07BG6WKLS%7CB01B7DZ8BE%7CB08GCVC2X5%7CB084M3KZPS%7CB0B6G2D368%7CB0D2LJQCBP%7CB0DFLR6C1V%7CB07575FPC3&tag=tpr07-21",
+  "count": 20,
+  "leftOut": []
+ },
+ "Paneer Kathi Roll": {
+  "url": "https://www.amazon.in/s?k=B08DRSJGCD%7CB08WZQ1SN3%7CB09WMPCGVP%7CB06XH9QPX2%7CB01B7DZ79M%7CB017BK7MD4%7CB00H41JFCW%7CB083QDBBBW%7CB0DFLR6C1V%7CB077RFB9TN%7CB078KT9RB1%7CB07HN2W64R%7CB07BG51WMX%7CB08JQTG681%7CB01B7DZ8BE%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
+  "count": 17,
+  "leftOut": []
+ },
+ "Paneer Tikka": {
+  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB077RFB9TN%7CB083QDBBBW%7CB08H64PTLG%7CB06XH9QPX2%7CB0H1H6XH8Y%7CB0752S522F%7CB003P8N772%7CB07BG51WMX%7CB07HN2W64R%7CB01IBTCZNG%7CB09WMPCGVP%7CB07575FPC3&tag=tpr07-21",
+  "count": 13,
+  "leftOut": []
+ },
+ "Navratan Korma": {
+  "url": "https://www.amazon.in/s?k=B09WMPCGVP%7CB0GDQWH88W%7CB0DJ97QP87%7CB07BG5GZP2%7CB0DPCDL29M%7CB07BG7LB5B%7CB09H3CZ5KL%7CB07BG7B7RF%7CB0FF9Z6D5D%7CB079H8D8M6%7CB00LIO5JYE%7CB003P8N772%7CB077RFB9TN%7CB07BG8JPXY%7CB09GNSDZVW%7CB078KT9RB1%7CB09GNV7YZM%7CB0BBGB4RMH%7CB08H64PTLG%7CB07BG6Q18N%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 22,
+  "leftOut": []
+ },
+ "Veg Kolhapuri": {
+  "url": "https://www.amazon.in/s?k=B0GDQWH88W%7CB01IENENPC%7CB0FDL91HVS%7CB0FDL8BW9J%7CB07H2TFK5Q%7CB0CJK23XJQ%7CB0DJ97QP87%7CB0DJ96LS3S%7CB0D5VHYDHN%7CB07H2SZV4R%7CB07BG7D7WR%7CB08JQTG681%7CB09GNSDZVW%7CB09H3CZ5KL%7CB0DPCDL29M%7CB0FF9Z6D5D%7CB07BG8JPXY%7CB07HN2W64R%7CB07BG51WMX%7CB08FCZC99Y%7CB083QDBBBW%7CB07BG7LB5B%7CB079H8D8M6%7CB01B7DZ79M%7CB078KT9RB1%7CB017BK7MD4%7CB08H64PTLG%7CB07BG5GJJW%7CB0DFLR6C1V%7CB07575FPC3&tag=tpr07-21",
+  "count": 30,
+  "leftOut": []
+ },
+ "Kadai Mushroom": {
+  "url": "https://www.amazon.in/s?k=B07BG79Z9M%7CB07BG7LB5B%7CB07BG51Q2F%7CB07BG7B7RF%7CB0GDQWH88W%7CB0DJ97QP87%7CB07HN2W64R%7CB079H8D8M6%7CB003P8N772%7CB00LIO5JYE%7CB08JQTG681%7CB00N8KOJ88%7CB0DJ96LS3S%7CB0DJ979VKF%7CB0FDL8BW9J%7CB0CJK23XJQ%7CB00LN86ZIY%7CB08H64PTLG%7CB07BG51WMX%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 21,
+  "leftOut": []
+ },
+ "Aloo Tikki Chole": {
+  "url": "https://www.amazon.in/s?k=B0BRJ2RBMY%7CB07H2TFK5Q%7CB08FCZC99Y%7CB0FDL91HVS%7CB09G96K43Z%7CB07BG7LB5B%7CB07BG7B7RF%7CB09WMPCGVP%7CB0DJ97QP87%7CB0BBGB4RMH%7CB00H41JFCW%7CB01B7DZ8BE%7CB07MM54Z79%7CB00LIO5JYE%7CB017BK7MD4%7CB0D5VCPPNW%7CB08H64PTLG%7CB07BG5GJJW%7CB07BG5GZP2%7CB075335G7V%7CB0F1MT9MNK%7CB0F1MVFTD2%7CB07575FPC3&tag=tpr07-21",
+  "count": 23,
+  "leftOut": []
+ },
+ "Samosa": {
+  "url": "https://www.amazon.in/s?k=B08DRSJGCD%7CB0H1H6XH8Y%7CB09WMPCGVP%7CB0GDQWH88W%7CB07BG5GZP2%7CB07BG7B7RF%7CB0DJ979VKF%7CB0DJ96LS3S%7CB0DJ97QP87%7CB0D8FBDJ4G%7CB0752S3195%7CB07575FPC3&tag=tpr07-21",
+  "count": 12,
+  "leftOut": []
+ },
+ "Rava Dosa": {
+  "url": "https://www.amazon.in/s?k=B08DRPYQT3%7CB0FLWDXY9J%7CB08DRSJGCD%7CB07HN2W64R%7CB07BG7B7RF%7CB07BG7LB5B%7CB0DJ97QP87%7CB0D8FBDJ4G%7CB09WMPCGVP%7CB07575FPC3&tag=tpr07-21",
+  "count": 10,
+  "leftOut": []
+ },
+ "Onion Uttapam": {
+  "url": "https://www.amazon.in/s?k=B01468O5AW%7CB07HN2W64R%7CB07BG7LB5B%7CB07BG7B7RF%7CB07BG6WKLS%7CB07BG5GJJW%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
+  "count": 8,
+  "leftOut": []
+ },
+ "Ven Pongal": {
+  "url": "https://www.amazon.in/s?k=B00YGMLWQO%7CB075332XK6%7CB09WMPCGVP%7CB0DJ97QP87%7CB07BG7LB5B%7CB09GNSDZVW%7CB07BG6WKLS%7CB0FDL8BW9J%7CB07BG7B7RF%7CB0BBGB4RMH%7CB07575FPC3&tag=tpr07-21",
+  "count": 11,
+  "leftOut": []
+ },
+ "Puliyogare": {
+  "url": "https://www.amazon.in/s?k=B00YGMLWQO%7CB0D5VCPPNW%7CB0BSNQFBH4%7CB0FF4VVGS4%7CB0D5VHYDHN%7CB0FDL9B3B8%7CB0D56VRX5C%7CB07BG6WKLS%7CB07BG7LB5B%7CB0BBGB4RMH%7CB079H8D8M6%7CB01B7DZ8BE%7CB00LIO5JYE%7CB0154VT0GY%7CB0C289FV4B%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
+  "count": 17,
+  "leftOut": []
+ },
+ "Sabudana Khichdi": {
+  "url": "https://www.amazon.in/s?k=B07M91256V%7CB0FF4VVGS4%7CB0DJ97QP87%7CB0BBGB4RMH%7CB07BG7LB5B%7CB07BG7B7RF%7CB078KT9RB1%7CB08JQTG681%7CB07BG5GJJW%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
+  "count": 11,
+  "leftOut": []
+ },
+ "Aloo Methi": {
+  "url": "https://www.amazon.in/s?k=B07BG7LB95%7CB0GDQWH88W%7CB09WMPCGVP%7CB0DJ97QP87%7CB07BG51Q2F%7CB07HN2W64R%7CB07BG5GZP2%7CB079H8D8M6%7CB003P8N772%7CB08JQTG681%7CB07BG7LB5B%7CB07BG5GJJW%7CB07BG7B7RF%7CB07575FPC3&tag=tpr07-21",
+  "count": 14,
+  "leftOut": []
+ },
+ "Dal Palak": {
+  "url": "https://www.amazon.in/s?k=B07BG68KXT%7CB075332XK6%7CB079H8D8M6%7CB09WMPCGVP%7CB0GDQWH88W%7CB07BG51Q2F%7CB07BG7LB5B%7CB0DJ97QP87%7CB07H2TFK5Q%7CB0D5VHYDHN%7CB08FCZC99Y%7CB07HN2W64R%7CB017BK7MD4%7CB07575FPC3&tag=tpr07-21",
+  "count": 14,
+  "leftOut": []
+ },
  "Margherita Pizza": {
-  "url": "https://www.amazon.in/s?k=B0DG5KRNW5%7CB00O8X0GI6%7CB0BHLD142Z%7CB09NKXT8LM%7CB00X7RJSW4&tag=tpr07-21",
-  "count": 5,
+  "url": "https://www.amazon.in/s?k=B0DG5KRNW5%7CB00O8X0GI6%7CB0BHLD142Z&tag=tpr07-21",
+  "count": 3,
   "leftOut": []
  },
  "Penne Arrabbiata": {
-  "url": "https://www.amazon.in/s?k=B0GX1YYY8R%7CB00X7RJSW4%7CB09NKXT8LM%7CB00LN86ZIY%7CB01GJIGZIM%7CB01B7DZ79M%7CB08JQTG681%7CB00N8KOJ88%7CB08WZQ1SN3%7CB0G4X199DK%7CB07575FPC3&tag=tpr07-21",
-  "count": 11,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B0GX1YYY8R%7CB00X7RJSW4%7CB07BG51Q2F%7CB09NKXT8LM%7CB00LN86ZIY%7CB01GJIGZIM%7CB01B7DZ79M%7CB08JQTG681%7CB00N8KOJ88%7CB08WZQ1SN3%7CB0G4X199DK%7CB07575FPC3&tag=tpr07-21",
+  "count": 12,
+  "leftOut": []
  },
  "Pesto Pasta": {
-  "url": "https://www.amazon.in/s?k=B0GX1YYY8R%7CB09NKXT8LM%7CB0G4X199DK%7CB0C65WVW3W%7CB00X7RJSW4%7CB07575FPC3&tag=tpr07-21",
-  "count": 6,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B0GX1YYY8R%7CB09NKXT8LM%7CB0G4X199DK%7CB0C65WVW3W%7CB07BG51Q2F%7CB00X7RJSW4%7CB07575FPC3&tag=tpr07-21",
+  "count": 7,
+  "leftOut": []
  },
  "Aglio e Olio": {
-  "url": "https://www.amazon.in/s?k=B0GX1YYY8R%7CB00X7RJSW4%7CB00LN86ZIY%7CB07575FPC3&tag=tpr07-21",
-  "count": 4,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   },
-   {
-    "name": "Parsley",
-    "url": "https://www.amazon.in/dp/B0DPCCQXNN?tag=tpr07-21"
-   }
-  ]
- },
- "Mushroom Risotto": {
-  "url": "https://www.amazon.in/s?k=B09BNHLLHH%7CB07BG79Z9M%7CB005LLZ2GK%7CB07HN2W64R%7CB0G4X199DK%7CB01IBTCZNG&tag=tpr07-21",
+  "url": "https://www.amazon.in/s?k=B0GX1YYY8R%7CB07BG51Q2F%7CB0DPCCQXNN%7CB00X7RJSW4%7CB00LN86ZIY%7CB07575FPC3&tag=tpr07-21",
   "count": 6,
   "leftOut": []
  },
+ "Mushroom Risotto": {
+  "url": "https://www.amazon.in/s?k=B07BG79Z9M%7CB00X7RJSW4%7CB01IBTCZNG%7CB073JG1VTN%7CB07NDHH8D4%7CB07BG51Q2F%7CB005LLZ2GK%7CB08RBC4FJW%7CB09BNHLLHH%7CB0G4X199DK%7CB0DPCCQXNN%7CB0D8FBDJ4G%7CB07575FPC3&tag=tpr07-21",
+  "count": 13,
+  "leftOut": []
+ },
  "Veg Lasagne": {
-  "url": "https://www.amazon.in/s?k=B0BWNRBL5X%7CB00X7RJSW4%7CB07HN2W64R%7CB01B7DZ79M%7CB08JQTG681%7CB00N8KOJ88%7CB00LN86ZIY%7CB01GJIGZIM%7CB08WZQ1SN3%7CB0D8FBDJ4G%7CB09NKXT8LM%7CB01IBTCZNG%7CB08DRSJGCD%7CB01IA43GSU%7CB08XVX7WFX%7CB0CGHR3KQM%7CB07BG79Z9M%7CB07BG51WMX%7CB0CB7YYH42%7CB09RGN6CW9%7CB0BHLD142Z%7CB0G4X199DK%7CB07575FPC3&tag=tpr07-21",
-  "count": 23,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   },
-   {
-    "name": "Carrot",
-    "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B0BWNRBL5X%7CB00X7RJSW4%7CB07HN2W64R%7CB07BG51Q2F%7CB01B7DZ79M%7CB08JQTG681%7CB00N8KOJ88%7CB00LN86ZIY%7CB01GJIGZIM%7CB08WZQ1SN3%7CB0D8FBDJ4G%7CB09NKXT8LM%7CB01IBTCZNG%7CB08DRSJGCD%7CB0F4DK9TR7%7CB08XVX7WFX%7CB0DPCDL29M%7CB0CGHR3KQM%7CB07BG79Z9M%7CB07BG51WMX%7CB0CB7YYH42%7CB09RGN6CW9%7CB0BHLD142Z%7CB0G4X199DK%7CB07575FPC3&tag=tpr07-21",
+  "count": 25,
+  "leftOut": []
  },
  "Minestrone Soup": {
   "url": "https://www.amazon.in/s?k=B00X7RJSW4%7CB07BG51WMX%7CB07BG4XKJ5%7CB09NKXT8LM%7CB0CGHR3KQM%7CB00N8KOJ88%7CB09C3STJ24%7CB00LXSDTTC%7CB005LLZ2GK%7CB0GX1YYY8R%7CB075335G7V%7CB01GJIGZIM%7CB0D8FBDJ4G%7CB07575FPC3&tag=tpr07-21",
@@ -1192,187 +1568,174 @@ export const DISH_BUNDLES = {
   ]
  },
  "Tomato Basil Soup": {
-  "url": "https://www.amazon.in/s?k=B08JQTG681%7CB00X7RJSW4%7CB0D8FBDJ4G%7CB01GJIGZIM%7CB00LN86ZIY%7CB08WZQ1SN3%7CB09NKXT8LM%7CB075335G7V%7CB077RK8L9N%7CB07575FPC3&tag=tpr07-21",
-  "count": 10,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B08JQTG681%7CB00X7RJSW4%7CB07BG51Q2F%7CB0D8FBDJ4G%7CB01GJIGZIM%7CB00LN86ZIY%7CB08WZQ1SN3%7CB09NKXT8LM%7CB075335G7V%7CB077RK8L9N%7CB07575FPC3&tag=tpr07-21",
+  "count": 11,
+  "leftOut": []
  },
  "Mac and Cheese": {
-  "url": "https://www.amazon.in/s?k=B0GX1YYY8R%7CB01FMCJDDA%7CB01IA43GSU%7CB01IBTCZNG%7CB08DRSJGCD&tag=tpr07-21",
-  "count": 5,
+  "url": "https://www.amazon.in/s?k=B0GX1YYY8R%7CB0F4DK9TR7%7CB01FMCJDDA%7CB07575FPC3&tag=tpr07-21",
+  "count": 4,
   "leftOut": []
  },
  "Greek Salad": {
-  "url": "https://www.amazon.in/s?k=B07BG7B7WB%7CB08JQTG681%7CB07HN2W64R%7CB07BG51WMX%7CB01MTB4BR7%7CB089F2PTFK%7CB00X7RJSW4&tag=tpr07-21",
-  "count": 7,
+  "url": "https://www.amazon.in/s?k=B07BG7B7WB%7CB07HN2W64R%7CB01MTB4BR7%7CB08JQTG681%7CB07BG51WMX%7CB089F2PTFK%7CB00X7RJSW4%7CB0DFLR6C1V%7CB07NDHH8D4%7CB01GJIGZIM%7CB0C5N1PYZB%7CB07CPZ8KTV%7CB07575FPC3&tag=tpr07-21",
+  "count": 13,
   "leftOut": []
  },
  "Falafel & Hummus": {
-  "url": "https://www.amazon.in/s?k=B0BRJ2RBMY%7CB0C431CK5Y%7CB0DFLR6C1V%7CB00X7RJSW4%7CB07HN2W64R%7CB07BG7LB5B%7CB07BG5GJJW%7CB07BG65QL5%7CB0154VT0GY%7CB00LIO5JYE%7CB01B7DZ8BE%7CB0D8FBDJ4G%7CB0C289FV4B%7CB08DRSJGCD%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
-  "count": 16,
+  "url": "https://www.amazon.in/s?k=B0BRJ2RBMY%7CB0C431CK5Y%7CB07BG51Q2F%7CB0DFLR6C1V%7CB00X7RJSW4%7CB07HN2W64R%7CB07BG7LB5B%7CB0DPCCQXNN%7CB07BG5GJJW%7CB07BG65QL5%7CB07NXZWD25%7CB0154VT0GY%7CB00LIO5JYE%7CB01B7DZ8BE%7CB0D8FBDJ4G%7CB0C289FV4B%7CB08DRSJGCD%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
+  "count": 19,
   "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   },
    {
     "name": "Pita bread",
     "url": "https://www.amazon.in/s?k=pita+bread&tag=tpr07-21"
-   },
-   {
-    "name": "Parsley",
-    "url": "https://www.amazon.in/dp/B0DPCCQXNN?tag=tpr07-21"
-   },
-   {
-    "name": "Spring onion",
-    "url": "https://www.amazon.in/dp/B07NXZWD25?tag=tpr07-21"
    }
   ]
  },
  "Veg Burrito Bowl": {
-  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB07BG51WMX%7CB07HN2W64R%7CB0CP3KK885%7CB01IENENPC%7CB09GYK1DHQ%7CB08JQTG681%7CB00YGMLWQO%7CB01IBTCZNG%7CB07BG5GJJW%7CB0DFLR6C1V%7CB0CYT9FJVQ%7CB077RFB9TN%7CB09C3STJ24%7CB09H6KZYJ9%7CB07BG79ZD6%7CB07L8H6L2R%7CB07S8J2K32%7CB01FMCJDDA%7CB0GDQWH88W%7CB01B7DZ8BE%7CB0154VT0GY%7CB00LIO5JYE%7CB01GJIGZIM%7CB09BYSKVD6%7CB09BYLN5YW%7CB07575FPC3&tag=tpr07-21",
-  "count": 27,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB07BG51WMX%7CB07HN2W64R%7CB0CP3KK885%7CB01IENENPC%7CB07BG51Q2F%7CB09GYK1DHQ%7CB08JQTG681%7CB00YGMLWQO%7CB01IBTCZNG%7CB07BG5GJJW%7CB0DFLR6C1V%7CB0CYT9FJVQ%7CB077RFB9TN%7CB09C3STJ24%7CB09H6KZYJ9%7CB07BG79ZD6%7CB07L8H6L2R%7CB07S8J2K32%7CB01FMCJDDA%7CB0GDQWH88W%7CB01B7DZ8BE%7CB0154VT0GY%7CB00LIO5JYE%7CB01GJIGZIM%7CB09BYSKVD6%7CB09BYLN5YW%7CB07575FPC3&tag=tpr07-21",
+  "count": 28,
+  "leftOut": []
  },
  "Cheese Quesadilla": {
-  "url": "https://www.amazon.in/s?k=B07S8J2K32%7CB01FMCJDDA%7CB07BG51WMX%7CB0CB7YYH42%7CB07HN2W64R&tag=tpr07-21",
-  "count": 5,
+  "url": "https://www.amazon.in/s?k=B07S8J2K32%7CB07HN2W64R%7CB07BG51WMX%7CB07BG7LB5B%7CB07BG5GJJW%7CB0CYT9FJVQ%7CB0D8FBDJ4G%7CB00LN86BP6%7CB07575FPC3%7CB01FMCJDDA%7CB00MCJ4968%7CB0GDQWH88W&tag=tpr07-21",
+  "count": 12,
   "leftOut": []
  },
  "Thai Green Curry": {
-  "url": "https://www.amazon.in/s?k=B081L16JTJ%7CB015QZI2LC%7CB07BG6X1S1%7CB07BG79Z9M%7CB09RGN6CW9%7CB07BG51WMX%7CB0F5PTCKYJ%7CB0BSR149NL%7CB09NKXT8LM%7CB0H1H7PWYK%7CB07575FPC3%7CB00YGMLWQO&tag=tpr07-21",
-  "count": 12,
-  "leftOut": [
-   {
-    "name": "Carrot",
-    "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B081L16JTJ%7CB015QZI2LC%7CB07BG6X1S1%7CB07BG79Z9M%7CB09RGN6CW9%7CB0DPCDL29M%7CB07BG51WMX%7CB0F5PTCKYJ%7CB0BSR149NL%7CB09NKXT8LM%7CB0H1H7PWYK%7CB07575FPC3%7CB00YGMLWQO&tag=tpr07-21",
+  "count": 13,
+  "leftOut": []
  },
  "Veg Pad Thai": {
-  "url": "https://www.amazon.in/s?k=B09PKCK86L%7CB09RGN6CW9%7CB07HN2W64R%7CB0FZVWJBHR%7CB015QZI2NK%7CB00B5SLEN8%7CB09H6KX7SW%7CB0H1H7PWYK%7CB00X7RJSW4%7CB077X8MD39%7CB0FF4VVGS4%7CB07BG5GJJW%7CB0DFLR6C1V&tag=tpr07-21",
-  "count": 13,
-  "leftOut": [
-   {
-    "name": "Carrot",
-    "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21"
-   },
-   {
-    "name": "Chinese chives",
-    "url": "https://www.amazon.in/dp/B07NXZWD25?tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B09PKCK86L%7CB09RGN6CW9%7CB0DPCDL29M%7CB07HN2W64R%7CB07NXZWD25%7CB0FZVWJBHR%7CB015QZI2NK%7CB00B5SLEN8%7CB09H6KX7SW%7CB0H1H7PWYK%7CB00X7RJSW4%7CB077X8MD39%7CB0FF4VVGS4%7CB07BG5GJJW%7CB0DFLR6C1V&tag=tpr07-21",
+  "count": 15,
+  "leftOut": []
  },
  "Veg Katsu Curry": {
-  "url": "https://www.amazon.in/s?k=B0GMWG8QQM%7CB08DRSJGCD%7CB00YGMLWQO%7CB07BRMLY3C%7CB07HN2W64R%7CB07BG5GZP2&tag=tpr07-21",
-  "count": 6,
-  "leftOut": [
-   {
-    "name": "Mixed vegetables",
-    "url": "https://www.amazon.in/s?k=frozen+mixed+vegetables&tag=tpr07-21"
-   },
-   {
-    "name": "Carrot",
-    "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B09PKCK86L%7CB08DRSJGCD%7CB0GDQWH88W%7CB0GMWG8QQM%7CB00LN86ZIY%7CB09BYSKVD6%7CB0BDZZB3T1%7CB07HN2W64R%7CB07BG51Q2F%7CB07BG7B7RF%7CB0DPCDL29M%7CB07BG79Z9M%7CB07BG4XKJ5%7CB0DSBW9M6W%7CB07BG5GZP2%7CB00N8KOJ88%7CB07BRMLY3C%7CB005LLZ2GK%7CB015QZI2LC%7CB09H6KX7SW%7CB0C5N1PYZB%7CB07BG6QFYJ%7CB07W13P74D%7CB08WZQ1SN3%7CB0FDL9B3B8%7CB0DJ979VKF%7CB00YGMLWQO%7CB0C289FV4B%7CB07FFCGD8F%7CB07575FPC3&tag=tpr07-21",
+  "count": 30,
+  "leftOut": []
  },
  "Tofu Stir-fry": {
-  "url": "https://www.amazon.in/s?k=B09PKCK86L%7CB07BG79Z9M%7CB09RGN6CW9%7CB07BG6X1S1%7CB07BG51WMX%7CB0CGHR3KQM%7CB07HN2W64R%7CB07BG7LB5B%7CB09H6KX7SW%7CB0C5N1PYZB%7CB0F5PTCKYJ%7CB0D8FBDJ4G%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
-  "count": 14,
-  "leftOut": [
-   {
-    "name": "Carrot",
-    "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21"
-   },
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B09PKCK86L%7CB07BG79Z9M%7CB0DPCDL29M%7CB09RGN6CW9%7CB07BG6X1S1%7CB07BG51WMX%7CB0CGHR3KQM%7CB07HN2W64R%7CB07BG51Q2F%7CB07BG7LB5B%7CB09H6KX7SW%7CB0C5N1PYZB%7CB0F5PTCKYJ%7CB0D8FBDJ4G%7CB0GDQWH88W%7CB07575FPC3&tag=tpr07-21",
+  "count": 16,
+  "leftOut": []
  },
  "Veg Hakka Noodles": {
-  "url": "https://www.amazon.in/s?k=B00FHD9Y5W%7CB0GDQWH88W%7CB07HN2W64R%7CB07BG51WMX%7CB07BG521JL%7CB08WZQ1SN3%7CB07BG7LB5B%7CB00O0X7B3M%7CB09H6KX7SW%7CB0C5N1PYZB%7CB0GN3GKHB9%7CB07575FPC3&tag=tpr07-21",
-  "count": 12,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   },
-   {
-    "name": "Carrot",
-    "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21"
-   },
-   {
-    "name": "Spring onion",
-    "url": "https://www.amazon.in/dp/B07NXZWD25?tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B00FHD9Y5W%7CB0GDQWH88W%7CB07BG51Q2F%7CB07HN2W64R%7CB0DPCDL29M%7CB07BG51WMX%7CB07BG521JL%7CB08WZQ1SN3%7CB07BG7LB5B%7CB07NXZWD25%7CB00O0X7B3M%7CB09H6KX7SW%7CB0C5N1PYZB%7CB0GN3GKHB9%7CB07575FPC3&tag=tpr07-21",
+  "count": 15,
+  "leftOut": []
  },
  "Veg Fried Rice": {
-  "url": "https://www.amazon.in/s?k=B00YGMLWQO%7CB0GDQWH88W%7CB083QDBBBW%7CB07BG7LB5B%7CB07BG521JL%7CB07BG51WMX%7CB07BG8JPXY%7CB08WZQ1SN3%7CB078KT9RB1%7CB09H6KX7SW%7CB09H6KZYJ9%7CB0C5N1PYZB%7CB0D8FBDJ4G%7CB07575FPC3&tag=tpr07-21",
-  "count": 14,
-  "leftOut": [
-   {
-    "name": "Carrot",
-    "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21"
-   },
-   {
-    "name": "Spring onion",
-    "url": "https://www.amazon.in/dp/B07NXZWD25?tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B00YGMLWQO%7CB0GDQWH88W%7CB07NXZWD25%7CB083QDBBBW%7CB07BG7LB5B%7CB0DPCDL29M%7CB07BG521JL%7CB07BG51WMX%7CB07BG8JPXY%7CB08WZQ1SN3%7CB078KT9RB1%7CB09H6KX7SW%7CB09H6KZYJ9%7CB0C5N1PYZB%7CB0D8FBDJ4G%7CB07575FPC3&tag=tpr07-21",
+  "count": 16,
+  "leftOut": []
  },
  "Chilli Paneer": {
-  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB075335G7V%7CB0GDQWH88W%7CB07BG7B7RF%7CB07BG7LB5B%7CB07BG51WMX%7CB08WZQ1SN3%7CB09H6KX7SW%7CB09H6KZYJ9%7CB0D8FBDJ4G%7CB07575FPC3&tag=tpr07-21",
+  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB075335G7V%7CB0GDQWH88W%7CB07BG51Q2F%7CB07BG7B7RF%7CB07BG7LB5B%7CB07NXZWD25%7CB07BG51WMX%7CB08WZQ1SN3%7CB09H6KX7SW%7CB09H6KZYJ9%7CB0D8FBDJ4G%7CB07575FPC3&tag=tpr07-21",
+  "count": 13,
+  "leftOut": []
+ },
+ "Veg Manchurian": {
+  "url": "https://www.amazon.in/s?k=B07BG521JL%7CB0DPCDL29M%7CB07BG8JPXY%7CB07NXZWD25%7CB07BG5GJJW%7CB07BG7B7RF%7CB07BG51Q2F%7CB07BG7LB5B%7CB09H6KX7SW%7CB09H6KZYJ9%7CB01IBTCZNG%7CB00O0X7B3M%7CB08WZQ1SN3%7CB075335G7V%7CB08DRSJGCD%7CB0GDQWH88W%7CB07HN2W64R%7CB07BG51WMX%7CB0C5N1PYZB%7CB005LLZ2GK%7CB07575FPC3&tag=tpr07-21",
+  "count": 21,
+  "leftOut": []
+ },
+ "White Sauce Pasta": {
+  "url": "https://www.amazon.in/s?k=B0GX1YYY8R%7CB0GDQWH88W%7CB01IBTCZNG%7CB08DRSJGCD%7CB0F4DK9TR7%7CB0D8FBDJ4G%7CB01GJIGZIM%7CB08XVX7WFX%7CB01FMCJDDA%7CB07575FPC3&tag=tpr07-21",
+  "count": 10,
+  "leftOut": []
+ },
+ "Bruschetta": {
+  "url": "https://www.amazon.in/s?k=B07RJWV541%7CB01IBTCZNG%7CB07HN2W64R%7CB07BG51WMX%7CB0DPCG3154%7CB00Y00Z8IU%7CB01GJIGZIM%7CB0D8FBDJ4G%7CB09FSWGGQM%7CB09NKXT8LM%7CB07575FPC3&tag=tpr07-21",
   "count": 11,
   "leftOut": [
    {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   },
-   {
-    "name": "Spring onion",
-    "url": "https://www.amazon.in/dp/B07NXZWD25?tag=tpr07-21"
+    "name": "Arugula",
+    "url": "https://www.amazon.in/s?k=fresh+arugula+rocket+leaves&tag=tpr07-21"
    }
   ]
  },
- "Veg Manchurian": {
-  "url": "https://www.amazon.in/s?k=B07BG521JL%7CB07BG8JPXY%7CB07BG5GJJW%7CB07BG7B7RF%7CB07BG7LB5B%7CB09H6KX7SW%7CB09H6KZYJ9%7CB01IBTCZNG%7CB00O0X7B3M%7CB08WZQ1SN3%7CB075335G7V%7CB08DRSJGCD%7CB0GDQWH88W%7CB07HN2W64R%7CB07BG51WMX%7CB0C5N1PYZB%7CB005LLZ2GK%7CB07575FPC3&tag=tpr07-21",
+ "Potato Au Gratin": {
+  "url": "https://www.amazon.in/s?k=B07BG5GZP2%7CB01IBTCZNG%7CB0G6X4JY51%7CB08XVX7WFX%7CB077RK8L9N%7CB0GDQWH88W%7CB07HN2W64R%7CB0FDL8BW9J%7CB09RT3BF6N%7CB01FMCJDDA%7CB0DPCCQXNN%7CB07575FPC3&tag=tpr07-21",
+  "count": 12,
+  "leftOut": []
+ },
+ "Paneer Tikka Tacos": {
+  "url": "https://www.amazon.in/s?k=B078KT9RB1%7CB077RFB9TN%7CB083QDBBBW%7CB01B7DZ8BE%7CB00LIO5JYE%7CB0154VT0GY%7CB079H8D8M6%7CB0752S3195%7CB017BK7MD4%7CB0GDQWH88W%7CB0DJ97QP87%7CB07HN2W64R%7CB07BG7LB5B%7CB00N8KOJ88%7CB08JQTG681%7CB07BG51WMX%7CB08H64PTLG%7CB07BG5GJJW%7CB08DRSJGCD%7CB004KFHIBK%7CB0BLZ8VFLL%7CB07575FPC3&tag=tpr07-21",
+  "count": 22,
+  "leftOut": []
+ },
+ "Thai Red Curry": {
+  "url": "https://www.amazon.in/s?k=B081L21NHK%7CB015QZI2LC%7CB07BG6X1S1%7CB0DPCDL29M%7CB07BG79Z9M%7CB09RGN6CW9%7CB07BG51WMX%7CB0F5PTCKYJ%7CB09NKXT8LM%7CB0BSR149NL%7CB0H1H7PWYK%7CB07575FPC3%7CB00YGMLWQO&tag=tpr07-21",
+  "count": 13,
+  "leftOut": []
+ },
+ "Veg Khao Suey": {
+  "url": "https://www.amazon.in/s?k=B07BG7D7WR%7CB07HN2W64R%7CB07BG51Q2F%7CB07BG7B7RF%7CB07BG7LB5B%7CB07BG5GJJW%7CB0GDQWH88W%7CB079H8D8M6%7CB01B7DZ8BE%7CB00LIO5JYE%7CB0154VT0GY%7CB07BG8JPXY%7CB0DPCDL29M%7CB07BG6X1S1%7CB005LLZ2GK%7CB084M3KZPS%7CB0752S522F%7CB0DFLR6C1V%7CB00FHD9Y5W%7CB0FF4VVGS4%7CB07NXZWD25%7CB07FFCGD8F%7CB0FGY3KWGN%7CB07575FPC3&tag=tpr07-21",
+  "count": 24,
+  "leftOut": []
+ },
+ "Veg Spring Rolls": {
+  "url": "https://www.amazon.in/s?k=B0GDQWH88W%7CB07BG51Q2F%7CB07BG7B7RF%7CB07NXZWD25%7CB07HN2W64R%7CB0DPCDL29M%7CB07BG51WMX%7CB07BG521JL%7CB00O0X7B3M%7CB07BG7LB5B%7CB09H6KZYJ9%7CB09C3STJ24%7CB09H6KX7SW%7CB0D5VHYDHN%7CB0C5N1PYZB%7CB08WZQ1SN3%7CB075335G7V%7CB08DRSJGCD%7CB07575FPC3&tag=tpr07-21",
+  "count": 19,
+  "leftOut": []
+ },
+ "Schezwan Fried Rice": {
+  "url": "https://www.amazon.in/s?k=B0D5VHYDHN%7CB0GDQWH88W%7CB0BBF1FT93%7CB07HN2W64R%7CB07BG51Q2F%7CB07BG7B7RF%7CB07BG7LB5B%7CB07BG5GJJW%7CB0DPCDL29M%7CB07BG8JPXY%7CB07NXZWD25%7CB00O0X7B3M%7CB08WZQ1SN3%7CB0C5N1PYZB%7CB09C3STJ24%7CB07575FPC3&tag=tpr07-21",
+  "count": 16,
+  "leftOut": []
+ },
+ "Hot and Sour Soup": {
+  "url": "https://www.amazon.in/s?k=B07BG521JL%7CB0DPCDL29M%7CB07BG51WMX%7CB07BG8JPXY%7CB07BG79Z9M%7CB07NXZWD25%7CB0GDQWH88W%7CB07BG7B7RF%7CB07BG51Q2F%7CB005LLZ2GK%7CB07BG7LB5B%7CB08WZQ1SN3%7CB09H6KX7SW%7CB0C5N1PYZB%7CB09H6KZYJ9%7CB00O0X7B3M%7CB075335G7V%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 19,
+  "leftOut": []
+ },
+ "Sweet Corn Soup": {
+  "url": "https://www.amazon.in/s?k=B0CYT9FJVQ%7CB08WZQ1SN3%7CB00O0X7B3M%7CB0C5N1PYZB%7CB09H6KX7SW%7CB0DPCDL29M%7CB07BG8JPXY%7CB07BG51WMX%7CB075335G7V%7CB078KT9RB1%7CB07NXZWD25%7CB07575FPC3&tag=tpr07-21",
+  "count": 12,
+  "leftOut": []
+ },
+ "Veg Momos": {
+  "url": "https://www.amazon.in/s?k=B08DRSJGCD%7CB007GGTLEC%7CB0C5N1PYZB%7CB0GDQWH88W%7CB07BG521JL%7CB0DPCDL29M%7CB07BG8JPXY%7CB078KT9RB1%7CB07BG5GJJW%7CB07BG7LB5B%7CB07BG7B7RF%7CB01IBTCZNG%7CB08JQTG681%7CB0H1H7PWYK%7CB07HN2W64R%7CB0FF4VVGS4%7CB07BG51Q2F%7CB0C289FV4B%7CB0D8FBDJ4G%7CB00Y09JC24%7CB01FMCJDDA%7CB07575FPC3&tag=tpr07-21",
+  "count": 22,
+  "leftOut": []
+ },
+ "American Chopsuey": {
+  "url": "https://www.amazon.in/s?k=B00FHD9Y5W%7CB075335G7V%7CB0GDQWH88W%7CB07NXZWD25%7CB07BG7LB5B%7CB07BG51Q2F%7CB07BG7B7RF%7CB07BG6X1S1%7CB0DPCDL29M%7CB07BG51WMX%7CB07BG79Z9M%7CB07BG521JL%7CB08WZQ1SN3%7CB09C3STJ24%7CB09H6KZYJ9%7CB09H6KX7SW%7CB0D8FBDJ4G%7CB0C5N1PYZB%7CB07575FPC3&tag=tpr07-21",
+  "count": 19,
+  "leftOut": []
+ },
+ "Chilli Garlic Noodles": {
+  "url": "https://www.amazon.in/s?k=B00FHD9Y5W%7CB0GDQWH88W%7CB0D5VHYDHN%7CB07BG51Q2F%7CB07BG7B7RF%7CB07BG7LB5B%7CB07HN2W64R%7CB0DPCDL29M%7CB07BG51WMX%7CB07BG521JL%7CB09H6KX7SW%7CB00O0X7B3M%7CB0GN3GKHB9%7CB08WZQ1SN3%7CB07NXZWD25%7CB07BG5GJJW%7CB0C5N1PYZB%7CB07575FPC3&tag=tpr07-21",
   "count": 18,
-  "leftOut": [
-   {
-    "name": "Carrot",
-    "url": "https://www.amazon.in/s?k=fresh+carrot&tag=tpr07-21"
-   },
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   },
-   {
-    "name": "Spring onion",
-    "url": "https://www.amazon.in/dp/B07NXZWD25?tag=tpr07-21"
-   }
-  ]
+  "leftOut": []
+ },
+ "Mexican Rice": {
+  "url": "https://www.amazon.in/s?k=B0GDQWH88W%7CB01IBTCZNG%7CB07BG51Q2F%7CB07HN2W64R%7CB00N8KOJ88%7CB01B7DZ8BE%7CB00LIO5JYE%7CB0154VT0GY%7CB01GJIGZIM%7CB00LN86ZIY%7CB09C3STJ24%7CB00YGMLWQO%7CB0CYT9FJVQ%7CB07BG51WMX%7CB09GYK1DHQ%7CB0CP3KK885%7CB005LLZ2GK%7CB07BG5GJJW%7CB07575FPC3&tag=tpr07-21",
+  "count": 19,
+  "leftOut": []
+ },
+ "Loaded Nachos": {
+  "url": "https://www.amazon.in/s?k=B00M57U9R0%7CB08DRSJGCD%7CB079H8D8M6%7CB0GDQWH88W%7CB0G6X4JY51%7CB0CP3KK885%7CB07BG51Q2F%7CB07HN2W64R%7CB08JQTG681%7CB0154VT0GY%7CB0D8FBDJ4G%7CB01IBTCZNG%7CB0F4DK9TR7%7CB01FMCJDDA%7CB07BG7LB5B%7CB0DFLR6C1V%7CB07BG5GJJW%7CB01MTB4BR7%7CB09GYK1DHQ%7CB0DPCCQXNN%7CB07575FPC3&tag=tpr07-21",
+  "count": 21,
+  "leftOut": []
+ },
+ "Garlic Bread": {
+  "url": "https://www.amazon.in/s?k=B08DRSJGCD%7CB08C6WCXSV%7CB07J57J784%7CB00X7RJSW4%7CB01IBTCZNG%7CB07BG51Q2F%7CB01GJIGZIM%7CB07LCBQNCD%7CB01B7DZ79M%7CB0D8FBDJ4G%7CB09NKXT8LM%7CB00LN86ZIY%7CB01FMCJDDA%7CB0F4DK9TR7%7CB0BHLD142Z%7CB00O8X0GI6%7CB07BG51WMX%7CB07HN2W64R%7CB0CYT9FJVQ%7CB07575FPC3&tag=tpr07-21",
+  "count": 20,
+  "leftOut": []
+ },
+ "Cream of Mushroom Soup": {
+  "url": "https://www.amazon.in/s?k=B07BG79Z9M%7CB01IBTCZNG%7CB00X7RJSW4%7CB07HN2W64R%7CB07BG51Q2F%7CB07BG4XKJ5%7CB08DRSJGCD%7CB005LLZ2GK%7CB0D8FBDJ4G%7CB07NDHH8D4%7CB077RK8L9N%7CB07575FPC3&tag=tpr07-21",
+  "count": 12,
+  "leftOut": []
  },
  "Masala Omelette": {
-  "url": "https://www.amazon.in/s?k=B0DG5PG3CX%7CB01IBTCZNG%7CB07HN2W64R%7CB07BG7LB5B%7CB08JQTG681%7CB07BG5GJJW%7CB07BG5GZP2%7CB0GDQWH88W%7CB0DJ97QP87%7CB07BG7B7RF%7CB079H8D8M6%7CB07575FPC3&tag=tpr07-21",
-  "count": 12,
-  "leftOut": [
-   {
-    "name": "Garlic",
-    "url": "https://www.amazon.in/s?k=fresh+garlic&tag=tpr07-21"
-   }
-  ]
+  "url": "https://www.amazon.in/s?k=B0DG5PG3CX%7CB01IBTCZNG%7CB07HN2W64R%7CB07BG7LB5B%7CB08JQTG681%7CB07BG5GJJW%7CB07BG5GZP2%7CB0GDQWH88W%7CB0DJ97QP87%7CB07BG7B7RF%7CB07BG51Q2F%7CB079H8D8M6%7CB07575FPC3&tag=tpr07-21",
+  "count": 13,
+  "leftOut": []
  },
  "Shakshuka": {
   "url": "https://www.amazon.in/s?k=B0DG5PG3CX%7CB09WMPCGVP%7CB07HN2W64R%7CB07BG7LB5B%7CB08JQTG681%7CB079H8D8M6%7CB01B7DZ79M%7CB00LIO5JYE%7CB017BK7MD4%7CB077RK8L9N%7CB0D8FBDJ4G%7CB077Y832Z6%7CB07575FPC3&tag=tpr07-21",

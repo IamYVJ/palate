@@ -8,7 +8,7 @@ const KEY = 'palate.v1';
 const LISTS = ['dishes', 'restaurants', 'pantry', 'meals', 'plan', 'shopExtra'];
 
 export const blank = () => ({
-  version: 3,
+  version: 9,
   settings: { cookName: '', cookPhone: '', lang: 'en' },
   dishes: [],      // home dishes: { id, name, status, diet, archived, rating, favorite, cuisine, meals[], ingredients[{name, qty}], links[], linkInfo{url: {title, channel}}, method[], recipeFrom, cookTime, tags[], instructions, notes, from, addedOn }
   restaurants: [], // { id, name, status: 'been'|'want', area, cuisine, mapUrl, recommendedBy, notes, addedOn, dishes[{ id, name, tried, rating, verdict, notes, addedOn }] }
@@ -41,19 +41,20 @@ function normalize(data) {
     }
     s.version = 2;
   }
-  // v2 → v3: ingredients and method from the recipe video, for dishes whose list you haven't edited.
-  if (s.version < 3) {
+  // v2 → v9: ingredients and method from the recipe video, for dishes whose list you haven't edited.
+  // Bump the version whenever more recipes are checked against their videos, so this runs again.
+  if (s.version < 9) {
     for (const d of s.dishes) {
       const r = recipeFor(d.name);
       if (!r) continue;
       const names = (d.ingredients || []).map((i) => String(i.name).toLowerCase()).join(',');
-      if (names === LEGACY_INGREDIENTS[d.name] || !d.ingredients?.length) {
+      if ([].concat(LEGACY_INGREDIENTS[d.name] || []).includes(names) || !d.ingredients?.length) {
         d.ingredients = r.ingredients;
         d.recipeFrom = r.recipeFrom;
       }
       if (!d.method.length) d.method = r.method;
     }
-    s.version = 3;
+    s.version = 9;
   }
   return s;
 }

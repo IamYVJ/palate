@@ -121,7 +121,8 @@ function methodCredit(d) {
   if (!d.recipeFrom) return '';
   const video = (d.links || []).find(youtubeId);
   const channel = video && d.linkInfo?.[video]?.channel;
-  return channel ? `summarised from ${channel}’s video` : 'summarised from the video';
+  // "Bong Eats’ video", not "Bong Eats’s video".
+  return channel ? `summarised from ${channel}’${/s$/i.test(channel) ? '' : 's'} video` : 'summarised from the video';
 }
 
 function videoCard(url, info) {
