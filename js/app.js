@@ -9,6 +9,7 @@ import { currentSlot } from './logic.js';
 import * as modals from './modals.js';
 import { openCapture } from './modals.js';
 import * as pwa from './pwa.js';
+import { showVisitorCount } from './visitor-count.js';
 import * as today from './views/today.js';
 import * as cook from './views/cook.js';
 import * as dish from './views/dish.js';
@@ -137,10 +138,11 @@ ui.slot = currentSlot();
 subscribe(render);
 pwa.initPwa();
 render();
+showVisitorCount();
 
 // Shared into Palate (share sheet, bookmarklet, ?url=… link) or the "Save" home-screen shortcut.
-const params = new URLSearchParams(location.search);
+// index.html has already taken the query string out of the address bar, before the analytics beacon.
+const params = new URLSearchParams(window.palateLaunchQuery || '');
 if (params.has('url') || params.has('text') || params.has('save')) {
-  history.replaceState(null, '', location.pathname + location.hash);
   openCapture({ url: params.get('url') || '', text: params.get('text') || '', title: params.get('title') || '' });
 }

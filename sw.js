@@ -2,7 +2,7 @@
 // Strategy: network first (so updates show up straight away), falling back to the cache
 // when offline or when the network is slow. Your data lives in localStorage, not here.
 
-const CACHE = 'palate-shell-v2';
+const CACHE = 'palate-shell-v3';
 const FONT_CACHE = 'palate-fonts-v1';
 const NETWORK_TIMEOUT_MS = 3000;
 
@@ -26,6 +26,7 @@ const SHELL = [
   'js/recipes.js',
   'js/shop-links.js',
   'js/creators.js',
+  'js/visitor-count.js',
   'js/views/ideas.js',
   'js/views/today.js',
   'js/views/cook.js',
@@ -60,6 +61,8 @@ self.addEventListener('fetch', (event) => {
     event.respondWith(cacheFirst(request, FONT_CACHE));
     return;
   }
+  // Every other cross-origin request goes straight to the network. That includes the GoatCounter beacon,
+  // which must never be cached: a beacon answered from cache records nothing.
   if (url.origin !== self.location.origin) return;
   event.respondWith(networkFirst(request));
 });

@@ -19,6 +19,13 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,650&display=swap">
   <link rel="stylesheet" href="css/styles.css">
+  <script>
+    // Links shared into Palate arrive as ?url=…&title=…&text=…. Take them out of the address bar before
+    // anything else runs: the analytics beacon sends location.search, and a shared link must never reach it.
+    // js/app.js picks them up from here.
+    window.palateLaunchQuery = location.search;
+    if (location.search) history.replaceState(null, '', location.pathname + location.hash);
+  </script>
   <script type="module" src="js/app.js"></script>
 </head>
 <body>
@@ -37,6 +44,13 @@
   </header>
 
   <main id="view" tabindex="-1"></main>
+
+  <!-- Outside #view, which is re-rendered on every change. js/visitor-count.js unhides it. -->
+  <footer class="site-foot">
+    <p class="visitor-counter" hidden>
+      <span id="visitor-count" class="visitor-count">—</span> visitors
+    </p>
+  </footer>
 
   <nav class="tabbar" aria-label="Sections">
     <div class="tabbar-inner">
@@ -61,5 +75,12 @@
   <dialog id="modal"></dialog>
   <div id="toast" role="status" aria-live="polite"></div>
   <noscript><p style="padding:24px">Palate needs JavaScript to run.</p></noscript>
+
+  <!-- GoatCounter pageview beacon. One site shared across all projects on purpose:
+       counts are per-path, so each project is separated by its own pathname. -->
+  <script
+    data-goatcounter="https://yvj.goatcounter.com/count"
+    async
+    src="//gc.zgo.at/count.js"></script>
 </body>
 </html>

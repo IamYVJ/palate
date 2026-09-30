@@ -105,9 +105,16 @@ svg { width: 22px; height: 22px; fill: none; stroke: currentColor; stroke-width:
 
 main {
   max-width: 680px; margin: 0 auto;
-  padding: 14px 16px calc(96px + env(safe-area-inset-bottom));
+  padding: 14px 16px 0;
   outline: none;
 }
+
+/* Sits after main and keeps the page clear of the fixed tab bar. */
+.site-foot { max-width: 680px; margin: 0 auto; padding: 0 16px calc(96px + env(safe-area-inset-bottom)); }
+/* No `display` on .visitor-counter: it would override the `hidden` attribute
+   and show a bare "— visitors" to anyone whose adblocker blocks GoatCounter. */
+.visitor-counter { margin: 28px 0 0; font-size: 12px; letter-spacing: .04em; color: var(--ink-3); text-align: center; }
+.visitor-count { font-variant-numeric: tabular-nums; color: var(--ink-2); }
 
 .tabbar {
   position: fixed; left: 0; right: 0; bottom: 0; z-index: 10;

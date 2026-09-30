@@ -31,7 +31,8 @@ export function render() {
 
   <section class="card">
     <h2 class="card-title">Your data</h2>
-    <p class="hint">Everything lives in this browser on this device; nothing is uploaded anywhere. Export a backup now and then, and use it to move to another phone or computer.</p>
+    <p class="hint">Everything lives in this browser on this device; your data is never uploaded anywhere. Export a backup now and then, and use it to move to another phone or computer.</p>
+    <p class="hint">Palate counts anonymous visits with GoatCounter: no cookies, and nothing you enter here.</p>
     <p class="muted" style="font-size:14px">${state.dishes.length} dishes · ${state.restaurants.length} places · ${state.pantry.length} kitchen items · ${state.meals.length} meals logged</p>
     <div class="card-actions">
       <button type="button" class="btn" data-action="exportData">Export backup</button>
