@@ -44,6 +44,35 @@ export const buyLink = (name) => LINKS_BY_KEY.get(ingKey(name)) || null;
 /** One link that fills an Amazon cart with a dish's ingredients ({ url, count, leftOut }), or null. */
 export const dishBundle = (dishName) => DISH_BUNDLES[dishName] || null;
 
+/**
+ * The same kind of link for just what isn't at home (out, or not tracked in the kitchen), built from
+ * the ingredients' own product links. Null when nothing's missing or none of it has a product.
+ */
+export function missingBundle(dish) {
+  // Products the dish's own bundle had to leave out don't show up in Amazon's combined list either.
+  const skip = new Set((dishBundle(dish.name)?.leftOut || []).map((x) => ingKey(x.name)));
+  const asins = new Set(); // a Set: one product can cover two ingredients (onion and red onion)
+  const names = [];
+  const leftOut = [];
+  let first = null;
+  for (const r of availability(dish).rows) {
+    if (r.avail === 'have') continue;
+    const link = buyLink(r.name);
+    const asin = !link || link.search || skip.has(ingKey(r.name)) ? null : link.url.match(/\/dp\/([A-Z0-9]{10})/)?.[1];
+    if (!asin) {
+      leftOut.push({ name: r.name, url: link?.url || '' });
+      continue;
+    }
+    first = first || new URL(link.url);
+    asins.add(asin);
+    names.push(r.name);
+  }
+  if (!first) return null;
+  // Same shape as the generated bundle links, with the Associates tag the product links carry.
+  const tag = first.searchParams.get('tag');
+  return { url: `${first.origin}/s?k=${[...asins].join('%7C')}${tag ? `&tag=${tag}` : ''}`, count: asins.size, names, leftOut };
+}
+
 /** 'have' (in stock or running low), 'out', or 'unknown' (not tracked in the kitchen). */
 export function checkIngredient(name) {
   if (ASSUMED.has(ingKey(name))) return { avail: 'have', item: null };

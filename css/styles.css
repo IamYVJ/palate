@@ -290,6 +290,12 @@ button.chip { cursor: pointer; font-size: 13px; padding: 6px 12px; }
 .video-meta strong { display: block; font-size: 15px; line-height: 1.3; color: var(--ink); }
 .video-meta span { display: block; font-size: 13px; color: var(--ink-2); margin-top: 3px; }
 .buy-all { margin: 0 0 10px; }
+.buy-all-links { display: flex; flex-wrap: wrap; gap: 8px; }
+/* On a phone the two links sit side by side, so they drop "ingredients on Amazon"; aria-label keeps it. */
+@media (max-width: 560px) {
+  .buy-all-links a:not(:only-child) { flex: 1 1 auto; }
+  .buy-all-links a:not(:only-child) .long { display: none; }
+}
 .buy-all .hint { margin: 6px 2px 0; }
 .buy {
   flex: none; display: inline-grid; place-items: center; min-width: 44px; min-height: 30px; padding: 0 8px;

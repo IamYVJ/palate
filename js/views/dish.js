@@ -4,7 +4,7 @@ import { state, update, byId } from '../store.js';
 import { html, ago, fmtDate, cap, safeUrl, youtubeId, STATUS, ratingBadge, dietMark, todayISO, toast } from '../ui.js';
 import { CREATORS, creatorsFor, creatorSearchUrl } from '../creators.js';
 import { DIET } from '../diet.js';
-import { availability, mealStats, buyLink, dishBundle } from '../logic.js';
+import { availability, mealStats, buyLink, dishBundle, missingBundle, nameList, ingKey } from '../logic.js';
 
 const MARK = {
   have: ['✓', 'good'],
@@ -23,6 +23,7 @@ export function render(id) {
   const videos = links.filter(youtubeId);
   const pages = links.filter((l) => !youtubeId(l));
   const bundle = av.rows.length ? dishBundle(d.name) : null;
+  const missing = missingBundle(d);
   const anyBuy = !!bundle || av.rows.some((r) => buyLink(r.name));
 
   return html`
@@ -76,7 +77,7 @@ export function render(id) {
   </div>
 
   <h2 class="section-title">Ingredients ${av.rows.length ? html`<span class="muted">${d.recipeFrom ? 'as in the video · ' : ''}${av.have.length} of ${av.rows.length} at home</span>` : ''}</h2>
-  ${bundle ? buyAll(bundle) : ''}
+  ${bundle || missing ? buyBundles(bundle, missing) : ''}
   ${av.rows.length ? html`<ul class="list ings">${av.rows.map((r) => html`
     <li class="ing">
       <span class="ing-mark ${MARK[r.avail][1]}">${MARK[r.avail][0]}</span>
@@ -98,11 +99,20 @@ export function render(id) {
     <div class="chips">${stat.dates.slice().sort().reverse().slice(0, 12).map((x) => html`<span class="chip">${fmtDate(x)}</span>`)}</div>` : ''}`;
 }
 
-/** One link that puts the whole dish's shopping in an Amazon cart, plus anything it couldn't include. */
-function buyAll(bundle) {
+/**
+ * Links that put the dish's shopping in an Amazon cart: everything, and just what isn't at home.
+ * Anything they couldn't include is listed underneath with its own link.
+ */
+function buyBundles(bundle, missing) {
+  const leftOut = [...(bundle?.leftOut || [])];
+  for (const x of missing?.leftOut || []) if (!leftOut.some((y) => ingKey(y.name) === ingKey(x.name))) leftOut.push(x);
+  const items = (n) => `${n} item${n === 1 ? '' : 's'}`;
   return html`<div class="buy-all">
-    <a class="btn sm" href="${safeUrl(bundle.url)}" target="_blank" rel="noopener sponsored">Buy all ingredients on Amazon <span class="count">${bundle.count} items</span></a>
-    ${bundle.leftOut.length ? html`<p class="hint">Not in that list: ${bundle.leftOut.map((x, i) => html`${i ? ', ' : ''}${x.url
+    <div class="buy-all-links">
+      ${bundle ? html`<a class="btn sm" href="${safeUrl(bundle.url)}" target="_blank" rel="noopener sponsored" aria-label="Buy all ingredients on Amazon, ${items(bundle.count)}"><span>Buy all<span class="long"> ingredients on Amazon</span></span> <span class="count">${items(bundle.count)}</span></a>` : ''}
+      ${missing ? html`<a class="btn sm" href="${safeUrl(missing.url)}" target="_blank" rel="noopener sponsored" aria-label="Buy missing ingredients on Amazon, ${items(missing.count)}" title="On this list: ${nameList(missing.names, 8)}"><span>Buy missing<span class="long"> ingredients${bundle ? '' : ' on Amazon'}</span></span> <span class="count">${items(missing.count)}</span></a>` : ''}
+    </div>
+    ${leftOut.length ? html`<p class="hint">Not in ${bundle && missing ? 'those lists' : 'that list'}: ${leftOut.map((x, i) => html`${i ? ', ' : ''}${x.url
       ? html`<a href="${safeUrl(x.url)}" target="_blank" rel="noopener sponsored">${x.name.toLowerCase()}</a>`
       : x.name.toLowerCase()}`)}</p>` : ''}
   </div>`;
